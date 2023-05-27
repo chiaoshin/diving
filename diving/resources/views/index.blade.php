@@ -46,7 +46,8 @@ $fake_data2 = [
 @section("head")
 <!-- amCharts javascript sources -->
 <script type="text/javascript" src="https://www.amcharts.com/lib/3/ammap.js"></script>
-<script type="text/javascript" src="https://www.amcharts.com/lib/3/maps/js/taiwanLow.js"></script>
+<!-- <script type="text/javascript" src="https://www.amcharts.com/lib/3/maps/js/taiwanLow.js"></script> -->
+<script src="{{ asset('js/taiwanLow.js') }}"></script>
 <script src="https://www.amcharts.com/lib/4/geodata/lang/tw_ZH.js"></script>
 
 <!-- amCharts javascript code -->
@@ -124,6 +125,13 @@ $fake_data2 = [
     chart.addListener("rendered", function() {
         $("[title='Interactive JavaScript maps']").hide()
     })
+
+    function handleClick(event) {
+        console.log(event)
+    }
+    chart.addListener("clickMapObject", function(event) {
+        console.log(event.mapObject.enTitle)
+    });
 </script>
 @endsection
 
@@ -231,7 +239,7 @@ $fake_data2 = [
             <h2 class="text-white"><b><span class="material-symbols-outlined">travel_explore</span>潛游地圖</b></h2>
         </div>
     </div>
-    <div class="row position-relative">
+    <div class="row position-relative" style="border: solid 1px #928d8d; padding: 0.5rem;">
         <div id="map" style="width: 100%; height: 600px;"></div>
         <!-- w-300 h-265 rounded mx-auto d-block -->
         <!-- <div class="text-center">
@@ -262,7 +270,7 @@ $fake_data2 = [
     <div class="row">
         @foreach($fake_data2 as $data)
         <div class="col-12 col-md-4">
-            <img src="{{ $data['image_url'] }}" class="w-50 h-60 rounded mx-auto d-block" alt="...">
+            <img src="{{ $data['image_url'] }}" class="w-50 h-60 rounded mx-auto d-block" alt="..." style="cursor: pointer;">
             <h4 class="text-white text-center"><b>{{ $data['title'] }}</b></h4>
         </div>
         @endforeach
