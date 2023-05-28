@@ -1,9 +1,10 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import "./index.css";
 
-@import "./tab_css/style.css";
-@import "./tab_css/animate.css";
-/* @import "./style2.css"; */
+html,
+body {
+    height: 100%;
+}
 
 #navbar {
     background-color: #2b71d3;
@@ -15,7 +16,6 @@
 
 #content {
     background-color: #a9c2d3;
-    min-height: 100vh;
 }
 
 body {

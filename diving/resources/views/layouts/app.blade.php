@@ -24,7 +24,7 @@
     @yield('head')
 </head>
 
-<body>
+<body class="d-flex" style="flex-direction: column;">
     <nav class="navbar navbar-expand-lg navbar-light" id="navbar">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">
@@ -55,16 +55,18 @@
             </div>
         </div>
     </nav>
-    <div class="container-fluid p-0" id="content">
+    <div class="container-fluid p-0" id="content" style="flex-grow: 2;">
         @yield('body')
     </div>
-    <div class="footer" id="footer">
-        <div class="container-fluid">
+    <div class="footer d-flex" id="footer" style="flex-grow: 1;">
+        <div class="container-fluid m-auto">
             <span>
                 <p class="text-center text-white m-0">Copyright @ 2023 Diving. All rights reserved.</p>
             </span>
         </div>
     </div>
 </body>
+
+@yield('script')
 
 </html>
