@@ -1,0 +1,27 @@
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import "./index.css";
+
+html,
+body {
+    height: 100%;
+}
+
+#navbar {
+    background-color: #2b71d3;
+}
+
+#navbar * {
+    color: white;
+}
+
+#content {
+    background-color: #a9c2d3;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+#footer{
+    background-color: #4472b1;
+}

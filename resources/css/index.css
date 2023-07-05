@@ -1,0 +1,70 @@
+.search-container {
+    padding: 1rem 4rem 1rem 4rem;
+}
+
+.search-container select {
+    background-color: transparent;
+    border: solid 1px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: transparent;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+    background-repeat: no-repeat;
+    background-position-x: 100%;
+    background-position-y: 5px;
+}
+
+.search-container select:focus  {
+    background-color: transparent;
+}
+
+/* .search-container select:hover  {
+    background-color: #212529;
+    color: white;
+} */
+
+#map-btn-div {
+    position: absolute;
+    top: 0;
+}
+
+@media screen and (max-width: 576px) {
+    .search-container {
+        padding: 1rem;
+    }
+
+    #map-btn-div {
+        position: relative;
+        top: unset;
+    }
+}
+
+@media screen and (min-width: 576px)  and (max-width: 767px){
+    .search-container {
+        padding: 1rem 2rem 1rem 2rem;
+    }
+
+    #map-btn-div {
+        position: relative;
+        top: unset;
+    }
+}
+
+@media screen and (min-width: 768px)  and (max-width: 991px){
+    .search-container {
+        padding: 1rem 2rem 1rem 2rem;
+    }
+
+    #map-btn-div {
+        position: relative;
+        top: unset;
+    }
+}
+
+@media screen and (min-width: 992px)  and (max-width: 1199px){
+
+}
+
+@media screen and (min-width: 1200px) {
+
+}
