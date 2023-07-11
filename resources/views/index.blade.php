@@ -50,89 +50,16 @@ $fake_data2 = [
 <script src="{{ asset('js/taiwanLow.js') }}"></script>
 <script src="https://www.amcharts.com/lib/4/geodata/lang/tw_ZH.js"></script>
 
-<!-- amCharts javascript code -->
-<script type="text/javascript">
-    // chart.geodataNames = am4geodata_lang_tw_ZH;
-    const chart = AmCharts.makeChart("map", {
-        "type": "map",
-        "pathToImages": "http://www.amcharts.com/lib/3/images/",
-        "addClassNames": true,
-        "fontSize": 15,
-        "color": "#FFFFFF",
-        "projection": "mercator",
-        "backgroundAlpha": 1,
-        "backgroundColor": "rgba(0,0,0,0)",
-        "dataProvider": {
-            "map": "taiwanLow",
-            "getAreasFromMap": true,
-            "images": [{
-                "top": 40,
-                "left": 60,
-                "width": 80,
-                "height": 40,
-                "pixelMapperLogo": true,
-                "url": "http://www.amcharts.com"
-            }]
-        },
-        "balloon": {
-            "horizontalPadding": 15,
-            "borderAlpha": 0,
-            "borderThickness": 1,
-            "verticalPadding": 15
-        },
-        "areasSettings": {
-            "color": "rgba(119,208,96,1)",
-            "outlineColor": "rgba(80,80,80,1)",
-            "rollOverOutlineColor": "rgba(80,80,80,1)",
-            "rollOverBrightness": 20,
-            "selectedBrightness": 20,
-            "selectable": true,
-            "unlistedAreasAlpha": 0,
-            "unlistedAreasOutlineAlpha": 0
-        },
-        "imagesSettings": {
-            "alpha": 1,
-            "color": "rgba(119,208,96,1)",
-            "outlineAlpha": 0,
-            "rollOverOutlineAlpha": 0,
-            "outlineColor": "rgba(80,80,80,1)",
-            "rollOverBrightness": 20,
-            "selectedBrightness": 20,
-            "selectable": true
-        },
-        "linesSettings": {
-            "color": "rgba(119,208,96,1)",
-            "selectable": true,
-            "rollOverBrightness": 20,
-            "selectedBrightness": 20
-        },
-        "zoomControl": {
-            "zoomControlEnabled": true,
-            "homeButtonEnabled": true,
-            "panControlEnabled": false,
-            "right": 38,
-            "bottom": 30,
-            "minZoomLevel": 0.25,
-            "gridHeight": 100,
-            "gridAlpha": 0.1,
-            "gridBackgroundAlpha": 0,
-            "gridColor": "#FFFFFF",
-            "draggerAlpha": 1,
-            "buttonCornerRadius": 2
-        }
-    })
+<!-- map 效能處理 -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/MarkerCluster.css">
+</link>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/MarkerCluster.Default.css">
+</link>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/leaflet.markercluster.js"></script>
+<!-- map 嵌入 -->
+<!-- <link href="{{ asset("css/leaflet.css") }}" rel="stylesheet"> -->
+<link href="{{ asset("css/map.css") }}" rel="stylesheet">
 
-    chart.addListener("rendered", function() {
-        $("[title='Interactive JavaScript maps']").hide()
-    })
-
-    function handleClick(event) {
-        console.log(event)
-    }
-    chart.addListener("clickMapObject", function(event) {
-        console.log(event.mapObject.enTitle)
-    });
-</script>
 @endsection
 
 @section("body")
@@ -239,16 +166,18 @@ $fake_data2 = [
             <h2 class="text-white"><b><span class="material-symbols-outlined">travel_explore</span>潛游地圖</b></h2>
         </div>
     </div>
+
     <div class="row position-relative" style="border: solid 1px #928d8d; padding: 0.5rem;">
-        <div id="map" style="width: 100%; height: 600px;"></div>
-        <!-- w-300 h-265 rounded mx-auto d-block -->
-        <!-- <div class="text-center">
-            <img src=" ./img/map/map1-preview.png" class="" alt="..." usemap="#image-map">
-        </div>
-        <map name="image-map">
-            <area target="" alt="台南" title="台南" href="https://www.youtube.com/watch?v=KbbfO9KPrgI&list=PL0mviQr8pXaeu9Hk-YGJi0lU7mU957nTi&index=627" coords="1055,480,1019,477,990,509,969,502,949,555,981,587,1008,607,1050,578,1073,546,1091,504,1063,520" shape="poly">
-        </map> -->
-        <div class="col-12 col-sm-3 col-lg-2 text-end" id="map-btn-div">
+        <button id="test-btn-1">本島</button>
+        <button id="test-btn-2">小琉球</button>
+        <!-- leaflet地圖 -->
+        <div id="map"></div>
+
+        <!-- 示範地圖 -->
+        <!-- <div id="map" style="width: 100%; height: 600px;"></div> -->
+
+        <!-- 地圖縣市分類 -->
+        <!-- <div class="col-12 col-sm-3 col-lg-2 text-end" id="map-btn-div">
             <div class="btn-group-vertical w-100" role="group" aria-label="Basic example">
                 <button type="button" class="mt-1 btn btn-primary">北部地區</button>
                 <button type="button" class="mt-1 btn btn-primary">南部地區</button>
@@ -256,8 +185,23 @@ $fake_data2 = [
                 <button type="button" class="mt-1 btn btn-primary">東部地區</button>
                 <button type="button" class="mt-1 btn btn-primary">外島/離島地區</button>
             </div>
+        </div> -->
+
+    </div>
+
+</div>
+
+<!-- weather -->
+
+<div class="container-fluid p-5">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="text-white"><b><span class="material-symbols-sharp">partly_cloudy_day</span>天氣狀態</b></h2>
         </div>
     </div>
+    <!-- <div class="row position-relative" style="border: solid 1px #928d8d; padding: 0.5rem;">
+        <div id="map" style="width: 100%; height: 600px;"></div>
+    </div> -->
 </div>
 
 <!-- activity -->
@@ -276,4 +220,68 @@ $fake_data2 = [
         @endforeach
     </div>
 </div>
+@endsection
+
+@section('script')
+<link href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" rel="stylesheet">
+<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+<script>
+    const markers = @json($marker);
+
+    // marker color
+    var redIcon = new L.Icon({
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+    });
+
+    var orangeIcon = new L.Icon({
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-orange.png',
+        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+    });
+
+    let map;
+
+    function initMap() {
+        map = L.map('map', {
+            center: [23.6978, 120.9605],
+            zoom: 7,
+            scrollWheelZoom: false
+        });
+
+        // 【圖資設定】
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // marker
+        // L.marker([22.7247326, 120.3124143]).addTo(map).bindPopup('<h2>高雄科技大學<h2><p>上課的地方</p>');
+        // L.marker([22.7247326,120.3124143]).addTo(map).bindPopup('<h2>高雄科技大學<h2><br><p>上課的地方</p>').openPopup();
+
+        // 小琉球地點
+        markers.forEach(row => {
+            L.marker([row.lat, row.lng], {
+                icon: redIcon
+            }).addTo(map).bindPopup(`<h2>${row.location}</h2>`)
+        })
+    }
+
+    initMap()
+
+    $("#test-btn-1").click(function() {
+        map.flyTo(new L.LatLng(23.6978, 120.9605), 7);
+    })
+
+    $("#test-btn-2").click(function() {
+        map.flyTo(new L.LatLng(22.340539, 120.370736), 14)
+    })
+</script>
+
 @endsection

@@ -19,7 +19,7 @@
     <!-- tabs temples -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.coml/css?family=Playfair+Display:400,900&display=swap" rel="stylesheet">
 
     @yield('head')
 </head>
@@ -39,17 +39,17 @@
                     <li class="nav-item">
                         <a class="fw-bold d-flex nav-link active" aria-current="page" href="/"><span class="material-symbols-sharp">home</span>首頁 Home</a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="fw-bold d-flex nav-link" href="#"><span class="material-symbols-sharp">partly_cloudy_day</span>天氣</a>
                     </li>
                     <li class="nav-item">
                         <a class="fw-bold d-flex nav-link" href="#"><span class="material-symbols-sharp">map</span>地圖展示</a>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
                         <a class="fw-bold d-flex nav-link" href="#"><span class="material-symbols-sharp">group</span>討論區</a>
                     </li>
                     <li class="nav-item">
-                        <a class="fw-bold d-flex nav-link" href="{{ route('partner.index') }}">尋找潛伴</a>
+                        <a class="fw-bold d-flex nav-link" href="{{ route('partner.index') }}"><span class="material-symbols-sharp">group_add</span>尋找潛伴</a>
                     </li>
                 </ul>
             </div>

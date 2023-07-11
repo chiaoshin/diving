@@ -7,7 +7,7 @@
 
 @section("body")
 <div class='row'>
-    <div class='col-12 col-sm-10 p-5  m-auto'>
+    <div class='col-12 col-sm-10 p-4 m-auto'>
         <main class="table">
             <section class="table__header">
                 <h2><b>尋找潛伴 looking for a partner</b></h2>
