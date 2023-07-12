@@ -103,4 +103,9 @@
 
 </div>
 <br>
+<style>
+    body {
+        background-color: #a9c2d3;
+    }
+</style>
 @endsection

@@ -16,7 +16,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             StoreSeeder::class,
-            PartnerSeeder::class
+            PartnerSeeder::class,
+            MapSeeder::class
         ]);
     }
 }

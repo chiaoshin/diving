@@ -6,10 +6,10 @@
   position: relative;
   font-family: sans-serif;
 }
-A {
+/* A {
   margin: 0 0 1rem;
   
-}
+} */
 
 .read-more-check {
   display: none;
@@ -89,15 +89,15 @@ The down side of this approach is that you have to know what will be the max-hei
   max-height: 600px; /* 根据需要设置图片的最大高度 */
 } 
     
-.transition, ul li i:before, ul li i:after, p {
+.transition {
   transition: all 0.25s ease-in-out;
   }
       
-.flipIn, ul li, h1 {
+.flipIn {
 animation: flipdown 0.5s ease both;
 }
       
-.no-select, h2 {
+.no-select {
 -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 -webkit-touch-callout: none;
 -webkit-user-select: none;
@@ -128,7 +128,7 @@ max-width: 900px;
 padding: 30px;
 }
 
-@media (max-width: 550px) {
+/* @media (max-width: 550px) {
 body {
   box-sizing: border-box;
   transform: translate(0, 0);
@@ -169,14 +169,14 @@ opacity: 1;
 transform: translate(0, 0);
 margin-top: 14px;
 z-index: 2;
-}
+}*/
       
-ul {
+/* ul {
 list-style: none;
 perspective: 900;
 padding: 0;
 margin: 0;
-}
+} 
 
 ul li {
 position: relative;
@@ -246,7 +246,7 @@ transform: translate(2px, 0) rotate(45deg);
 }
 ul li input[type=checkbox]:checked ~ i:after {
 transform: translate(-2px, 0) rotate(-45deg);
-}
+} */
 
       
     
