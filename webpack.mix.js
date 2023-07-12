@@ -15,6 +15,7 @@ mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/map.js', 'public/js')
     .sass('resources/css/store.scss', 'public/css')
     .css('resources/css/partner.css', 'public/css')
+    .css('resources/css/snorkeling.css', 'public/css')
     .postCss('resources/css/app.css', 'public/css', [
         //
     ]);

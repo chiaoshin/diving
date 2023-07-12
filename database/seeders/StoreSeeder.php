@@ -27,6 +27,7 @@ class StoreSeeder extends Seeder
             "checkout_end_to" => "11:00",
             "transform_note" => "開車（提供停車場） 桃園市公車-710 路線 (大溪-捷運永寧站) 台灣好行-小烏來線，於大溪老茶廠站下車 客運-5090、5091、5301路線",
             "landscape" => "慈湖、角板山公園"
+
         ]);
 
         Store::create([

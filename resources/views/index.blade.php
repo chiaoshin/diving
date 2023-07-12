@@ -27,7 +27,7 @@ $fake_data2 = [
 [
 "id" => 1,
 "title" => "浮潛",
-"image_url" => asset("img/diving.png")
+"image_url" => asset("img/diving.png"),
 ],
 [
 "id" => 2,
@@ -110,8 +110,8 @@ $fake_data2 = [
             <div class="col-12 col-md-3 d-flex mt-2">
                 <div class="m-auto w-100">
                     <select class="form-control" name="activity">
-                        <option hidden>選擇項目</option>
-                        @foreach(["浮潛", "自潛", "水肺潛水"] as $location)
+                        <option hidden>選擇縣市</option>
+                        @foreach(["高雄市", "台北市", "台南市", "台中市","小琉球"] as $location)
                         <option value="{{ $location }}">{{ $location }}</option>
                         @endforeach
                     </select>
@@ -120,7 +120,7 @@ $fake_data2 = [
             <div class="col-12 col-md-3 d-flex mt-2">
                 <div class="m-auto w-100">
                     <select class="form-control" name="hotel">
-                        <option hidden>選擇性質</option>
+                        <option hidden>選擇項目</option>
                         @foreach(["都市潛店","熱門潛點","背包客房","潛水用品店"] as $location)
                         <option value="{{ $location }}">{{ $location }}</option>
                         @endforeach
@@ -170,23 +170,9 @@ $fake_data2 = [
     <div class="row position-relative" style="border: solid 1px #928d8d; padding: 0.5rem;">
         <button id="test-btn-1">本島</button>
         <button id="test-btn-2">小琉球</button>
+
         <!-- leaflet地圖 -->
         <div id="map"></div>
-
-        <!-- 示範地圖 -->
-        <!-- <div id="map" style="width: 100%; height: 600px;"></div> -->
-
-        <!-- 地圖縣市分類 -->
-        <!-- <div class="col-12 col-sm-3 col-lg-2 text-end" id="map-btn-div">
-            <div class="btn-group-vertical w-100" role="group" aria-label="Basic example">
-                <button type="button" class="mt-1 btn btn-primary">北部地區</button>
-                <button type="button" class="mt-1 btn btn-primary">南部地區</button>
-                <button type="button" class="mt-1 btn btn-primary">中部地區</button>
-                <button type="button" class="mt-1 btn btn-primary">東部地區</button>
-                <button type="button" class="mt-1 btn btn-primary">外島/離島地區</button>
-            </div>
-        </div> -->
-
     </div>
 
 </div>
@@ -199,9 +185,9 @@ $fake_data2 = [
             <h2 class="text-white"><b><span class="material-symbols-sharp">partly_cloudy_day</span>天氣狀態</b></h2>
         </div>
     </div>
-    <!-- <div class="row position-relative" style="border: solid 1px #928d8d; padding: 0.5rem;">
-        <div id="map" style="width: 100%; height: 600px;"></div>
-    </div> -->
+    <div class="row position-relative" style="border: solid 1px #928d8d; padding: 0.5rem;">
+        <div id="map"></div>
+    </div>
 </div>
 
 <!-- activity -->
@@ -214,7 +200,7 @@ $fake_data2 = [
     <div class="row">
         @foreach($fake_data2 as $data)
         <div class="col-12 col-md-4">
-            <img src="{{ $data['image_url'] }}" class="w-50 h-60 rounded mx-auto d-block" alt="..." style="cursor: pointer;">
+            <a href="{{ route('snorkeling.index') }}"><img src="{{ $data['image_url'] }}" class="w-50 h-60 rounded mx-auto d-block" alt="..." style="cursor: pointer;"></a>
             <h4 class="text-white text-center"><b>{{ $data['title'] }}</b></h4>
         </div>
         @endforeach
@@ -261,8 +247,7 @@ $fake_data2 = [
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
-        // marker
-        // L.marker([22.7247326, 120.3124143]).addTo(map).bindPopup('<h2>高雄科技大學<h2><p>上課的地方</p>');
+        // marker 彈跳視窗
         // L.marker([22.7247326,120.3124143]).addTo(map).bindPopup('<h2>高雄科技大學<h2><br><p>上課的地方</p>').openPopup();
 
         // 小琉球地點

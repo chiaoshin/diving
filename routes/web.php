@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\PointCardController;
 use App\Http\Controllers\PartnerController;
+use App\Http\Controllers\IndexController;
+use App\Http\Controllers\SnorkelingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,27 +18,28 @@ use App\Http\Controllers\PartnerController;
 |
 */
 
-Route::get('/', function () {
+// Route::get('/', function () {
 
-    $marker = [
-        ["location" => "花瓶岩", "lat" => 22.35541851, "lng" => 120.38165],
-        ["location" => "中澳", "lat" => 22.35122843, "lng" => 120.3875026],
-        ["location" => "電廠", "lat" => 22.33871866, "lng" => 120.3778391],
-        ["location" => "厚石", "lat" => 22.32456304, "lng" => 120.3653352],
-        ["location" => "海子口", "lat" => 22.32539109, "lng" => 120.3591294],
-        ["location" => "多仔坪", "lat" => 22.35014315, "lng" => 120.3654971],
-        ["location" => "龍蝦洞", "lat" => 22.34506537, "lng" => 120.3884634],
-        ["location" => "衫福", "lat" => 22.34224709, "lng" => 120.3629457]
-    ];
+//     $marker = [
+//         ["location" => "花瓶岩", "lat" => 22.35541851, "lng" => 120.38165],
+//         ["location" => "中澳", "lat" => 22.35122843, "lng" => 120.3875026],
+//         ["location" => "電廠", "lat" => 22.33871866, "lng" => 120.3778391],
+//         ["location" => "厚石", "lat" => 22.32456304, "lng" => 120.3653352],
+//         ["location" => "海子口", "lat" => 22.32539109, "lng" => 120.3591294],
+//         ["location" => "多仔坪", "lat" => 22.35014315, "lng" => 120.3654971],
+//         ["location" => "龍蝦洞", "lat" => 22.34506537, "lng" => 120.3884634],
+//         ["location" => "衫福", "lat" => 22.34224709, "lng" => 120.3629457]
+//     ];
 
-    // $marker = Marker::all()->toArray();
+//     // $marker = Marker::all()->toArray();
 
-    return view('index', compact("marker"));
-});
-
+//     return view('index', compact("marker"));
+// });
+Route::resource('/', IndexController::class)->only('index');
 Route::resource('store', StoreController::class);
 Route::resource('partner', PartnerController::class)->only('index');
 Route::resource('point_card', PointCardController::class);
+Route::resource('snorkeling', SnorkelingController::class)->only('index');
 
 // Route::get('/store/{id}', function ($id) {
 //     echo $id;
