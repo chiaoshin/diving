@@ -3,6 +3,8 @@
 
 @section("head")
 <link href="{{ asset("css/store.css") }}" rel="stylesheet">
+<link rel="stylesheet" href="{{ asset("css/chatGPT.css") }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 @endsection
 
 @section("body")
@@ -50,8 +52,20 @@
                 <div class="information">
                     <a class="category d-block mb-4" href="#">Suggestion &mdash; ChatGPT建議</a>
                     <h2><a href="#" class="store-name">建議內容</a></h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae fuga optio dolorem, fugit
-                        voluptates sint ducimus praesentium iste!</p>
+                    <div class="container">
+                        <div class="info"></div>
+
+                        <div class="chat-container">
+                            <div id="chat-log"></div>
+                        </div>
+
+                        <div class="input-container">
+                            <input type="text" id="user-input" placeholder="">
+                            <button id="send-button">
+                                <i class="fa-solid fa-paper-plane" id="button-icon"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="content-item" id="attractions-discussion">
@@ -69,6 +83,7 @@
 @endsection
 
 @section("script")
+<script src="{{ asset("js/chatGPT.js") }}"></script>
 <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
 <script>
     const get_width_flag = (width) => {
@@ -116,4 +131,5 @@
         }, 1000);
     })
 </script>
+
 @endsection

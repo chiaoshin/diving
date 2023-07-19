@@ -2,24 +2,26 @@
 
 
 @section("head")
-<link href="{{ asset("css/snorkeling.css") }}" rel="stylesheet">
+<link href="{{ asset('css/snorkeling.css') }}" rel="stylesheet">
 @endsection
 
 @section("body")
 
 <!-- 潛水類型介紹 -->
 <br>
-<h3>浮潛介紹</h3>
+<h3 class="text-white text-leftr"><b><span class="material-symbols-sharp">scuba_diving</span>浮潛介紹</b></h3>
 <div class="div-c">
     <div class="content">
         <br>
-        <img src="images/浮潛.jpg" class="img_size2" alt="">
+        <img src="{{ asset('img/snorkeling/浮潛.jpg') }}" class="img_size2" alt="">
     </div>
     <div>
         <div class="main">
             <article class="text">
                 <br>
-                <h3>浮潛</h3>
+                <h3>
+                    <mark><b>浮潛</b></mark>
+                </h3>
                 <br>
                 <A>浮潛是指依靠一根呼吸管、蛙鞋及目鏡漂浮在水面上觀賞海中景觀，景色雖比起自由潛水來說較不豐富，但不需要複雜的裝備，因此浮潛的門檻較自由潛水低，適合新手。</A>
                 <input id="read-more-check-1" type="checkbox" class="read-more-check">
@@ -32,7 +34,7 @@
 
 <!-- 設備 -->
 <br>
-<h3>浮潛設備</h3>
+<h3 class="text-white text-leftr"><b><span class="material-symbols-sharp">construction</span>浮潛設備</b></h3>
 <div class="carousel-slider">
 
     <input type="radio" name="control" id="slide1" checked>

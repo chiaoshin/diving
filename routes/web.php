@@ -6,6 +6,8 @@ use App\Http\Controllers\PointCardController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\SnorkelingController;
+use App\Http\Controllers\FreeDivingController;
+use App\Http\Controllers\ScubaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +42,8 @@ Route::resource('store', StoreController::class);
 Route::resource('partner', PartnerController::class)->only('index');
 Route::resource('point_card', PointCardController::class);
 Route::resource('snorkeling', SnorkelingController::class)->only('index');
+Route::resource('freeDiving', FreeDivingController::class)->only('index');
+Route::resource('scuba', ScubaController::class)->only('index');
 
 // Route::get('/store/{id}', function ($id) {
 //     echo $id;

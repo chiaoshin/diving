@@ -1,0 +1,694 @@
+.main {
+  max-width: 45rem;
+  right:15%;
+  width: 90%;
+  margin: 0 auto;
+  position: relative;
+  font-family: sans-serif;
+}
+A {
+  margin: 0 0 1rem;
+  
+}
+
+.read-more-check {
+  display: none;
+}
+.read-more-label:before {
+  content: "^";
+  top: .4rem;
+  position: absolute;
+  color: white;
+  right: .5rem;
+  font-size: 1rem;
+  transform: rotate(180deg);
+}
+.read-more-check:checked ~ .read-more-label:before {
+  top: .7rem;
+  transform: rotate(0);
+}
+.read-more-label:after {
+  content: 'Show More';
+}
+.read-more-check:checked ~ .read-more-label:after {
+  content: 'Show Less';
+}
+.read-more-label {
+  position: absolute;
+  display: block;
+  left: 50%;
+  margin: -2.5rem;
+  width: 8rem;
+  bottom: 0.05rem;
+  padding: .5rem .9rem .5rem .5rem;
+  background-color: #A98B73;
+  color: #fff;
+  text-shadow: 0 .1rem .3rem rgba(255, 255, 255, .3);
+  text-align: center;
+  text-transform: uppercase;
+  outline: none;
+  cursor: pointer;
+  box-shadow: 0 .15rem .3rem rgba(0,0,0,.4);
+  transition: bottom .5s linear 0s;
+}
+.read-more-check:checked ~ .read-more-label {
+  bottom: 0;
+}
+.read-more-label:hover {
+  background-color: #9A6852;
+}
+/*
+  The styles above aren't related with the functionality
+*/
+.read-more {
+  max-height: 0;
+  display: block;
+  overflow: hidden;
+  transition: max-height .5s linear 0s;
+}
+/*
+The down side of this approach is that you have to know what will be the max-height in advance
+*/
+.read-more-check:checked ~ .read-more {
+  max-height: 35rem;
+}
+@media (min-width: 40rem) {
+   .read-more-check:checked ~ .read-more{
+    max-height: 35rem;
+  }
+}
+
+.div-c {
+	display: flex;
+	justify-content: space-between;
+  }
+.img_size2 {
+  margin: 0 auto; /* 将左右边距设置为auto，使图片水平居中 */
+  display: block; /* 确保图片以块级元素显示 */ 
+  max-width: 70%;
+  max-height: 600px; /* 根据需要设置图片的最大高度 */
+} 
+    
+.transition, ul li i:before, ul li i:after, p {
+  transition: all 0.25s ease-in-out;
+  }
+      
+.flipIn, ul li, h1 {
+animation: flipdown 0.5s ease both;
+}
+      
+.no-select, h2 {
+-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-moz-user-select: none;
+user-select: none;
+}
+      
+html {
+width: 100%;
+height: 100%;
+perspective: 900;
+overflow-y: scroll;
+background-color: #dce7eb;
+font-family: "Titillium Web", sans-serif;
+color: rgba(48, 69, 92, 0.8);
+}
+      
+baba {
+min-height: 0;
+display: inline-block;
+position: relative;
+left: 50%;
+margin: 90px 0;
+transform: translate(-50%, 0);
+box-shadow: 0 10px 0 0 #A98B73 inset;
+background-color: #fefffa;
+max-width: 900px;
+padding: 30px;
+}
+
+@media (max-width: 550px) {
+body {
+  box-sizing: border-box;
+  transform: translate(0, 0);
+  max-width: 100%;
+  min-height: 100%;
+  margin: 0;
+  left: 0;
+}
+}
+      
+h2 {
+color: #A98B73;
+}
+      
+     
+      
+h2 {
+font-size: 23px;
+line-height: 34px;
+font-weight: 300;
+letter-spacing: 1px;
+display: block;
+background-color: #fefffa;
+margin: 0;
+cursor: pointer;
+}
+      
+      
+p {
+color: rgba(48, 69, 92, 0.8);
+font-size: 17px;
+line-height: 26px;
+letter-spacing: 1px;
+position: relative;
+overflow: hidden;
+max-height: 800px;
+opacity: 1;
+transform: translate(0, 0);
+margin-top: 14px;
+z-index: 2;
+}
+      
+ul {
+list-style: none;
+perspective: 900;
+padding: 0;
+margin: 0;
+}
+
+ul li {
+position: relative;
+padding: 0;
+margin: 0;
+padding-bottom: 4px;
+padding-top: 18px;
+border-top: 1px dotted #dce7eb;
+}
+
+ul li:nth-of-type(1) {
+animation-delay: 0.5s;
+}
+
+ul li:nth-of-type(2) {
+animation-delay: 0.75s;
+}
+
+ul li:nth-of-type(3) {
+animation-delay: 1s;
+}
+
+ul li:last-of-type {
+padding-bottom: 0;
+}
+
+ul li i {
+position: absolute;
+transform: translate(-6px, 0);
+margin-top: 16px;
+right: 0;
+}
+
+ul li i:before, ul li i:after {
+content: "";
+position: absolute;
+background-color: #A98B73;
+width: 3px;
+height: 9px;
+}
+
+ul li i:before {
+transform: translate(-2px, 0) rotate(45deg);
+}
+
+ul li i:after {
+transform: translate(2px, 0) rotate(-45deg);
+}
+
+ul li input[type=checkbox] {
+position: absolute;
+cursor: pointer;
+width: 100%;
+height: 100%;
+z-index: 1;
+opacity: 0;
+}
+
+ul li input[type=checkbox]:checked ~ p {
+margin-top: 0;
+max-height: 0;
+opacity: 0;
+transform: translate(0, 50%);
+}
+ul li input[type=checkbox]:checked ~ i:before {
+transform: translate(2px, 0) rotate(45deg);
+}
+ul li input[type=checkbox]:checked ~ i:after {
+transform: translate(-2px, 0) rotate(-45deg);
+}
+
+      
+    
+.img_size{
+display: block;
+margin: auto;
+margin-bottom: 10px;
+height: 90px;
+width: 150px;
+}
+    
+    
+.div-container {
+display: flex;
+justify-content: space-between;
+}
+      
+.div {
+flex: 1;
+/* 设置折叠菜单的样式，例如背景色、边框等 */
+}
+      
+.left-accordion {
+margin-right: 20px; /* 可调整左右菜单之间的水平间距 */
+}
+
+.right-accordion {
+margin-left: 20px; /* 可调整左右菜单之间的水平间距 */
+}
+
+/* start global style */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* start container style */
+.carousel-slider {
+  position: relative;
+  width: 80%;
+  max-width: 700px;
+  min-width: 700px;
+  height: 400px; /* 高度 */
+  margin: 50px auto;
+}
+
+/* start slides style */
+.carousel-slider > .slides {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow-x: hidden;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.carousel-slider > .slides > .slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: 0.5s linear;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+}
+
+/*背景顏色 */
+.carousel-slider > .slides > .slide#slide-1 {
+  background: #b8d3ee;
+}
+
+.carousel-slider > .slides > .slide#slide-2 {
+  background: #b8d3ee;
+}
+
+.carousel-slider > .slides > .slide#slide-3 {
+  background: #b8d3ee;
+}
+
+.carousel-slider > .slides > .slide#slide-4 {
+  background: #b8d3ee;
+}
+.carousel-slider > .slides > .slide#slide-5 {
+  background: #b8d3ee;
+}
+.carousel-slider > .slides > .slide#slide-6 {
+  background: #b8d3ee;
+}
+.carousel-slider > .slides > .slide#slide-7 {
+  background: #b8d3ee;
+}
+.carousel-slider > .slides > .slide#slide-8 {
+  background: #b8d3ee;
+}
+.carousel-slider > .slides > .slide#slide-9 {
+  background: #b8d3ee;
+}
+
+/* start input style */
+.carousel-slider > input {
+  display: none;
+}
+
+/* start slider nav style */
+.carousel-slider > .slider-nav-number {
+  position: absolute;
+  width: 100%;
+  bottom: -70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1%;
+  padding: 9px 50px;
+  border: 1px solid #1D65A6;
+  background: #1D65A6;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.carousel-slider > .slider-nav-number > label {
+  background-color: #7f8c8d;
+  color: #fff; /* 按鈕數字顏色 */
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  flex: 0 0 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+/* 按鈕碰下去顏色 */
+.carousel-slider > .slider-nav-number > label:hover {
+  color: #fff;
+  background-color: black !important;
+}
+
+.carousel-slider > .slider-nav-prev > label {
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  background-color: #7f8c8d;
+  border-radius: 50%;
+  position: absolute;
+  left: 10px;
+  top: calc(100% + 10px);
+}
+
+.carousel-slider > .slider-nav-prev > label::before {
+  content: "";
+  border: 10px solid transparent;
+  border-right-color: #000;
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.carousel-slider > .slider-nav-next > label {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #7f8c8d;
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: calc(100% + 10px);
+}
+
+.carousel-slider > .slider-nav-next > label::after {
+  content: "";
+  border: 10px solid transparent;
+  border-left-color: #000;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.carousel-slider > .slider-nav-prev > label:hover,
+.carousel-slider > .slider-nav-next > label:hover {
+  background-color: black;
+}
+
+.carousel-slider > .slider-nav-prev > label:hover::before {
+  border-right-color: #fff;
+}
+.carousel-slider > .slider-nav-next > label:hover::after {
+  border-left-color: #fff;
+}
+
+/* 按鈕顏色 */
+input#slide1:checked ~ .slider-nav-number > .slide-nav-1 {
+  background-color: #3498db;
+}
+
+input#slide2:checked ~ .slider-nav-number > .slide-nav-2 {
+  background-color: #3498db;
+}
+
+input#slide3:checked ~ .slider-nav-number > .slide-nav-3 {
+  background-color: #3498db;
+}
+
+input#slide4:checked ~ .slider-nav-number > .slide-nav-4 {
+  background-color: #3498db;
+}
+input#slide5:checked ~ .slider-nav-number > .slide-nav-5 {
+  background-color: #3498db;
+}
+input#slide6:checked ~ .slider-nav-number > .slide-nav-6 {
+  background-color: #3498db;
+}
+input#slide7:checked ~ .slider-nav-number > .slide-nav-7 {
+  background-color: #3498db;
+}
+input#slide8:checked ~ .slider-nav-number > .slide-nav-8 {
+  background-color: #3498db;
+}
+input#slide9:checked ~ .slider-nav-number > .slide-nav-9 {
+  background-color: #3498db;
+}
+
+/* next and prev arrow */
+input#slide1:checked ~ .slider-nav-next > label.next-2,
+input#slide1:checked ~ .slider-nav-prev > label.prev-9 {
+  z-index: 2;
+}
+
+input#slide2:checked ~ .slider-nav-next > label.next-3,
+input#slide2:checked ~ .slider-nav-prev > label.prev-1 {
+  z-index: 2;
+}
+
+input#slide3:checked ~ .slider-nav-next > label.next-4,
+input#slide3:checked ~ .slider-nav-prev > label.prev-2 {
+  z-index: 2;
+}
+
+input#slide4:checked ~ .slider-nav-next > label.next-5,
+input#slide4:checked ~ .slider-nav-prev > label.prev-3 {
+  z-index: 2;
+}
+
+input#slide5:checked ~ .slider-nav-next > label.next-6,
+input#slide5:checked ~ .slider-nav-prev > label.prev-4 {
+  z-index: 2;
+}
+input#slide6:checked ~ .slider-nav-next > label.next-7,
+input#slide6:checked ~ .slider-nav-prev > label.prev-5 {
+  z-index: 2;
+}
+input#slide7:checked ~ .slider-nav-next > label.next-8,
+input#slide7:checked ~ .slider-nav-prev > label.prev-6 {
+  z-index: 2;
+}
+input#slide8:checked ~ .slider-nav-next > label.next-9,
+input#slide8:checked ~ .slider-nav-prev > label.prev-7 {
+  z-index: 2;
+}
+input#slide9:checked ~ .slider-nav-next > label.next-1,
+input#slide9:checked ~ .slider-nav-prev > label.prev-8 {
+  z-index: 2;
+}
+
+/* start slide movment control style */
+input#slide1:checked ~ .slides > #slide-1 {
+  transform: translateX(0);
+  visibility: visible;
+}
+
+input#slide2:checked ~ .slides > #slide-2 {
+  transform: translateX(0);
+  visibility: visible;
+}
+
+input#slide3:checked ~ .slides > #slide-3 {
+  transform: translateX(0);
+  visibility: visible;
+}
+
+input#slide4:checked ~ .slides > #slide-4 {
+  transform: translateX(0);
+  visibility: visible;
+}
+input#slide5:checked ~ .slides > #slide-5 {
+  transform: translateX(0);
+  visibility: visible;
+}
+input#slide6:checked ~ .slides > #slide-6 {
+  transform: translateX(0);
+  visibility: visible;
+}
+input#slide7:checked ~ .slides > #slide-7 {
+  transform: translateX(0);
+  visibility: visible;
+}
+input#slide8:checked ~ .slides > #slide-8 {
+  transform: translateX(0);
+  visibility: visible;
+}
+input#slide9:checked ~ .slides > #slide-9 {
+  transform: translateX(0);
+  visibility: visible;
+}
+
+/* slides move animation */
+input#slide1:checked ~ .slides > #slide-2,
+input#slide1:checked ~ .slides > #slide-3,
+input#slide1:checked ~ .slides > #slide-4,
+input#slide1:checked ~ .slides > #slide-5,
+input#slide1:checked ~ .slides > #slide-6,
+input#slide1:checked ~ .slides > #slide-7,
+input#slide1:checked ~ .slides > #slide-8, 
+input#slide1:checked ~ .slides > #slide-9 {
+  transform: translateX(100%);
+}
+
+input#slide2:checked ~ .slides > #slide-1 {
+  transform: translateX(-100%);
+}
+input#slide2:checked ~ .slides > #slide-3,
+input#slide2:checked ~ .slides > #slide-4,
+input#slide2:checked ~ .slides > #slide-5,
+input#slide2:checked ~ .slides > #slide-6,
+input#slide2:checked ~ .slides > #slide-7,
+input#slide2:checked ~ .slides > #slide-8,
+input#slide2:checked ~ .slides > #slide-9 {
+  transform: translateX(100%);
+}
+
+input#slide3:checked ~ .slides > #slide-2,
+input#slide3:checked ~ .slides > #slide-1 {
+  transform: translateX(-100%);
+}
+input#slide3:checked ~ .slides > #slide-4,
+input#slide3:checked ~ .slides > #slide-5,
+input#slide3:checked ~ .slides > #slide-6,
+input#slide3:checked ~ .slides > #slide-7,
+input#slide3:checked ~ .slides > #slide-8,
+input#slide3:checked ~ .slides > #slide-9 {
+  transform: translateX(100%);
+}
+
+input#slide4:checked ~ .slides > #slide-3,
+input#slide4:checked ~ .slides > #slide-2,
+input#slide4:checked ~ .slides > #slide-1 {
+  transform: translateX(-100%);
+}
+input#slide4:checked ~ .slides > #slide-5,
+input#slide4:checked ~ .slides > #slide-6,
+input#slide4:checked ~ .slides > #slide-7,
+input#slide4:checked ~ .slides > #slide-8,
+input#slide4:checked ~ .slides > #slide-9 {
+  transform: translateX(100%);
+}
+
+input#slide5:checked ~ .slides > #slide-4,
+input#slide5:checked ~ .slides > #slide-3,
+input#slide5:checked ~ .slides > #slide-2,
+input#slide5:checked ~ .slides > #slide-1 {
+  transform: translateX(-100%);
+}
+
+input#slide5:checked ~ .slides > #slide-6,
+input#slide5:checked ~ .slides > #slide-7,
+input#slide5:checked ~ .slides > #slide-8,
+input#slide5:checked ~ .slides > #slide-9 {
+  transform: translateX(100%);
+}
+
+input#slide6:checked ~ .slides > #slide-5,
+input#slide6:checked ~ .slides > #slide-4,
+input#slide6:checked ~ .slides > #slide-3,
+input#slide6:checked ~ .slides > #slide-2,
+input#slide6:checked ~ .slides > #slide-1 {
+  transform: translateX(-100%);
+}
+
+input#slide6:checked ~ .slides > #slide-7,
+input#slide6:checked ~ .slides > #slide-8,
+input#slide6:checked ~ .slides > #slide-9 {
+  transform: translateX(100%);
+}
+
+input#slide7:checked ~ .slides > #slide-6,
+input#slide7:checked ~ .slides > #slide-5,
+input#slide7:checked ~ .slides > #slide-4,
+input#slide7:checked ~ .slides > #slide-3,
+input#slide7:checked ~ .slides > #slide-2,
+input#slide7:checked ~ .slides > #slide-1 {
+  transform: translateX(-100%);
+}
+
+input#slide7:checked ~ .slides > #slide-8,
+input#slide7:checked ~ .slides > #slide-9 {
+  transform: translateX(100%);
+}
+
+input#slide8:checked ~ .slides > #slide-7,
+input#slide8:checked ~ .slides > #slide-6,
+input#slide8:checked ~ .slides > #slide-5,
+input#slide8:checked ~ .slides > #slide-4,
+input#slide8:checked ~ .slides > #slide-3,
+input#slide8:checked ~ .slides > #slide-2,
+input#slide8:checked ~ .slides > #slide-1 {
+  transform: translateX(-100%);
+}
+
+
+input#slide8:checked ~ .slides > #slide-9 {
+  transform: translateX(100%);
+}
+
+input#slide9:checked ~ .slides > #slide-8,
+input#slide9:checked ~ .slides > #slide-7,
+input#slide9:checked ~ .slides > #slide-6,
+input#slide9:checked ~ .slides > #slide-5,
+input#slide9:checked ~ .slides > #slide-4,
+input#slide9:checked ~ .slides > #slide-3,
+input#slide9:checked ~ .slides > #slide-2,
+input#slide9:checked ~ .slides > #slide-1 {
+  transform: translateX(-100%);
+}
+
+.title {
+  font-size: 25px;
+  color: rgb(255, 255, 255); /* 修改文字颜色为白色 */
+  position: relative;
+  right: 25px; /* 调整所需的水平移动距离 */
+}
+
+.img_size3 {
+  max-width: 350px; /* 调整所需的宽度 */
+  max-height: 350px; /* 调整所需的高度 */
+}
+
+
+        
+   

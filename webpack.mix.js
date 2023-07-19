@@ -13,9 +13,13 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/map.js', 'public/js')
+    .js('resources/js/chatGPT.js', 'public/js')
     .sass('resources/css/store.scss', 'public/css')
     .css('resources/css/partner.css', 'public/css')
     .css('resources/css/snorkeling.css', 'public/css')
+    .css('resources/css/freeDiving.css', 'public/css')
+    .css('resources/css/scuba.css', 'public/css')
+    .css('resources/css/chatGPT.css', 'public/css')
     .postCss('resources/css/app.css', 'public/css', [
         //
     ]);

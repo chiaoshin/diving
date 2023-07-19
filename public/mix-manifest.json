@@ -1,7 +1,11 @@
 {
     "/js/app.js": "/js/app.js",
     "/js/map.js": "/js/map.js",
+    "/js/chatGPT.js": "/js/chatGPT.js",
     "/css/app.css": "/css/app.css",
+    "/css/chatGPT.css": "/css/chatGPT.css",
+    "/css/scuba.css": "/css/scuba.css",
+    "/css/freeDiving.css": "/css/freeDiving.css",
     "/css/snorkeling.css": "/css/snorkeling.css",
     "/css/partner.css": "/css/partner.css",
     "/css/store.css": "/css/store.css"
