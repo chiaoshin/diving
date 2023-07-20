@@ -27,6 +27,10 @@ class CreateStoreTable extends Migration
             $table->time('checkout_end_to')->nullable()->comment("退房時間(迄)");
             $table->text('transform_note')->nullable()->comment("交通建議");
             $table->text('landscape')->nullable()->comment("周遭潛點");
+            $table->string('location')->comment('縣市');
+            $table->string('area')->comment('地區');
+            $table->double('lat')->comment("緯度");
+            $table->double('lng')->comment("經度");
 
             $table->timestamps();
         });

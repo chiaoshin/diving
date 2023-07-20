@@ -99,7 +99,7 @@ $fake_data2 = [
         <div class="row">
             <div class="col-12 col-md-3 d-flex mt-2">
                 <div class="m-auto w-100">
-                    <select class="form-control" name="location">
+                    <select class="form-control" name="area">
                         <option hidden>選擇地區</option>
                         @foreach(["北部地區", "南部地區", "中部地區", "東部地區", "外島/離島地區"] as $location)
                         <option value="{{ $location }}">{{ $location }}</option>
@@ -109,9 +109,9 @@ $fake_data2 = [
             </div>
             <div class="col-12 col-md-3 d-flex mt-2">
                 <div class="m-auto w-100">
-                    <select class="form-control" name="activity">
+                    <select class="form-control" name="location">
                         <option hidden>選擇縣市</option>
-                        @foreach(["高雄市", "台北市", "台南市", "台中市","小琉球"] as $location)
+                        @foreach(["高雄市", "台北市", "台南市", "台中市","台東縣","屏東縣"] as $location)
                         <option value="{{ $location }}">{{ $location }}</option>
                         @endforeach
                     </select>
@@ -119,7 +119,7 @@ $fake_data2 = [
             </div>
             <div class="col-12 col-md-3 d-flex mt-2">
                 <div class="m-auto w-100">
-                    <select class="form-control" name="hotel">
+                    <select class="form-control" name="item">
                         <option hidden>選擇項目</option>
                         @foreach(["都市潛店","熱門潛點","背包客房","潛水用品店"] as $location)
                         <option value="{{ $location }}">{{ $location }}</option>
@@ -129,7 +129,7 @@ $fake_data2 = [
             </div>
             <div class="col-12 col-md-3 mt-2 text-center d-flex">
                 <div class="m-auto w-100">
-                    <button type="submit" class="btn btn-primary w-100">搜尋最佳景點</button>
+                    <button type="button" class="btn btn-primary w-100">搜尋最佳景點</button>
                 </div>
             </div>
         </div>
@@ -249,6 +249,7 @@ $fake_data2 = [
     });
 
     let map;
+    let markerGroup = [];
 
     function initMap() {
         map = L.map('map', {
@@ -267,14 +268,17 @@ $fake_data2 = [
 
         // 潛水地點
         markers.forEach(row => {
-            L.marker([row.lat, row.lng], {
+            let marker = L.marker([row.lat, row.lng], {
                 icon: redIcon
             }).addTo(map).bindPopup(`<h2>${row.location}</h2>` +
-                '<a href="http://www.wibibi.com" target="_blank" title="${row.location}">Wibibi 網頁設計教學百科</a>')
+                `<a href="http://www.wibibi.com" target="_blank" title="${row.location}">Wibibi 網頁設計教學百科</a>`)
+
+            markerGroup.push(marker)
         })
 
         // 潛水店家
         // Storemarkers
+
 
         // 背包客房
         // Hotelmarkers
@@ -454,6 +458,25 @@ $fake_data2 = [
         }).addTo(map).bindPopup('<h3>基隆市大武崙澳底沙灘海域</h3>' + '<p>限制僅得從事非動力水域遊憩活動</p>');
     }
 
+    // 清除打點
+    function clearMakers() {
+        markerGroup.forEach(row => {
+            map.removeLayer(row)
+        })
+    }
+
+    // 新增打點
+    function createMarkers(data) {
+        data.forEach(row => {
+            let marker = L.marker([row.lat, row.lng], {
+                icon: redIcon
+            }).addTo(map).bindPopup(`<h2>${row.name}</h2>` +
+                `<a href="http://www.wibibi.com" target="_blank" title="${row.name}">Wibibi 網頁設計教學百科</a>`)
+
+            markerGroup.push(marker)
+        })
+    }
+
     initMap()
 
     //flyto元件 
@@ -476,6 +499,28 @@ $fake_data2 = [
 
     $("#test-btn-5").click(function() {
         map.flyTo(new L.LatLng(22.049802, 121.546543), 12.5)
+    })
+
+    // Select Change Event
+    $("select[name=area], select[name=location], select[name=item]").change(function() {
+        $.ajax({
+            method: 'GET',
+            url: "{{ route('markers.search') }}",
+            data: {
+                area: $("select[name=area]").val(),
+                location: $("select[name=location]").val(),
+                item: $("select[name=item]").val()
+            },
+            dataType: 'json',
+            success: (res) => {
+                clearMakers()
+
+                createMarkers(res)
+            },
+            error: (err) => {
+                console.log(err)
+            }
+        })
     })
 </script>
 

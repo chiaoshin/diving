@@ -45,6 +45,8 @@ Route::resource('snorkeling', SnorkelingController::class)->only('index');
 Route::resource('freeDiving', FreeDivingController::class)->only('index');
 Route::resource('scuba', ScubaController::class)->only('index');
 
+Route::get('/search_markers', [IndexController::class, 'search_markers'])->name('markers.search');
+
 // Route::get('/store/{id}', function ($id) {
 //     echo $id;
 // })->location('store.detail');

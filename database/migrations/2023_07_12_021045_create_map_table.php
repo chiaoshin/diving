@@ -15,8 +15,9 @@ class CreateMapTable extends Migration
     {
         Schema::create('map', function (Blueprint $table) {
             $table->id('map_id')->comment('地點編號');
-            $table->string('location')->comment("地點 Ex.潛點");
+            $table->string('ch_name')->comment("地點 Ex.潛點");
             $table->string('area')->comment("地區 Ex.小琉球");
+            $table->string('location')->comment("縣市 Ex.琉球鄉");
             $table->string('address')->comment("地址");
             $table->double('lat')->comment("緯度");
             $table->double('lng')->comment("經度");

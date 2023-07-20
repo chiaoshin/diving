@@ -13,6 +13,48 @@ userInput.addEventListener('keydown', (event) => {
 
 const messageText = '你該小心@@@';
 
+window.test_2_sendMessage = (message, dictData) => {
+    if (message in dictData) {
+        userInput.value = '';
+        // append message as user - we will code it's function
+        appendMessage('user', message);
+        // sets a fake timeout that showing loading on send button
+        setTimeout(() => {
+            // send our message as bot(sender : bot)
+            appendMessage('bot', dictData[message].replaceAll('\\n', '\n'));
+            // change button icon to default
+            buttonIcon.classList.add('fa-solid', 'fa-paper-plane');
+            buttonIcon.classList.remove('fas', 'fa-spinner', 'fa-pulse');
+        }, 2000);
+        return;
+    }else{
+        appendMessage('user', message);
+        userInput.value = '';
+
+        const options = {
+            method: 'POST',
+        headers: {
+            'content-type': 'application/json',
+            'X-RapidAPI-Key': 'a20e947e7fmshdda6e7ef8f8269fp1c6b93jsn4bb98aa24e21',
+            'X-RapidAPI-Host': 'chatgpt53.p.rapidapi.com'
+            },
+            body: `{"messages":[{"role":"user","content":"${message}"}]}`
+        };
+        fetch('https://chatgpt53.p.rapidapi.com/', options).then((response) => response.json()).then((response) => {
+            appendMessage('bot', response.choices[0].message.content);
+
+            buttonIcon.classList.add('fa-solid', 'fa-paper-plane');
+            buttonIcon.classList.remove('fas', 'fa-spinner', 'fa-pulse');
+        }).catch((err) => {
+            if (err.name === 'TypeError') {
+                appendMessage('bot', 'Error : Check Your Api Key!');
+                buttonIcon.classList.add('fa-solid', 'fa-paper-plane');
+                buttonIcon.classList.remove('fas', 'fa-spinner', 'fa-pulse');
+            }
+        });
+    }
+}
+
 /* 修改成這樣, 因為webpack打包後這些程式碼都會被包起來 變成閉包中的一個方法
  無法從最外部直接呼叫, 因此需要將這個方法指派到 window 這個瀏覽器上 這樣才能在模板中呼叫 */
 window.test_sendMessage = (message) => {
