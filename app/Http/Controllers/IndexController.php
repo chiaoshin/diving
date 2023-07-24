@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Index;
 use App\Models\Store;
+use App\Models\Shop;
+use App\Models\Hotel;
 
 class IndexController extends Controller
 {
@@ -43,12 +45,20 @@ class IndexController extends Controller
                 case '都市潛店':
                     $result = Store::getFormatterMarkers($conditions);
                     break;
+                case '背包客房':
+                    $result = Hotel::getFormatterMarkers($conditions);
+                    break;
+                case '潛水用品店':
+                    $result = Shop::getFormatterMarkers($conditions);
+                    break;
             }
         } else {
             $mapResult = Index::getFormatterMarkers($conditions);
             $storeResult = Store::getFormatterMarkers($conditions);
+            $hotelResult = Hotel::getFormatterMarkers($conditions);
+            $shopResult = Shop::getFormatterMarkers($conditions);
 
-            $result = array_merge($mapResult, $storeResult);
+            $result = array_merge($mapResult, $storeResult, $hotelResult, $shopResult);
         }
 
         return $result;

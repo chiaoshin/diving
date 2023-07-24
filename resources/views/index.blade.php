@@ -101,7 +101,7 @@ $fake_data2 = [
                 <div class="m-auto w-100">
                     <select class="form-control" name="area">
                         <option hidden>選擇地區</option>
-                        @foreach(["北部地區", "南部地區", "中部地區", "東部地區", "外島/離島地區"] as $location)
+                        @foreach(["選擇地區","北部地區", "南部地區", "中部地區", "東部地區", "外島/離島地區"] as $location)
                         <option value="{{ $location }}">{{ $location }}</option>
                         @endforeach
                     </select>
@@ -111,7 +111,7 @@ $fake_data2 = [
                 <div class="m-auto w-100">
                     <select class="form-control" name="location">
                         <option hidden>選擇縣市</option>
-                        @foreach(["高雄市", "台北市", "台南市", "台中市","台東縣","屏東縣"] as $location)
+                        @foreach(["選擇縣市","臺北市", "新北市", "桃園市", "臺中市","臺南市","高雄市","新竹縣","苗栗縣","彰化縣","南投縣","雲林縣","嘉義縣","屏東縣","宜蘭縣","花蓮縣","臺東縣","澎湖縣","金門縣","連江縣","基隆市","新竹市","嘉義市"] as $location)
                         <option value="{{ $location }}">{{ $location }}</option>
                         @endforeach
                     </select>
@@ -121,7 +121,7 @@ $fake_data2 = [
                 <div class="m-auto w-100">
                     <select class="form-control" name="item">
                         <option hidden>選擇項目</option>
-                        @foreach(["都市潛店","熱門潛點","背包客房","潛水用品店"] as $location)
+                        @foreach(["選擇項目","都市潛店","熱門潛點","背包客房","潛水用品店"] as $location)
                         <option value="{{ $location }}">{{ $location }}</option>
                         @endforeach
                     </select>
@@ -251,6 +251,7 @@ $fake_data2 = [
     let map;
     let markerGroup = [];
 
+    // 【初始化地圖】
     function initMap() {
         map = L.map('map', {
             center: [23.6978, 120.9605],
@@ -258,7 +259,7 @@ $fake_data2 = [
             scrollWheelZoom: false
         });
 
-        // 【圖資設定】
+        // 『圖資設定』
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
@@ -266,27 +267,18 @@ $fake_data2 = [
         // marker 彈跳視窗
         // L.marker([22.7247326,120.3124143]).addTo(map).bindPopup('<h2>高雄科技大學<h2><br><p>上課的地方</p>').openPopup();
 
-        // 潛水地點
+        // 『打點初始化』(潛水地點)
         markers.forEach(row => {
             let marker = L.marker([row.lat, row.lng], {
                 icon: redIcon
-            }).addTo(map).bindPopup(`<h2>${row.location}</h2>` +
-                `<a href="http://www.wibibi.com" target="_blank" title="${row.location}">Wibibi 網頁設計教學百科</a>`)
+            }).addTo(map).bindPopup(`<h2>${row.ch_name}</h2>` +
+                `<a href="https://www.google.com/search?q=${row.ch_name}&sourceid=chrome&ie=UTF-8" target="_blank" title="${row.address}">${row.address}</a>`)
 
             markerGroup.push(marker)
         })
 
-        // 潛水店家
-        // Storemarkers
 
-
-        // 背包客房
-        // Hotelmarkers
-
-        // 潛水用品店
-        // Shopmarkers
-
-        // 危險海域
+        // 危險海域(直接打點,拆兩個表紀錄)
         var polygon1 = L.polygon([
             [25.195111, 121.415583],
             [25.187278, 121.404833]
@@ -458,20 +450,20 @@ $fake_data2 = [
         }).addTo(map).bindPopup('<h3>基隆市大武崙澳底沙灘海域</h3>' + '<p>限制僅得從事非動力水域遊憩活動</p>');
     }
 
-    // 清除打點
+    // 『清除打點』
     function clearMakers() {
         markerGroup.forEach(row => {
             map.removeLayer(row)
         })
     }
 
-    // 新增打點
+    // 『新增打點』
     function createMarkers(data) {
         data.forEach(row => {
             let marker = L.marker([row.lat, row.lng], {
                 icon: redIcon
             }).addTo(map).bindPopup(`<h2>${row.name}</h2>` +
-                `<a href="http://www.wibibi.com" target="_blank" title="${row.name}">Wibibi 網頁設計教學百科</a>`)
+                `<a href="https://www.google.com/search?q=${row.name}&sourceid=chrome&ie=UTF-8" target="_blank" title="${row.address}">${row.address}</a>`)
 
             markerGroup.push(marker)
         })
@@ -521,6 +513,51 @@ $fake_data2 = [
                 console.log(err)
             }
         })
+    })
+
+    // 所有搜尋_縣市區域切換
+    let cityMapper = {
+        '北部地區': ['台北市', '新北市'],
+        '中部地區': ['台中市', '南投縣'],
+        '南部地區': ['台南市', '高雄市', '嘉義市']
+    }
+
+    // 所有搜尋_zoom切換
+    let cityPositionMapper = {
+        '台北市': [22.049802, 121.546543, 12.5]
+    }
+
+    // 所有搜尋_縣市區域切換事件
+    $("select[name=area]").change(function() {
+
+        let key = $(this).val()
+
+        if (key in cityMapper) {
+            let options = cityMapper[key].reduce((acc, curr) => acc + `<option value="${curr}">${curr}</option>`, "<option value='選擇縣市' hidden>選擇縣市</option>")
+
+            $("select[name=location]").html(options)
+        } else {
+            let options = "<option value='選擇縣市' hidden>選擇縣市</option>"
+
+            Object.keys(cityMapper).forEach(key => {
+                options = cityMapper[key].reduce((acc, curr) => acc + `<option value="${curr}">${curr}</option>`, options)
+            })
+
+            $("select[name=location]").html(options)
+
+            map.flyTo(new L.LatLng(23.6978, 120.9605), 7)
+        }
+    })
+
+    // 所有搜尋_zoom切換_事件
+    $("select[name=location]").change(function() {
+        if ($(this).val() in cityPositionMapper) {
+            let position = cityPositionMapper[$(this).val()]
+
+            map.flyTo(new L.LatLng(position[0], position[1]), position[2])
+        } else {
+            map.flyTo(new L.LatLng(23.6978, 120.9605), 7)
+        }
     })
 </script>
 

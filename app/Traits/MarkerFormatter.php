@@ -12,7 +12,8 @@ trait MarkerFormatter
                 "id" => $row->map_id,
                 "name" => $row->ch_name,
                 "lat" => $row->lat,
-                "lng" => $row->lng
+                "lng" => $row->lng,
+                "address" => $row->address
             ];
         })->toArray();
     }
