@@ -13,4 +13,9 @@ class Index extends Model
     protected $table = "map";
     protected $primaryKey = "map_id";
     protected $guard = [];
+
+    public function getDescriptionInfoAttribute()
+    {
+        return $this->description ?? '無';
+    }
 }

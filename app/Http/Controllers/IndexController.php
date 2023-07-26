@@ -17,9 +17,9 @@ class IndexController extends Controller
      */
     public function index()
     {
-        $marker = Index::all()->toArray();
+        $diveSite = Index::all();
 
-        return view('index', compact("marker"));
+        return view('index', compact("diveSite"));
     }
 
     public function search_markers()
@@ -91,10 +91,19 @@ class IndexController extends Controller
     //  * @param  int  $id
     //  * @return \Illuminate\Http\Response
     //  */
-    // public function show($id)
-    // {
-    //     //
-    // }
+    public function show($id)
+    {
+        // equals: Select * from store where id = ?
+        $map = Index::findOrFail($id);
+
+        $message = "小琉球龍蝦洞";
+
+        $dictData = [
+            '小琉球龍蝦洞' => '潛水注意事項： \n當地擁有一片美麗的珊瑚礁海岸，海底更有著名的軟珊瑚地毯，可以說是非常值得探索的潛點！ \n雖然潮間帶還算平緩好走，但有時浪比較大，務必要先評估是否適合下水。\n對了，龍蝦洞海底的流也比較強，建議一定要找當地的潛導以確保自身安全！'
+        ];
+
+        return view('map/show', compact("map", "message", "dictData"));
+    }
 
     // /**
     //  * Show the form for editing the specified resource.

@@ -45,4 +45,8 @@ class Hotel extends Model
             return "不提供營業時間";
         }
     }
+    public function getTransformInfoAttribute()
+    {
+        return $this->transform_note ?? '無';
+    }
 }

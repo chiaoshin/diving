@@ -11,7 +11,7 @@
 @section("body")
 <div id="custom-content">
     <div class="title">
-        <h2 class="my-5 text-center text-dark">{{ $store->ch_name }}</h2>
+        <h2 class="my-5 text-center text-dark">{{ $map->ch_name }}</h2>
         <div class="modal-container">
             <input id="modal-toggle" type="checkbox">
             <label class="modal-btn" for="modal-toggle"><img src="{{ asset("img/law/1.png") }}" alt="按鈕圖片"></label> 
@@ -23,7 +23,6 @@
                 <p>返還課程費用</p> 
                 <a href="https://www.lawsq.com/book/46308090651" target="_blank">判決書完整內容連結</a>
                 <label class="modal-content-btn" for="modal-toggle">OK</label>   
-                
             </div> 
         </div>
     </div>
@@ -49,21 +48,14 @@
                 <div class="information">
                     <a class="category d-block mb-4" href="#">Spot Information &mdash; 詳細資訊</a>
                     <h2>
-                        <a class="store-name" href="{{ $store->url }}" target="_blank">{{ $store->ch_name }}<br>
-                        @if ($store->en_name)
-                            ({{ $store->en_name }})
+                        <a class="store-name" href="{{ $map->url }}" target="_blank">{{ $map->ch_name }}<br>
+                        @if ($map->en_name)
+                            ({{ $map->en_name }})
                         @endif
                         </a>
                     </h2>
-                    <p>地址：<br>{{ $store->address }}</p>
-                    <p class="m-0">營業時間：<br />
-                        <!-- @TODO 可衡量要在前端還是後段加上 html -->
-                        {!! $store->work_info !!}
-                    <p class="m-0">{{ $store->checkin_info }}</p>
-                    <p class="m-0">{{ $store->checkout_info }}</p>
-                    </p>
-                    <p>交通建議：<br>{{ $store->trans_form_info }}</p>
-                    <p>周邊潛點：<br>{{ $store->landscape_info }}</p>
+                    <p>地址：<br>{{ $map->address }}</p>
+                    <p>敘述：<br>{{ $map->description_info }}</p>
                 </div>
             </div>
             <div class="content-item" id="chatgpt-suggest">

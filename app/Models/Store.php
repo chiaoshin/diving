@@ -45,4 +45,15 @@ class Store extends Model
             return "不提供營業時間";
         }
     }
+
+    //直接用 
+    public function getTransformInfoAttribute()
+    {
+        return $this->transform_note ?? '無';
+    }
+
+    public function getLandscapeInfoAttribute()
+    {
+        return $this->landscape ?? '無';
+    }
 }

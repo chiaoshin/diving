@@ -2,12 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StoreController;
-use App\Http\Controllers\PointCardController;
+// use App\Http\Controllers\PointCardController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\SnorkelingController;
 use App\Http\Controllers\FreeDivingController;
 use App\Http\Controllers\ScubaController;
+use App\Http\Controllers\HotelController;
+use App\Http\Controllers\ShopController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,9 +40,12 @@ use App\Http\Controllers\ScubaController;
 //     return view('index', compact("marker"));
 // });
 Route::resource('/', IndexController::class)->only('index');
+Route::get('map/{id}', [IndexController::class, 'show'])->name('map.show');
 Route::resource('store', StoreController::class);
+Route::resource('hotel', HotelController::class);
+Route::resource('shop', ShopController::class);
 Route::resource('partner', PartnerController::class)->only('index');
-Route::resource('point_card', PointCardController::class);
+// Route::resource('point_card', PointCardController::class);
 Route::resource('snorkeling', SnorkelingController::class)->only('index');
 Route::resource('freeDiving', FreeDivingController::class)->only('index');
 Route::resource('scuba', ScubaController::class)->only('index');

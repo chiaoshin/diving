@@ -20,6 +20,8 @@ mix.js('resources/js/app.js', 'public/js')
     .css('resources/css/freeDiving.css', 'public/css')
     .css('resources/css/scuba.css', 'public/css')
     .css('resources/css/chatGPT.css', 'public/css')
+    .css('resources/css/weather.css', 'public/css')
+    .css('resources/css/law.css', 'public/css')
     .postCss('resources/css/app.css', 'public/css', [
         //
     ]);

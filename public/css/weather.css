@@ -1,0 +1,72 @@
+.table {
+  min-width: 200px; /* 表格最小寬度為300像素 */
+  max-width: 300px; /* 表格最大寬度為800像素 */
+  height: 400px; /* 設定表格高度為400像素 */
+  white-space: nowrap;
+}
+.div
+{
+  display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+.table th:first-child
+{
+  position: sticky;
+  left: 0;
+  z-index: 1;
+	background-color:	#9999CC
+}
+.table td:first-child 
+{
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  background-color:	#D8D8EB;
+}
+.table td{
+  text-align: center; /* 將內容水平置中 */
+  vertical-align: middle; /* 將內容垂直置中 */
+}
+.container {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #F3F3FA;
+  }
+  h1 {
+  color: 	#5A5AAD;
+  }
+
+  th.data 
+  {
+    text-align: center;
+    background-color:	#BEBEBE;
+  }
+  .img_weather
+  {
+    max-width: 50px; 
+    margin: 0 auto;
+  }
+  .img_position
+  {
+    max-width: 40px; 
+    margin: 0 auto; /* 將圖片水平置中 */
+  }
+  .weather-description.text
+  {
+    vertical-align: middle;
+    color: 		#5B00AE;
+    font-weight: bold;
+
+  }
+  
+
+
+
+  
+

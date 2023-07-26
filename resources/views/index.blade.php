@@ -59,6 +59,8 @@ $fake_data2 = [
 <!-- map 嵌入 -->
 <!-- <link href="{{ asset("css/leaflet.css") }}" rel="stylesheet"> -->
 <link href="{{ asset("css/map.css") }}" rel="stylesheet">
+<!-- weather 導入 -->
+<link href="{{ asset("css/weather.css") }}" rel="stylesheet">
 
 @endsection
 
@@ -143,18 +145,21 @@ $fake_data2 = [
             <h2 class="text-white"><b><span class="material-symbols-sharp">signpost</span>熱門潛水景點</b></h2>
         </div>
     </div>
-    <div class="row">
-        @foreach($fake_data as $data)
-        <div class="col-12 col-md-4">
-            <div class="card">
-                <img src="{{ $data['image_url'] }}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">{{ $data['title'] }}</h5>
-                    <p class="card-text">{{ $data['address'] }}</p>
-                    <a href="{{ route('store.show', $data['id']) }}" class="btn btn-primary">查看更多</a>
+    <div class="row" id="hotSite">
+        @foreach($diveSite as $index => $data)
+            <div class="col-12 col-md-4">
+                <div class="card" style="min-height: 100%;">
+                    <img src="{{ asset("img/map1.jpg") }}" class="card-img-top" alt="...">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">{{ $data->ch_name }}</h5>
+                        <p class="card-text">{{ $data->address }}</p>
+                        <a href="{{ route('store.show', $data->map_id ) }}" class="btn btn-primary" style="margin-top: auto;width: fit-content;">查看更多</a>
+                    </div>
                 </div>
             </div>
-        </div>
+            @if($index >= 2)
+                @break
+            @endif
         @endforeach
     </div>
 </div>
@@ -188,8 +193,105 @@ $fake_data2 = [
             <h2 class="text-white"><b><span class="material-symbols-sharp">partly_cloudy_day</span>天氣狀態</b></h2>
         </div>
     </div>
-    <div class="row position-relative" style="border: solid 1px #928d8d; padding: 0.5rem;">
+    <!-- <div class="row position-relative" style="border: solid 1px #928d8d; padding: 0.5rem;">
         <div id="map"></div>
+    </div> -->
+    <!-- 表格 -->
+    <div class="row position-relative" style="border: solid 1px #928d8d; padding: 0.5rem;">
+        <div class="div">
+            <table class="table table-bordered ">
+                <thead>
+                  <tr>
+                    <th scope="col" class="data">日期</th>
+                    <th scope="col" class="data" td colspan="4">8/4(五)</th></td>
+                    <th scope="col" class="data" td colspan="4">8/5(六)</th></td>
+                    <th scope="col" class="data" td colspan="4">8/6(日)</th></td>
+                    <th scope="col" class="data" td colspan="4">8/7(一)</th></td>
+                    <th scope="col" class="data" td colspan="4">8/8(二)</th></td>
+                    <th scope="col" class="data" td colspan="4">8/9(三)</th></td>
+                    <th scope="col" class="data" td colspan="4">8/10(四)</th></td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="weather-description text">天氣狀況</td>
+                    <td colspan="4"><img src="{{ asset('img/weather/clouldy.png') }}" class="img_weather" ></td>
+                    <td colspan="4"><img src="{{ asset('img/weather/clouldy.png') }}" class="img_weather"></td>
+                    <td colspan="4"><img src="{{ asset('img/weather/sun.png') }}" class="img_weather"></td>
+                    <td colspan="4"><img src="{{ asset('img/weather/sun.png') }}" class="img_weather"></td>
+                    <td colspan="4"><img src="{{ asset('img/weather/rain.png') }}" class="img_weather"></td>
+                    <td colspan="4"><img src="{{ asset('img/weather/rain.png') }}" class="img_weather"></td>
+                    <td colspan="4"><img src="{{ asset('img/weather/rainstorm.png') }}" class="img_weather"></td>
+                  </tr>
+
+                    <tr>
+                      <td class="weather-description text">溫度</td>
+                      <td colspan="4">29℃</td>
+                      <td colspan="4">26℃</td>
+                      <td colspan="4">33℃</td>
+                      <td colspan="4">30℃</td>
+                      <td colspan="4">27℃</td>
+                      <td colspan="4">28℃</td>
+                      <td colspan="4">20℃</td>
+                    </tr>
+
+                    <tr>
+                      <td class="weather-description text">降雨機率</td>
+                      <td colspan="4">40%</td>
+                      <td colspan="4">20%</td>
+                      <td colspan="4">10%</td>
+                      <td colspan="4">40%</td>
+                      <td colspan="4">60%</td>
+                      <td colspan="4">54%</td>
+                      <td colspan="4">100%</td>
+                    </tr>
+
+                    <tr>
+                      <td class="weather-description text">浪高</td>
+                      <td colspan="4">0.4</td>
+                      <td colspan="4">0.4</td>
+                      <td colspan="4">0.4</td>
+                      <td colspan="4">0.3</td>
+                      <td colspan="4">0.4</td>
+                      <td colspan="4">0.3</td>
+                      <td colspan="4">0.4</td>
+                    </tr>
+
+                    <tr>
+                      <td class="weather-description text">流向</td>
+                      <td colspan="4"><img src="{{ asset('img/weather/right.png') }}" class="img_position"><br>東</td>
+                      <td colspan="4"><img src="{{ asset('img/weather/left.png') }}" class="img_position"><br>西</td>
+                      <td colspan="4"><img src="{{ asset('img/weather/down.png') }}" class="img_position"><br>南</td>
+                      <td colspan="4"><img src="{{ asset('img/weather/up-left.png') }}" class="img_position"><br>西北</td>
+                      <td colspan="4"><img src="{{ asset('img/weather/down-right.png') }}" class="img_position"><br>東南</td>
+                      <td colspan="4"><img src="{{ asset('img/weather/down.png') }}" class="img_position"><br>南</td>
+                      <td colspan="4"><img src="{{ asset('img/weather/down-left.png') }}" class="img_position"><br>西南</td>
+                    </tr>
+
+                     <tr>
+                      <td class="weather-description text">潮汐</td>
+                      <td>漲潮</td><td>退潮</td><td>漲潮</td><td>退潮</td>
+                      <td>漲潮</td><td>退潮</td><td>漲潮</td><td>退潮</td>
+                      <td>漲潮</td><td>退潮</td><td>漲潮</td><td>退潮</td>
+                      <td>漲潮</td><td>退潮</td><td>漲潮</td><td>退潮</td>
+                      <td>漲潮</td><td>退潮</td><td>漲潮</td><td>退潮</td>
+                      <td>漲潮</td><td>退潮</td><td>漲潮</td><td>退潮</td>
+                      <td>漲潮</td><td>退潮</td><td>漲潮</td><td>退潮</td>
+                    </tr>
+
+                    <tr>
+                      <td class="weather-description text">時間</td>
+                      <td>00:36</td><td>05:39</td><td>09:53</td><td>17:06</td>
+                      <td>00:36</td><td>05:39</td><td>09:53</td><td>17:06</td>
+                      <td>00:36</td><td>05:39</td><td>09:53</td><td>17:06</td>
+                      <td>00:36</td><td>05:39</td><td>09:53</td><td>17:06</td>
+                      <td>00:36</td><td>05:39</td><td>09:53</td><td>17:06</td>
+                      <td>00:36</td><td>05:39</td><td>09:53</td><td>17:06</td>
+                      <td>00:36</td><td>05:39</td><td>09:53</td><td>17:06</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
@@ -227,7 +329,7 @@ $fake_data2 = [
 <link href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" rel="stylesheet">
 <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
 <script>
-    const markers = @json($marker);
+    const markers = @json($diveSite);
 
     // marker color
     var redIcon = new L.Icon({
@@ -517,14 +619,30 @@ $fake_data2 = [
 
     // 所有搜尋_縣市區域切換
     let cityMapper = {
-        '北部地區': ['台北市', '新北市'],
-        '中部地區': ['台中市', '南投縣'],
-        '南部地區': ['台南市', '高雄市', '嘉義市']
+        '北部地區': ['台北市', '新北市', '基隆市', '桃園市', '新竹市', '新竹縣', '宜蘭縣'],
+        '中部地區': ['苗栗縣', '台中市', '彰化縣', '南投縣', '雲林縣'],
+        '南部地區': ['嘉義市', '嘉義縣', '台南市', '高雄市', '屏東縣', '澎湖縣'],
+        '東部地區':['花蓮縣','台東縣'],
+        '外島/離島地區':['台東縣','澎湖縣','屏東縣','金門縣','連江縣']
     }
 
     // 所有搜尋_zoom切換
     let cityPositionMapper = {
-        '台北市': [22.049802, 121.546543, 12.5]
+        '澎湖縣': [23.654072, 119.596528, 9.25],
+        '金門縣': [24.450180, 118.367563, 11.5],
+        '連江縣': [26.164330, 120.248569, 10],
+
+        '台北市': [25.093967, 121.554655, 11],
+        '新北市': [24.944788, 121.556745, 10],
+        '基隆市': [25.121252, 121.719304, 11],
+        '桃園市': [24.918439, 121.243436, 10.5],
+        '新竹市': [24.787220, 120.939825, 11],
+        '新竹縣': [24.735878, 121.139237, 10.5],
+        '宜蘭縣': [24.570412, 121.653605, 9],
+
+        '花蓮縣': [23.852462, 121.406987, 9],
+        '台東縣': [22.951539, 121.051822, 9],
+
     }
 
     // 所有搜尋_縣市區域切換事件
@@ -536,6 +654,30 @@ $fake_data2 = [
             let options = cityMapper[key].reduce((acc, curr) => acc + `<option value="${curr}">${curr}</option>`, "<option value='選擇縣市' hidden>選擇縣市</option>")
 
             $("select[name=location]").html(options)
+
+            let sites = markers.filter(row => row.area == key)
+
+            if (sites.length > 3) {
+                sites = sites.slice(0, 3)
+            }
+            
+            $("#hotSite").html("")
+            
+            sites.forEach(row => {
+                $("#hotSite").append(`
+                <div class="col-12 col-md-4">
+                    <div class="card" style="min-height: 100%;">
+                        <img src="{{ asset("img/map1.jpg") }}" class="card-img-top" alt="...">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">${row.ch_name}</h5>
+                            <p class="card-text">${row.address}</p>
+                            <a href="{{ route('store.show', ":id" ) }}" class="btn btn-primary" style="margin-top: auto;width: fit-content;">查看更多</a>
+                        </div>
+                    </div>
+                </div>
+                `.replace(":id", row.id))
+            })
+
         } else {
             let options = "<option value='選擇縣市' hidden>選擇縣市</option>"
 
@@ -548,6 +690,7 @@ $fake_data2 = [
             map.flyTo(new L.LatLng(23.6978, 120.9605), 7)
         }
     })
+    
 
     // 所有搜尋_zoom切換_事件
     $("select[name=location]").change(function() {
@@ -555,6 +698,30 @@ $fake_data2 = [
             let position = cityPositionMapper[$(this).val()]
 
             map.flyTo(new L.LatLng(position[0], position[1]), position[2])
+
+            let sites_county = markers.filter(row => row.location == $(this).val())
+
+            if (sites_county.length > 3) {
+                sites_county = sites_county.slice(0, 3)
+            }
+            
+            $("#hotSite").html("")
+            
+            sites_county.forEach(row => {
+                $("#hotSite").append(`
+                <div class="col-12 col-md-4">
+                    <div class="card" style="min-height: 100%;">
+                        <img src="{{ asset("img/map1.jpg") }}" class="card-img-top" alt="...">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">${row.ch_name}</h5>
+                            <p class="card-text">${row.address}</p>
+                            <a href="{{ route('store.show', ":id" ) }}" class="btn btn-primary" style="margin-top: auto;width: fit-content;">查看更多</a>
+                        </div>
+                    </div>
+                </div>
+                `.replace(":id", row.id))
+            })
+
         } else {
             map.flyTo(new L.LatLng(23.6978, 120.9605), 7)
         }
