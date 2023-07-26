@@ -7,6 +7,7 @@ use App\Models\Index;
 use App\Models\Store;
 use App\Models\Shop;
 use App\Models\Hotel;
+use App\Models\Chatgpt;
 
 class IndexController extends Controller
 {
@@ -65,77 +66,35 @@ class IndexController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Display the specified resource.
      *
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // public function create()
-    // {
-    //     //
-    // }
-
-    // /**
-    //  * Store a newly created resource in storage.
-    //  *
-    //  * @param  \Illuminate\Http\Request  $request
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function store(Request $request)
-    // {
-    //     //
-    // }
-
-    // /**
-    //  * Display the specified resource.
-    //  *
-    //  * @param  int  $id
-    //  * @return \Illuminate\Http\Response
-    //  */
     public function show($id)
     {
         // equals: Select * from store where id = ?
         $map = Index::findOrFail($id);
 
-        $message = "小琉球龍蝦洞";
+        // chatgpt
+        $gptResponse = Chatgpt::where('keyword', $map->ch_name)->get()->first();
 
         $dictData = [
-            '小琉球龍蝦洞' => '潛水注意事項： \n當地擁有一片美麗的珊瑚礁海岸，海底更有著名的軟珊瑚地毯，可以說是非常值得探索的潛點！ \n雖然潮間帶還算平緩好走，但有時浪比較大，務必要先評估是否適合下水。\n對了，龍蝦洞海底的流也比較強，建議一定要找當地的潛導以確保自身安全！'
+            $map->ch_name => !is_null($gptResponse) ? $gptResponse->respond : 'What are u talking about'
         ];
 
-        return view('map/show', compact("map", "message", "dictData"));
+        return view('map/show', compact("map", "dictData"));
     }
 
-    // /**
-    //  * Show the form for editing the specified resource.
-    //  *
-    //  * @param  int  $id
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function edit($id)
-    // {
-    //     //
-    // }
+    // public function getGPTResponse() {
+    //     $keyword = request()->input('keyword');
 
-    // /**
-    //  * Update the specified resource in storage.
-    //  *
-    //  * @param  \Illuminate\Http\Request  $request
-    //  * @param  int  $id
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function update(Request $request, $id)
-    // {
-    //     //
-    // }
+    //     if (is_null($keyword)) {
+    //         return '我不知道您的問題，請重新執行一次，謝謝。';
+    //     }
+        
+    //     $response = Chatgpt::where('keyword',$keyword)->get();
 
-    // /**
-    //  * Remove the specified resource from storage.
-    //  *
-    //  * @param  int  $id
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function destroy($id)
-    // {
-    //     //
+    //     dd($response);
     // }
 }

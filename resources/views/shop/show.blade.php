@@ -12,19 +12,22 @@
 <div id="custom-content">
     <div class="title">
         <h2 class="my-5 text-center text-dark">{{ $shop->ch_name }}</h2>
-        <div class="modal-container">
-            <input id="modal-toggle" type="checkbox">
-            <label class="modal-btn" for="modal-toggle"><img src="{{ asset("img/law/1.png") }}" alt="按鈕圖片"></label> 
-            <label class="modal-backdrop" for="modal-toggle"></label>
-            <div class="modal-content">
-                <label class="modal-close" for="modal-toggle">&#x2715;</label>
-                <h3>判決書</h3>
-                <h5>事件類別：<span>民事</sapn></h5>
-                <p>返還課程費用</p> 
-                <a href="https://www.lawsq.com/book/46308090651" target="_blank">判決書完整內容連結</a>
-                <label class="modal-content-btn" for="modal-toggle">OK</label>   
-            </div> 
-        </div>
+        @if(!is_null($shop->law))
+            <div class="modal-container">
+                <input id="modal-toggle" type="checkbox">
+                <label class="modal-btn" for="modal-toggle"><img src="{{ asset("img/law/1.png") }}" alt="按鈕圖片"></label> 
+                <label class="modal-backdrop" for="modal-toggle"></label>
+                <div class="modal-content">
+                    <label class="modal-close" for="modal-toggle">&#x2715;</label>
+                    <h3><span class="material-symbols-sharp">gavel</span> 判決書</h3>
+                    <h5>事件類別：<span>{{ $shop->law->event }}</sapn></h5>
+                    <p>{{ $shop->law->directions }}</p> 
+                    <a href="{{ $store->law->url }}" target="_blank">判決書完整內容連結</a>
+                    <label class="modal-content-btn" for="modal-toggle">OK</label>   
+                    
+                </div> 
+            </div>
+        @endif
     </div>
 
     <div class="tab-action-row">
@@ -154,7 +157,7 @@
     let dictData = @json($dictData);
 
     // window.test_sendMessage()
-    window.test_2_sendMessage('{{ $message }}', dictData)
+    window.test_2_sendMessage('{{ $shop->ch_name }}', dictData)
 </script>
 
 @endsection

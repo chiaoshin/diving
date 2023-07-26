@@ -139,7 +139,7 @@ $fake_data2 = [
 </div>
 
 <!-- HOT Point card -->
-<div class="container-fluid p-5">
+<div class="container-fluid p-5" id='hot-site-title'>
     <div class="row">
         <div class="col-12">
             <h2 class="text-white"><b><span class="material-symbols-sharp">signpost</span>熱門潛水景點</b></h2>
@@ -564,8 +564,11 @@ $fake_data2 = [
         data.forEach(row => {
             let marker = L.marker([row.lat, row.lng], {
                 icon: redIcon
-            }).addTo(map).bindPopup(`<h2>${row.name}</h2>` +
-                `<a href="https://www.google.com/search?q=${row.name}&sourceid=chrome&ie=UTF-8" target="_blank" title="${row.address}">${row.address}</a>`)
+            }).addTo(map).bindPopup(`
+                <h2>${row.name}</h2>
+                <a href="${row.url}" class="h4">詳細資訊</a><br/>
+                <a href="https://www.google.com/search?q=${row.name}&sourceid=chrome&ie=UTF-8" target="_blank" title="${row.address}">${row.address}</a>
+            `)
 
             markerGroup.push(marker)
         })
@@ -597,6 +600,11 @@ $fake_data2 = [
 
     // Select Change Event
     $("select[name=area], select[name=location], select[name=item]").change(function() {
+
+        if ($("select[name=area]").val() == "選擇地區"){
+            $("select[name=location]").val("選擇縣市")
+        }
+
         $.ajax({
             method: 'GET',
             url: "{{ route('markers.search') }}",
@@ -643,6 +651,19 @@ $fake_data2 = [
         '花蓮縣': [23.852462, 121.406987, 9],
         '台東縣': [22.951539, 121.051822, 9],
 
+        '苗栗縣': [24.500105, 120.902437, 10.5],
+        '台中市': [24.228988, 120.915181, 10.5],
+        '彰化縣': [23.975269, 120.490295, 10.5],
+        '南投縣': [23.858716, 120.935998, 9.25],
+        '雲林縣': [23.715187, 120.390177, 10.5],
+
+        '嘉義市': [23.481751, 120.446901, 12],
+        '嘉義縣': [23.483329, 120.512126, 10.5],
+        '台南市': [23.166952, 120.303771, 10],
+        '高雄市': [22.983211, 120.585943, 9.5],
+        '屏東縣': [22.510463, 120.651370, 9],
+        '澎湖縣': [23.654072, 119.596528, 9.25]
+
     }
 
     // 所有搜尋_縣市區域切換事件
@@ -659,6 +680,12 @@ $fake_data2 = [
 
             if (sites.length > 3) {
                 sites = sites.slice(0, 3)
+            }
+            
+            if(sites.length == 0) {
+                $("#hot-site-title").hide()
+            }else{
+                $("#hot-site-title").show()
             }
             
             $("#hotSite").html("")
@@ -703,6 +730,12 @@ $fake_data2 = [
 
             if (sites_county.length > 3) {
                 sites_county = sites_county.slice(0, 3)
+            }
+
+            if(sites_county.length == 0) {
+                $("#hot-site-title").hide()
+            }else{
+                $("#hot-site-title").show()
             }
             
             $("#hotSite").html("")

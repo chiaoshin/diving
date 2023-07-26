@@ -150,7 +150,7 @@
     let dictData = @json($dictData);
 
     // window.test_sendMessage()
-    window.test_2_sendMessage('{{ $message }}', dictData)
+    window.test_2_sendMessage('{{ $map->ch_name }}', dictData)
 </script>
 
 @endsection

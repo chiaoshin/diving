@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Shop;
+use App\Models\Chatgpt;
 
 class ShopController extends Controller
 {
@@ -47,15 +48,16 @@ class ShopController extends Controller
     public function show($id)
     {
         // equals: Select * from store where id = ?
-        $shop = Shop::findOrFail($id);
+        $shop = Shop::with('law')->findOrFail($id);
 
-        $message = "小琉球龍蝦洞";
+        // chatgpt
+        $gptResponse = Chatgpt::where('keyword', $shop->ch_name)->get()->first();
 
         $dictData = [
-            '小琉球龍蝦洞' => '潛水注意事項： \n當地擁有一片美麗的珊瑚礁海岸，海底更有著名的軟珊瑚地毯，可以說是非常值得探索的潛點！ \n雖然潮間帶還算平緩好走，但有時浪比較大，務必要先評估是否適合下水。\n對了，龍蝦洞海底的流也比較強，建議一定要找當地的潛導以確保自身安全！'
+            $shop->ch_name => !is_null($gptResponse) ? $gptResponse->respond : 'What are u talking about'
         ];
 
-        return view('shop/show', compact("shop", "message", "dictData"));
+        return view('shop/show', compact("shop", "dictData"));
     }
 
     /**

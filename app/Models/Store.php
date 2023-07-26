@@ -14,6 +14,11 @@ class Store extends Model
     protected $primaryKey = "store_id";
     protected $guard = [];
 
+    public function law()
+    {
+        return $this->hasOne(Law::class, 'store_id');
+    }
+
     // 邏輯判斷 
     public function getCheckinInfoAttribute()
     {

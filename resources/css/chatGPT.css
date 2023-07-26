@@ -36,7 +36,7 @@
     /* background-color: #343541; */
     background-color: #fff;
     padding: 10px;
-    display: flex;
+    display: none;
     justify-content: space-between;
     /* border-top: 1px solid #5c5c66; */
     /* border-top: 1px solid; */

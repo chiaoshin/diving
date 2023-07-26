@@ -19,7 +19,9 @@ class DatabaseSeeder extends Seeder
             PartnerSeeder::class,
             MapSeeder::class,
             HotelSeeder::class,
-            ShopSeeder::class
+            ShopSeeder::class,
+            LawSeeder::class,
+            ChatgptSeeder::class
         ]);
     }
 }

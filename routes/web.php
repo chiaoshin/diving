@@ -41,6 +41,7 @@ use App\Http\Controllers\ShopController;
 // });
 Route::resource('/', IndexController::class)->only('index');
 Route::get('map/{id}', [IndexController::class, 'show'])->name('map.show');
+Route::get('chatgpt', [IndexController::class, 'getGPTResponse'])->name('chatgpt');
 Route::resource('store', StoreController::class);
 Route::resource('hotel', HotelController::class);
 Route::resource('shop', ShopController::class);

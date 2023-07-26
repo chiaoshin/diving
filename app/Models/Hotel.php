@@ -14,6 +14,12 @@ class Hotel extends Model
     protected $primaryKey = "hotel_id";
     protected $guard = [];
 
+    //關聯
+    public function law()
+    {
+        return $this->hasOne(Law::class,'hotel_id');
+    }
+
     // 邏輯判斷 
     public function getCheckinInfoAttribute()
     {

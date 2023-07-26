@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Store;
+use App\Models\Law;
+use App\Models\Chatgpt;
 
 class StoreController extends Controller
 {
@@ -42,23 +44,20 @@ class StoreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request,$id)
     {
         // equals: Select * from store where id = ?
-        $store = Store::findOrFail($id);
+        // Law
+        $store = Store::with('law')->findOrFail($id);
 
-        $message = "小琉球龍蝦洞";
+        // chatgpt
+        $gptResponse = Chatgpt::where('keyword', $store->ch_name)->get()->first();
 
         $dictData = [
-            '小琉球龍蝦洞' => '潛水注意事項： \n當地擁有一片美麗的珊瑚礁海岸，海底更有著名的軟珊瑚地毯，可以說是非常值得探索的潛點！ \n雖然潮間帶還算平緩好走，但有時浪比較大，務必要先評估是否適合下水。\n對了，龍蝦洞海底的流也比較強，建議一定要找當地的潛導以確保自身安全！'
+            $store->ch_name => !is_null($gptResponse) ? $gptResponse->respond : 'What are u talking about'
         ];
 
-        // $dictData = [];
-        // foreach($data as $row){
-        //     $dictData[$row->keyword] = $row->response;
-        // }
-
-        return view('store/show', compact("store", "message", "dictData"));
+        return view('store/show', compact("store", "dictData"));
     }
 
     /**

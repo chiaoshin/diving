@@ -14,6 +14,12 @@ class Shop extends Model
     protected $primaryKey = "shop_id";
     protected $guard = [];
 
+    // 關聯
+    public function law()
+    {
+        return $this->hasOne(Law::class,'shop_id');
+    }
+
     // 邏輯判斷
     public function getWorkInfoAttribute()
     {
