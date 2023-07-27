@@ -10,6 +10,7 @@ use App\Http\Controllers\FreeDivingController;
 use App\Http\Controllers\ScubaController;
 use App\Http\Controllers\HotelController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\Search_resController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +46,7 @@ Route::get('chatgpt', [IndexController::class, 'getGPTResponse'])->name('chatgpt
 Route::resource('store', StoreController::class);
 Route::resource('hotel', HotelController::class);
 Route::resource('shop', ShopController::class);
+Route::resource('search_res', Search_resController::class);
 Route::resource('partner', PartnerController::class)->only('index');
 // Route::resource('point_card', PointCardController::class);
 Route::resource('snorkeling', SnorkelingController::class)->only('index');

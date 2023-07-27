@@ -18,7 +18,7 @@ class IndexController extends Controller
      */
     public function index()
     {
-        $diveSite = Index::all();
+        $diveSite = Index::getFormatterMarkers([]);
 
         return view('index', compact("diveSite"));
     }

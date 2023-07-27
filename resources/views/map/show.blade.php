@@ -12,19 +12,6 @@
 <div id="custom-content">
     <div class="title">
         <h2 class="my-5 text-center text-dark">{{ $map->ch_name }}</h2>
-        <div class="modal-container">
-            <input id="modal-toggle" type="checkbox">
-            <label class="modal-btn" for="modal-toggle"><img src="{{ asset("img/law/1.png") }}" alt="按鈕圖片"></label> 
-            <label class="modal-backdrop" for="modal-toggle"></label>
-            <div class="modal-content">
-                <label class="modal-close" for="modal-toggle">&#x2715;</label>
-                <h3>判決書</h3>
-                <h5>事件類別：<span>民事</sapn></h5>
-                <p>返還課程費用</p> 
-                <a href="https://www.lawsq.com/book/46308090651" target="_blank">判決書完整內容連結</a>
-                <label class="modal-content-btn" for="modal-toggle">OK</label>   
-            </div> 
-        </div>
     </div>
 
     <div class="tab-action-row">
@@ -54,7 +41,7 @@
                         @endif
                         </a>
                     </h2>
-                    <p>地址：<br>{{ $map->address }}</p>
+                    <p>地址：<br><a href="https://www.google.com/search?q={{ $map->address }}&sourceid=chrome&ie=UTF-8" target="_blank" rel="noopener noreferrer">{{ $map->address }}</a></p>
                     <p>敘述：<br>{{ $map->description_info }}</p>
                 </div>
             </div>

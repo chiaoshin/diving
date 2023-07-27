@@ -5,9 +5,20 @@ namespace App\Traits;
 trait MarkerFormatter
 {
 
-    public static function getFormatterMarkers($conditions)
+    public static function getFormatterMarkers($conditions, $searchParm=[])
     {
-        return self::where($conditions)->get()->map(function ($row) {
+        $query_builder = self::where($conditions);
+        $count = $query_builder->count();
+
+        if (array_key_exists('limit', $searchParm)) {
+            $query_builder = $query_builder->limit($searchParm['limit']);
+        }
+
+        if (array_key_exists('offset', $searchParm)) {
+            $query_builder = $query_builder->offset($searchParm['offset']);
+        }
+
+        $result = $query_builder->get()->map(function ($row) {
             $url = '';
             
             $key = $row->primaryKey;
@@ -36,5 +47,11 @@ trait MarkerFormatter
                 "address" => $row->address
             ];
         })->toArray();
+
+        if (array_key_exists('withTotal', $searchParm)) {
+            return [$result, $count];
+        }else{
+            return $result;
+        }
     }
 }

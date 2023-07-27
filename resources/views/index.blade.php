@@ -131,7 +131,7 @@ $fake_data2 = [
             </div>
             <div class="col-12 col-md-3 mt-2 text-center d-flex">
                 <div class="m-auto w-100">
-                    <button type="button" class="btn btn-primary w-100">搜尋最佳景點</button>
+                    <button type="button" class="btn btn-primary w-100" id="search">搜尋最佳景點</button>
                 </div>
             </div>
         </div>
@@ -151,9 +151,9 @@ $fake_data2 = [
                 <div class="card" style="min-height: 100%;">
                     <img src="{{ asset("img/map1.jpg") }}" class="card-img-top" alt="...">
                     <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">{{ $data->ch_name }}</h5>
-                        <p class="card-text">{{ $data->address }}</p>
-                        <a href="{{ route('store.show', $data->map_id ) }}" class="btn btn-primary" style="margin-top: auto;width: fit-content;">查看更多</a>
+                        <h5 class="card-title">{{ $data['name'] }}</h5>
+                        <p class="card-text">{{ $data['address'] }}</p>
+                        <a href="{{ route('map.show', $data['id'] ) }}" class="btn btn-primary" style="margin-top: auto;width: fit-content;">查看更多</a>
                     </div>
                 </div>
             </div>
@@ -373,8 +373,11 @@ $fake_data2 = [
         markers.forEach(row => {
             let marker = L.marker([row.lat, row.lng], {
                 icon: redIcon
-            }).addTo(map).bindPopup(`<h2>${row.ch_name}</h2>` +
-                `<a href="https://www.google.com/search?q=${row.ch_name}&sourceid=chrome&ie=UTF-8" target="_blank" title="${row.address}">${row.address}</a>`)
+            }).addTo(map).bindPopup(`
+                <h2>${row.name}</h2>
+                <a href="${row.url}" class="h4" style="text-decoration: none;">詳細資訊</a><br/>
+                <a href="https://www.google.com/search?q=${row.name}&sourceid=chrome&ie=UTF-8" target="_blank" title="${row.address}">${row.address}</a>
+            `)
 
             markerGroup.push(marker)
         })
@@ -566,7 +569,7 @@ $fake_data2 = [
                 icon: redIcon
             }).addTo(map).bindPopup(`
                 <h2>${row.name}</h2>
-                <a href="${row.url}" class="h4">詳細資訊</a><br/>
+                <a href="${row.url}" class="h4" style="text-decoration: none;">詳細資訊</a><br/>
                 <a href="https://www.google.com/search?q=${row.name}&sourceid=chrome&ie=UTF-8" target="_blank" title="${row.address}">${row.address}</a>
             `)
 
@@ -696,7 +699,7 @@ $fake_data2 = [
                     <div class="card" style="min-height: 100%;">
                         <img src="{{ asset("img/map1.jpg") }}" class="card-img-top" alt="...">
                         <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">${row.ch_name}</h5>
+                            <h5 class="card-title">${row.name}</h5>
                             <p class="card-text">${row.address}</p>
                             <a href="{{ route('store.show', ":id" ) }}" class="btn btn-primary" style="margin-top: auto;width: fit-content;">查看更多</a>
                         </div>
@@ -746,7 +749,7 @@ $fake_data2 = [
                     <div class="card" style="min-height: 100%;">
                         <img src="{{ asset("img/map1.jpg") }}" class="card-img-top" alt="...">
                         <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">${row.ch_name}</h5>
+                            <h5 class="card-title">${row.name}</h5>
                             <p class="card-text">${row.address}</p>
                             <a href="{{ route('store.show', ":id" ) }}" class="btn btn-primary" style="margin-top: auto;width: fit-content;">查看更多</a>
                         </div>
@@ -759,6 +762,35 @@ $fake_data2 = [
             map.flyTo(new L.LatLng(23.6978, 120.9605), 7)
         }
     })
+
+    // 綁事件、頁面跳轉
+    $("#search").click(function() {
+        let area = $("select[name=area]").val()
+        let location = $("select[name=location]").val()
+        let type = $("select[name=item]").val()
+        let url = "{{ route('search_res.index') }}?"
+
+        if(!(area == "選擇地區"))
+        {
+            url += "&area="+area
+        }
+    
+        if(!(location == "選擇縣市"))
+        {
+            url += "&location="+location
+        }
+
+        if(!(type == "選擇項目"))
+        {
+            url += "&type="+type
+        }
+
+        window.open(url, '_blank');
+
+        // http://127.0.0.1:8000/search_res?location=%E5%B1%8F%E6%9D%B1%E7%B8%A3&page=2
+    })
+
+
 </script>
 
 @endsection
