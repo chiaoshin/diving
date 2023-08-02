@@ -2,27 +2,6 @@
 
 @php
 
-$fake_data = [
-[
-"id" => 1,
-"title" => "潛水 1",
-"image_url" => asset("img/map1.jpg"),
-"address" => "831高雄市大寮區民泰街92號"
-],
-[
-"id" => 2,
-"title" => "潛水 2",
-"image_url" => asset("img/map1.jpg"),
-"address" => "831高雄市大寮區民泰街73號"
-],
-[
-"id" => 3,
-"title" => "潛水 3",
-"image_url" => asset("img/map1.jpg"),
-"address" => "831高雄市大寮區民泰街38號"
-]
-];
-
 $fake_data2 = [
 [
 "id" => 1,

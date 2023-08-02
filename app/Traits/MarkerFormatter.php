@@ -44,7 +44,9 @@ trait MarkerFormatter
                 "name" => $row->ch_name,
                 "lat" => $row->lat,
                 "lng" => $row->lng,
-                "address" => $row->address
+                "address" => $row->address,
+                "area" => $row->area,
+                "location" => $row->location
             ];
         })->toArray();
 

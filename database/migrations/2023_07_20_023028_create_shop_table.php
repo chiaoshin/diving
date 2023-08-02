@@ -18,7 +18,7 @@ class CreateShopTable extends Migration
             $table->string('ch_name', 50)->comment("店家名稱");
             $table->string('en_name', 100)->nullable()->comment("店家名稱(英)");
             $table->string('address', 100)->comment("地址");
-            $table->string('url')->comment("連結");
+            $table->text('url')->comment("連結");
             $table->time('work_start_from')->nullable()->comment('營業時間(起)');
             $table->time('work_end_to')->nullable()->comment("營業時間(迄)");
             $table->text('transform_note')->nullable()->comment("交通建議");
