@@ -4,10 +4,9 @@ namespace App\Traits;
 
 trait MarkerFormatter
 {
-
     public static function getFormatterMarkers($conditions, $searchParm=[])
     {
-        $query_builder = self::where($conditions);
+        $query_builder = self::where($conditions)->orderBy('reviews', 'DESC')->orderBy('star_rating', 'DESC');
         $count = $query_builder->count();
 
         if (array_key_exists('limit', $searchParm)) {
@@ -26,17 +25,23 @@ trait MarkerFormatter
             switch (self::class) {
                 case 'App\Models\Store':
                     $url = route('store.show', $row->$key);
+                    $type = "store";
                     break;
                 case 'App\Models\Shop':
                     $url = route('shop.show', $row->$key);
+                    $type = "shop";
                     break;
                 case 'App\Models\Hotel':
                     $url = route('hotel.show', $row->$key);
+                    $type = "hotel";
                     break;
                 case 'App\Models\Index':
                     $url = route('map.show', $row->$key);
+                    $type = "map";
                     break;
             }
+
+            $obj = self::find($row->$key);
 
             return [
                 "id" => $row->$key,
@@ -46,7 +51,12 @@ trait MarkerFormatter
                 "lng" => $row->lng,
                 "address" => $row->address,
                 "area" => $row->area,
-                "location" => $row->location
+                "location" => $row->location,
+                "type" => $type,
+                "rate_star_percent" => $obj->rate_star_percent,
+                "reviews" => $obj->reviews,
+                "star_rating" => $obj->star_rating,
+                "preview_img_url" => $obj->preview_img_url
             ];
         })->toArray();
 
@@ -55,5 +65,13 @@ trait MarkerFormatter
         }else{
             return $result;
         }
+    }
+
+    public function getRateStarPercentAttribute() {
+        $score = floor($this->star_rating) * 20 + 5;
+
+        $float = round(($this->star_rating - floor($this->star_rating)) * 10, 0);
+        
+        return $score + $float;
     }
 }

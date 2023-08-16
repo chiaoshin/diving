@@ -65,6 +65,8 @@ class Search_resController extends Controller
                     list($result, $total) = Shop::getFormatterMarkers($conditions, $searchParm);
                     break;
             }
+
+            $conditions['type'] = $data['type'];
         } else {
             $sql = "
                 SELECT 
@@ -157,15 +159,19 @@ class Search_resController extends Controller
                 switch ($value->dataType) {
                     case 'Store':
                         $url = route('store.show', $value->id);
+                        $obj = Store::find($value->id);
                         break;
                     case 'Shop':
                         $url = route('shop.show', $value->id);
+                        $obj = Shop::find($value->id);
                         break;
                     case 'Hotel':
                         $url = route('hotel.show', $value->id);
+                        $obj = Hotel::find($value->id);
                         break;
                     case 'Map':
                         $url = route('map.show', $value->id);
+                        $obj = Index::find($value->id);
                         break;
                 }
                 
@@ -175,7 +181,10 @@ class Search_resController extends Controller
                     'lat' => $value->lat,
                     'lng' => $value->lng,
                     'address' => $value->address,
-                    'url' => $url
+                    'url' => $url,
+                    "rate_star_percent" => $obj->rate_star_percent,
+                    "reviews" => $obj->reviews,
+                    "star_rating" => $obj->star_rating
                 ]);
             }
 
@@ -194,7 +203,7 @@ class Search_resController extends Controller
         foreach($conditions as $key => $value) {
             $queryParams .= $key . "=" . $value;
 
-            if (!$key == array_key_last($conditions)) {
+            if (!($key == array_key_last($conditions))) {
                 $queryParams .= "&";
             }
         }

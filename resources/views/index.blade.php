@@ -35,6 +35,12 @@ $fake_data2 = [
 <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/MarkerCluster.Default.css">
 </link>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/leaflet.markercluster.js"></script>
+
+
+<!-- 評論&結果畫面 -->
+<link href="{{ asset("css/reviews.css") }}" rel="stylesheet">
+<link href="{{ asset("css/search_res.css") }}" rel="stylesheet">
+
 <!-- map 嵌入 -->
 <!-- <link href="{{ asset("css/leaflet.css") }}" rel="stylesheet"> -->
 <link href="{{ asset("css/map.css") }}" rel="stylesheet">
@@ -128,10 +134,20 @@ $fake_data2 = [
         @foreach($diveSite as $index => $data)
             <div class="col-12 col-md-4">
                 <div class="card" style="min-height: 100%;">
-                    <img src="{{ asset("img/map1.jpg") }}" class="card-img-top" alt="...">
+                    <img src="{{ asset($data['preview_img_url']) }}" class="card-img-top" alt="...">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title">{{ $data['name'] }}</h5>
                         <p class="card-text">{{ $data['address'] }}</p>
+                        <div class="rating-card">
+						    <div class="m-b-30">  <!-- ... 調整表格裡面的位置 ... -->
+							    <!-- <h1 class="rating-number">4.3<small>/5</small></h1>
+                                <div class="text-muted">(2,145 review)</div> -->
+							    <div class="rating-stars d-inline-block position-relative mr-2">
+								    <img src="{{ asset('img/reviews/grey-star.svg') }}" alt="">
+								    <div class="filled-star" style="width:{{ $data['rate_star_percent'] }}%"></div>  <!-- ... width可以調整星星占比 ... -->
+							    </div>  
+						    </div>
+					    </div>
                         <a href="{{ route('map.show', $data['id'] ) }}" class="btn btn-primary" style="margin-top: auto;width: fit-content;">查看更多</a>
                     </div>
                 </div>
@@ -152,11 +168,8 @@ $fake_data2 = [
     </div>
 
     <div class="row position-relative" style="border: solid 1px #928d8d; padding: 0.5rem;">
-        <button id="test-btn-1">本島</button>
-        <button id="test-btn-2">小琉球</button>
-        <button id="test-btn-3">墾丁</button>
-        <button id="test-btn-4">綠島</button>
-        <button id="test-btn-5">蘭嶼</button>
+        <button class="zoom-btn" data-lat="23.6978" data-lng="120.9605" data-zoom="7">本島</button>
+        <div id='zoom-switch-container' class='p-0'></div>
 
         <!-- leaflet地圖 -->
         <div id="map"></div>
@@ -165,7 +178,6 @@ $fake_data2 = [
 </div>
 
 <!-- weather -->
-
 <div class="container-fluid p-5">
     <div class="row">
         <div class="col-12">
@@ -311,8 +323,9 @@ $fake_data2 = [
     const markers = @json($diveSite);
 
     // marker color
-    var redIcon = new L.Icon({
-        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+    var mapIcon = new L.Icon({
+        // iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+        iconUrl: '{{ asset("img/map/潛點.png") }}',
         shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
         iconSize: [25, 41],
         iconAnchor: [12, 41],
@@ -320,8 +333,26 @@ $fake_data2 = [
         shadowSize: [41, 41]
     });
 
-    var orangeIcon = new L.Icon({
-        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-orange.png',
+    var storeIcon = new L.Icon({
+        iconUrl: '{{ asset("img/map/store.png") }}',
+        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+    });
+
+    var hotelIcon = new L.Icon({
+        iconUrl: '{{ asset("img/map/bag.png") }}',
+        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+    });
+
+    var shopIcon = new L.Icon({
+        iconUrl: '{{ asset("img/map/用品店.png") }}',
         shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
         iconSize: [25, 41],
         iconAnchor: [12, 41],
@@ -349,18 +380,7 @@ $fake_data2 = [
         // L.marker([22.7247326,120.3124143]).addTo(map).bindPopup('<h2>高雄科技大學<h2><br><p>上課的地方</p>').openPopup();
 
         // 『打點初始化』(潛水地點)
-        markers.forEach(row => {
-            let marker = L.marker([row.lat, row.lng], {
-                icon: redIcon
-            }).addTo(map).bindPopup(`
-                <h2>${row.name}</h2>
-                <a href="${row.url}" class="h4" style="text-decoration: none;">詳細資訊</a><br/>
-                <a href="https://www.google.com/search?q=${row.name}&sourceid=chrome&ie=UTF-8" target="_blank" title="${row.address}">${row.address}</a>
-            `)
-
-            markerGroup.push(marker)
-        })
-
+        createMarkers(markers)
 
         // 危險海域(直接打點,拆兩個表紀錄)
         var polygon1 = L.polygon([
@@ -544,11 +564,23 @@ $fake_data2 = [
     // 『新增打點』
     function createMarkers(data) {
         data.forEach(row => {
+            let icon
+
+            if (row.type == 'map') {
+                icon = mapIcon
+            }else if(row.type == 'store'){
+                icon = storeIcon
+            }else if(row.type == 'hotel'){
+                icon = hotelIcon
+            }else if(row.type == 'shop'){
+                icon = shopIcon
+            }
+
             let marker = L.marker([row.lat, row.lng], {
-                icon: redIcon
+                icon: icon
             }).addTo(map).bindPopup(`
                 <h2>${row.name}</h2>
-                <a href="${row.url}" class="h4" style="text-decoration: none;">詳細資訊</a><br/>
+                <a href="${row.url}" class="h4" style="text-decoration: none;">查看更多</a><br/>
                 <a href="https://www.google.com/search?q=${row.name}&sourceid=chrome&ie=UTF-8" target="_blank" title="${row.address}">${row.address}</a>
             `)
 
@@ -558,34 +590,12 @@ $fake_data2 = [
 
     initMap()
 
-    //flyto元件 
-
-    $("#test-btn-1").click(function() {
-        map.flyTo(new L.LatLng(23.6978, 120.9605), 7);
-    })
-
-    $("#test-btn-2").click(function() {
-        map.flyTo(new L.LatLng(22.340539, 120.370736), 14)
-    })
-
-    $("#test-btn-3").click(function() {
-        map.flyTo(new L.LatLng(21.966854, 120.797370), 12)
-    })
-
-    $("#test-btn-4").click(function() {
-        map.flyTo(new L.LatLng(22.659797, 121.490896), 13)
-    })
-
-    $("#test-btn-5").click(function() {
-        map.flyTo(new L.LatLng(22.049802, 121.546543), 12.5)
-    })
-
     // Select Change Event
     $("select[name=area], select[name=location], select[name=item]").change(function() {
 
-        if ($("select[name=area]").val() == "選擇地區"){
-            $("select[name=location]").val("選擇縣市")
-        }
+        // if ($("select[name=area]").val() == "選擇地區"){
+        //     $("select[name=location]").val("選擇縣市")
+        // }
 
         $.ajax({
             method: 'GET',
@@ -609,11 +619,11 @@ $fake_data2 = [
 
     // 所有搜尋_縣市區域切換
     let cityMapper = {
-        '北部地區': ['台北市', '新北市', '基隆市', '桃園市', '新竹市', '新竹縣', '宜蘭縣'],
-        '中部地區': ['苗栗縣', '台中市', '彰化縣', '南投縣', '雲林縣'],
-        '南部地區': ['嘉義市', '嘉義縣', '台南市', '高雄市', '屏東縣', '澎湖縣'],
-        '東部地區':['花蓮縣','台東縣'],
-        '外島/離島地區':['台東縣','澎湖縣','屏東縣','金門縣','連江縣']
+        '北部地區': ['臺北市', '新北市', '基隆市', '桃園市', '新竹市', '新竹縣', '宜蘭縣'],
+        '中部地區': ['苗栗縣', '臺中市', '彰化縣', '南投縣', '雲林縣'],
+        '南部地區': ['嘉義市', '嘉義縣', '臺南市', '高雄市', '屏東縣'],
+        '東部地區':['花蓮縣','臺東縣'],
+        '外島/離島地區':['澎湖縣','金門縣','連江縣']
     }
 
     // 所有搜尋_zoom切換
@@ -621,31 +631,105 @@ $fake_data2 = [
         '澎湖縣': [23.654072, 119.596528, 9.25],
         '金門縣': [24.450180, 118.367563, 11.5],
         '連江縣': [26.164330, 120.248569, 10],
-
-        '台北市': [25.093967, 121.554655, 11],
+        '臺北市': [25.093967, 121.554655, 11],
         '新北市': [24.944788, 121.556745, 10],
         '基隆市': [25.121252, 121.719304, 11],
         '桃園市': [24.918439, 121.243436, 10.5],
         '新竹市': [24.787220, 120.939825, 11],
         '新竹縣': [24.735878, 121.139237, 10.5],
         '宜蘭縣': [24.570412, 121.653605, 9],
-
         '花蓮縣': [23.852462, 121.406987, 9],
-        '台東縣': [22.951539, 121.051822, 9],
-
+        '臺東縣': [22.951539, 121.051822, 9],
         '苗栗縣': [24.500105, 120.902437, 10.5],
-        '台中市': [24.228988, 120.915181, 10.5],
+        '臺中市': [24.228988, 120.915181, 10.5],
         '彰化縣': [23.975269, 120.490295, 10.5],
         '南投縣': [23.858716, 120.935998, 9.25],
         '雲林縣': [23.715187, 120.390177, 10.5],
-
         '嘉義市': [23.481751, 120.446901, 12],
         '嘉義縣': [23.483329, 120.512126, 10.5],
-        '台南市': [23.166952, 120.303771, 10],
+        '臺南市': [23.166952, 120.303771, 10],
         '高雄市': [22.983211, 120.585943, 9.5],
         '屏東縣': [22.510463, 120.651370, 9],
         '澎湖縣': [23.654072, 119.596528, 9.25]
+    }
 
+    // 潛游地圖_縣市切換按鈕
+    let zoomSwitchMapper = {
+        '臺東縣': {
+            '臺東縣': [22.951539, 121.051822, 9],
+            '綠島': [22.659797, 121.490896, 13],
+            '蘭嶼': [22.049802, 121.546543, 12.5]
+        },
+        '花蓮縣': {
+            '花蓮縣': [23.852462, 121.406987, 9]
+        },
+        '臺北市': {
+            '臺北市': [25.093967, 121.554655, 11]
+        },
+        '新北市': {
+            '新北市': [24.944788, 121.556745, 10]
+        },
+        '基隆市': {
+            '基隆市': [25.121252, 121.719304, 11]
+        },
+        '桃園市': {
+            '桃園市': [24.918439, 121.243436, 10.5]
+        },
+        '新竹市': {
+            '新竹市': [24.787220, 120.939825, 11]
+        },
+        '新竹縣': {
+            '新竹縣': [24.735878, 121.139237, 10.5]
+        },
+        '宜蘭縣': {
+            '宜蘭縣': [24.570412, 121.653605, 9]
+        },
+        '苗栗縣': {
+            '苗栗縣': [24.500105, 120.902437, 10.5]
+        },
+        '臺中市': {
+            '臺中市': [24.228988, 120.915181, 10.5]
+        },
+        '彰化縣': {
+            '彰化縣': [23.975269, 120.490295, 10.5]
+        },
+        '南投縣': {
+            '南投縣': [23.858716, 120.935998, 9.25]
+        },
+        '雲林縣': {
+            '雲林縣': [23.715187, 120.390177, 10.5]
+        },
+        '嘉義市': {
+            '嘉義市': [23.481751, 120.446901, 12]
+        },
+        '嘉義縣': {
+            '嘉義縣': [23.483329, 120.512126, 10.5]
+        },
+        '臺南市': {
+            '臺南市': [23.166952, 120.303771, 10]
+        },
+        '高雄市': {
+            '高雄市': [22.983211, 120.585943, 9.5]
+        },
+        '宜蘭縣': {
+            '宜蘭縣': [24.570412, 121.653605, 9]
+        },
+        '屏東縣': {
+            '屏東縣': [22.510463, 120.651370, 9],
+            '小琉球': [22.340036, 120.369805, 12]
+        },
+        '澎湖縣': {
+            '澎湖縣': [23.654072, 119.596528, 9.25]
+        },
+        '金門縣': {
+            '金門縣': [24.450180, 118.367563, 11.5]
+        },
+        '連江縣': {
+            '連江縣': [26.164330, 120.248569, 10]
+        },
+        '選擇縣市':{
+
+        }
     }
 
     // 所有搜尋_縣市區域切換事件
@@ -671,16 +755,25 @@ $fake_data2 = [
             }
             
             $("#hotSite").html("")
-            
+ 
+            // 熱門潛點卡片，縣市切換
             sites.forEach(row => {
                 $("#hotSite").append(`
                 <div class="col-12 col-md-4">
                     <div class="card" style="min-height: 100%;">
-                        <img src="{{ asset("img/map1.jpg") }}" class="card-img-top" alt="...">
+                        <img src="${row.preview_img_url}" class="card-img-top" alt="...">
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title">${row.name}</h5>
                             <p class="card-text">${row.address}</p>
-                            <a href="{{ route('store.show', ":id" ) }}" class="btn btn-primary" style="margin-top: auto;width: fit-content;">查看更多</a>
+                            <div class="rating-card">
+						    <div class="m-b-30">
+							    <div class="rating-stars d-inline-block position-relative mr-2">
+								    <img src="{{ asset('img/reviews/grey-star.svg') }}" alt="">
+								    <div class="filled-star" style="width:${row.rate_star_percent}%"></div>
+							    </div>  
+						    </div>
+					    </div>
+                            <a href="{{ route('map.show', ":id" ) }}" class="btn btn-primary" style="margin-top: auto;width: fit-content;">查看更多</a>
                         </div>
                     </div>
                 </div>
@@ -700,7 +793,6 @@ $fake_data2 = [
         }
     })
     
-
     // 所有搜尋_zoom切換_事件
     $("select[name=location]").change(function() {
         if ($(this).val() in cityPositionMapper) {
@@ -726,11 +818,18 @@ $fake_data2 = [
                 $("#hotSite").append(`
                 <div class="col-12 col-md-4">
                     <div class="card" style="min-height: 100%;">
-                        <img src="{{ asset("img/map1.jpg") }}" class="card-img-top" alt="...">
+                        <img src="${row.preview_img_url}" class="card-img-top" alt="...">
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title">${row.name}</h5>
                             <p class="card-text">${row.address}</p>
-                            <a href="{{ route('store.show', ":id" ) }}" class="btn btn-primary" style="margin-top: auto;width: fit-content;">查看更多</a>
+                            <div class="rating-card">
+						    <div class="m-b-30">
+							    <div class="rating-stars d-inline-block position-relative mr-2">
+								    <img src="{{ asset('img/reviews/grey-star.svg') }}" alt="">
+								    <div class="filled-star" style="width:${row.rate_star_percent}%"></div>
+							    </div>  
+						    </div>
+                            <a href="{{ route('map.show', ":id" ) }}" class="btn btn-primary" style="margin-top: auto;width: fit-content;">查看更多</a>
                         </div>
                     </div>
                 </div>
@@ -740,6 +839,26 @@ $fake_data2 = [
         } else {
             map.flyTo(new L.LatLng(23.6978, 120.9605), 7)
         }
+
+        if ($(this).val() in zoomSwitchMapper) {
+            $("#zoom-switch-container").html("")
+
+            Object.keys(zoomSwitchMapper[$(this).val()]).forEach(key => {
+                let value = zoomSwitchMapper[$(this).val()][key]
+
+                $("#zoom-switch-container").append(`
+                    <button class="zoom-btn w-100" data-lat="${value[0]}" data-lng="${value[1]}" data-zoom="${value[2]}">${key}</button>
+                `)
+            })
+        }
+    })
+
+    $("body").off("click", ".zoom-btn").on("click", ".zoom-btn", function(){
+        let lat = $(this).data("lat")
+        let lng = $(this).data("lng")
+        let zoom = $(this).data("zoom")
+
+        map.flyTo(new L.LatLng(lat, lng), zoom)
     })
 
     // 綁事件、頁面跳轉

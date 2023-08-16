@@ -1,0 +1,168 @@
+body {
+  background-color: #A9C2D3; /* 设置背景颜色为浅灰色 */
+}
+
+#contact textarea {
+  width: 100%;
+  height: 200px; /* 设置文本框的高度 */
+  max-width: 100%; /* 设置文本框的最大宽度 */
+  overflow-x: hidden; /* 阻止水平滚动 */
+  overflow-y: scroll; /* 允许垂直滚动 */
+  white-space: normal; /* 恢复默认的换行行为 */
+  /* ...其他样式... */
+}
+
+
+.container {
+  max-width: 800px;
+  margin: 50px auto; /* 調整上下外邊距，保持左右置中 */
+  position: relative;
+  
+}
+
+
+#contact {
+  background: #fbf7f5;
+  width: 100%;
+  padding: 25px;
+  margin: 50px 0;
+  box-shadow: 0 0 20px 0 rgba(138, 139, 139, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  border-radius: 10px; /* 添加圆角效果 */
+  
+}
+
+
+/* 大頭照照片大小 */
+.profile-picture {
+  max-width: 50px; /* 设置最大宽度 */
+  max-height: 50px; /* 设置最大高度 */
+}
+
+
+fieldset {
+  border: medium none !important;
+  margin: 0 0 10px;
+  min-width: 100%;
+  padding: 0;
+  width: 100%;
+}
+
+#contact input[type="text"]{
+  width: 100%;
+  height: 50px; /* 设置输入框的高度 */
+  border: 1px solid #ccc;
+  background: #FFF;
+  margin: 10px 0; /* 調整上下外邊距 */
+  padding: 10px;
+  box-sizing: border-box; /* 保證 padding 不會增加元素的寬度 */
+  border-radius: 10px; /* 添加圆角效果 */
+}
+
+#contact textarea {
+  width: 100%;
+  height: 250px; /* 设置输入框的高度 */
+  border: 1px solid #ccc;
+  background: #FFF;
+  margin: 10px 0; /* 調整上下外邊距 */
+  padding: 10px;
+  box-sizing: border-box; /* 保證 padding 不會增加元素的寬度 */
+  border-radius: 10px; /* 添加圆角效果 */
+}
+
+
+#contact button[type="submit"] {
+  cursor: pointer;
+  width: 100%;
+  border: none;
+  background: #3080f7;
+  color: #FFF;
+  margin: 10px 0; /* 調整按鈕的上下外邊距 */
+  padding: 10px;
+  font-size: 15px;
+}
+
+#contact button[type="submit"]:hover {
+  background: #a2ccfd;
+  -webkit-transition: background 0.3s ease-in-out;
+  -moz-transition: background 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out;
+}
+
+#contact button[type="cancel"] {
+  cursor: pointer;
+  width: 100%;
+  border: none;
+  background: #f71e1e;
+  color: #FFF;
+  margin: 10px 0; /* 調整按鈕的上下外邊距 */
+  padding: 10px;
+  font-size: 15px;
+}
+
+#contact button[type="cancel"]:hover {
+  background: #fda3a3;
+  -webkit-transition: background 0.3s ease-in-out;
+  -moz-transition: background 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out;
+}
+
+
+#contact button[name="submit"],
+#contact button[name="cancel"] {
+  width: 100px; /* 设置按钮的宽度 */
+  height: 40px; /* 设置按钮的高度 */
+  border-radius: 10%; /* 将按钮的角设置为圆形 */
+}
+
+#contact fieldset.button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 auto; /* 左右居中按钮 */
+}
+#contact button[name="submit"] {
+  margin-right: 10px; /* 添加右侧间距 */
+}
+
+
+.upload-icon {
+  width: 30px;
+  height: 30px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+
+ul.ks-cboxtags li{
+  display: inline-block; /* 将 inline 改为 inline-block */
+   margin-right: 5px; /* 添加一些水平间距 */
+ }
+ 
+ ul.ks-cboxtags li label{
+   display: inline-block;
+   background-color: rgba(255, 255, 255, .9);
+   border: 2px solid rgba(139, 139, 139, .3);
+   color: #adadad;
+   border-radius: 25px;
+ 
+ }
+ 
+ ul.ks-cboxtags li label {
+   padding: 8px 12px;
+   cursor: pointer;
+ }
+ 
+ 
+ ul.ks-cboxtags li input[type="checkbox"]:checked + label {
+   border: 2px solid #a1caff;
+   background-color: #179ae6;
+   color: #fff;
+   transition: all .2s;
+ }
+ 
+ ul.ks-cboxtags li input[type="checkbox"] {
+ display: absolute;
+ }
+ ul.ks-cboxtags li input[type="checkbox"] {
+ position: absolute;
+ opacity: 0;
+ }

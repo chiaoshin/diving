@@ -25,3 +25,19 @@ body {
 #footer{
     background-color: #4472b1;
 }
+
+.hide-scroll {
+    overflow-y: scroll;
+    -ms-overflow-style: none;  
+    scrollbar-width: none;  
+}
+
+.hide-scroll::-webkit-scrollbar { 
+    display: none;  
+} 
+
+.cover-bg {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}

@@ -6,6 +6,8 @@
 <link rel="stylesheet" href="{{ asset("css/chatGPT.css") }}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link href="{{ asset("css/law.css") }}" rel="stylesheet">
+
+<link href="{{ asset("css/reviews.css") }}" rel="stylesheet">
 @endsection
 
 @section("body")
@@ -22,7 +24,7 @@
                     <h3><span class="material-symbols-sharp">gavel</span> 判決書</h3>
                     <h5>事件類別：<span>{{ $shop->law->event }}</sapn></h5>
                     <p>{{ $shop->law->directions }}</p> 
-                    <a href="{{ $store->law->url }}" target="_blank">判決書完整內容連結</a>
+                    <a href="{{ $shop->law->url }}" target="_blank">判決書完整內容連結</a>
                     <label class="modal-content-btn" for="modal-toggle">OK</label>   
                     
                 </div> 
@@ -48,7 +50,7 @@
                 <div class="img-bg">
                     <img class="img-fluid" src="{{ asset("img/store/hotel.png") }}">
                 </div>
-                <div class="information">
+                <div class="information  hide-scroll">
                     <a class="category d-block mb-4" href="#">Spot Information &mdash; 詳細資訊</a>
                     <h2>
                         <a class="store-name" href="{{ $shop->url }}" target="_blank">{{ $shop->ch_name }}<br>
@@ -72,7 +74,7 @@
                 <div class="information">
                     <a class="category d-block mb-4" href="#">Suggestion &mdash; ChatGPT建議</a>
                     <h2><a href="#" class="store-name">建議內容</a></h2>
-                    <div class="container">
+                    <div class="container hide-scroll" style="max-height: 400px;">
                         <div class="info"></div>
 
                         <div class="chat-container">
@@ -89,12 +91,49 @@
                 </div>
             </div>
             <div class="content-item" id="attractions-discussion">
-                <div class="img-bg">
-                    <img class="img-fluid" src="{{ asset("img/store/hotel3.jpg") }}">
-                </div>
-                <div class="information">
+                <div class="information w-100">
                     <a class="category d-block mb-4" href="#">Comment &mdash; 評論</a>
-                    <div class="elfsight-app-50209091-9762-4705-a857-e6b2bf783d2e"></div>
+                    <section class="main-content">
+		                <div class="container">
+			                <div class="row">
+                                <div class="col">
+                                    <div class="rating-card">
+						                <div class="text-center m-b-30">  <!-- ... 調整表格裡面的位置 ... -->
+							                <h1 class="rating-number">{{ $shop->star_rating }}<small>/5</small></h1>
+							                <div class="rating-stars d-inline-block position-relative mr-2">
+								                <img src="{{ asset('img/reviews/grey-star.svg') }}" alt="">
+								                <div class="filled-star" style="width:{{ $shop->rate_star_percent }}%"></div>  <!-- ... width可以調整星星占比 ... -->
+							                </div>
+							                <div class="text-muted">{{ number_format($shop->reviews) }} review</div> <br>
+							                <div class="container">  <!-- ... 按鈕 ... -->
+								                <div class="row">
+								    	            <div class="col-sm-12 d-flex justify-content-center">
+								    	    	        <a class="btn btn-lg mb-2" target="_blank" href="{{ $shop->reviews_url }}" alt="點擊查看更多評論"><span>More Review</span></a>
+								    	            </div>
+								                </div>
+							                </div>
+						                </div>
+					                </div>
+                                </div>
+                                <div class="col">
+                                    <main class="l-card">
+								        <section class="l-card__user">
+								            <div class="l-card__userImage">
+								        	    <img src="{{ asset('img/reviews/robot.png') }}" alt="">
+								            </div>
+								            <div class="l-card__userInfo">
+									            <span>AI-Generated Summary</span>
+									            <span>Based on Google reviews</span>
+								            </div>
+								        </section>
+								        <section class="l-card__text">
+								            <p>{!! nl2br($shop->AI_reviews) !!}</p>
+								        </section>
+							        </main>
+                                </div>                  
+			                </div>             
+		                </div>
+	                </section>
                 </div>
             </div>
         </div>

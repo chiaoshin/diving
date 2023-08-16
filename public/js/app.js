@@ -38060,6 +38060,71 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/css/reviews.css":
+/*!***********************************!*\
+  !*** ./resources/css/reviews.css ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/css/forum.css":
+/*!*********************************!*\
+  !*** ./resources/css/forum.css ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/css/post.css":
+/*!********************************!*\
+  !*** ./resources/css/post.css ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/css/create.css":
+/*!**********************************!*\
+  !*** ./resources/css/create.css ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/css/mypost.css":
+/*!**********************************!*\
+  !*** ./resources/css/mypost.css ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
 /***/ "./resources/css/app.css":
 /*!*******************************!*\
   !*** ./resources/css/app.css ***!
@@ -38462,6 +38527,11 @@ process.umask = function() { return 0; };
 /******/ 			"css/snorkeling": 0,
 /******/ 			"css/partner": 0,
 /******/ 			"css/store": 0,
+/******/ 			"css/mypost": 0,
+/******/ 			"css/create": 0,
+/******/ 			"css/post": 0,
+/******/ 			"css/forum": 0,
+/******/ 			"css/reviews": 0,
 /******/ 			"css/search_res": 0,
 /******/ 			"css/law": 0,
 /******/ 			"css/weather": 0
@@ -38514,17 +38584,22 @@ process.umask = function() { return 0; };
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/chatGPT","css/scuba","css/freeDiving","css/snorkeling","css/partner","css/store","css/search_res","css/law","css/weather"], () => (__webpack_require__("./resources/js/app.js")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/chatGPT","css/scuba","css/freeDiving","css/snorkeling","css/partner","css/store","css/search_res","css/law","css/weather"], () => (__webpack_require__("./resources/css/store.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/chatGPT","css/scuba","css/freeDiving","css/snorkeling","css/partner","css/store","css/search_res","css/law","css/weather"], () => (__webpack_require__("./resources/css/partner.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/chatGPT","css/scuba","css/freeDiving","css/snorkeling","css/partner","css/store","css/search_res","css/law","css/weather"], () => (__webpack_require__("./resources/css/snorkeling.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/chatGPT","css/scuba","css/freeDiving","css/snorkeling","css/partner","css/store","css/search_res","css/law","css/weather"], () => (__webpack_require__("./resources/css/freeDiving.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/chatGPT","css/scuba","css/freeDiving","css/snorkeling","css/partner","css/store","css/search_res","css/law","css/weather"], () => (__webpack_require__("./resources/css/scuba.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/chatGPT","css/scuba","css/freeDiving","css/snorkeling","css/partner","css/store","css/search_res","css/law","css/weather"], () => (__webpack_require__("./resources/css/chatGPT.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/chatGPT","css/scuba","css/freeDiving","css/snorkeling","css/partner","css/store","css/search_res","css/law","css/weather"], () => (__webpack_require__("./resources/css/weather.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/chatGPT","css/scuba","css/freeDiving","css/snorkeling","css/partner","css/store","css/search_res","css/law","css/weather"], () => (__webpack_require__("./resources/css/law.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/chatGPT","css/scuba","css/freeDiving","css/snorkeling","css/partner","css/store","css/search_res","css/law","css/weather"], () => (__webpack_require__("./resources/css/search_res.css")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app","css/chatGPT","css/scuba","css/freeDiving","css/snorkeling","css/partner","css/store","css/search_res","css/law","css/weather"], () => (__webpack_require__("./resources/css/app.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/chatGPT","css/scuba","css/freeDiving","css/snorkeling","css/partner","css/store","css/mypost","css/create","css/post","css/forum","css/reviews","css/search_res","css/law","css/weather"], () => (__webpack_require__("./resources/js/app.js")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/chatGPT","css/scuba","css/freeDiving","css/snorkeling","css/partner","css/store","css/mypost","css/create","css/post","css/forum","css/reviews","css/search_res","css/law","css/weather"], () => (__webpack_require__("./resources/css/store.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/chatGPT","css/scuba","css/freeDiving","css/snorkeling","css/partner","css/store","css/mypost","css/create","css/post","css/forum","css/reviews","css/search_res","css/law","css/weather"], () => (__webpack_require__("./resources/css/partner.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/chatGPT","css/scuba","css/freeDiving","css/snorkeling","css/partner","css/store","css/mypost","css/create","css/post","css/forum","css/reviews","css/search_res","css/law","css/weather"], () => (__webpack_require__("./resources/css/snorkeling.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/chatGPT","css/scuba","css/freeDiving","css/snorkeling","css/partner","css/store","css/mypost","css/create","css/post","css/forum","css/reviews","css/search_res","css/law","css/weather"], () => (__webpack_require__("./resources/css/freeDiving.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/chatGPT","css/scuba","css/freeDiving","css/snorkeling","css/partner","css/store","css/mypost","css/create","css/post","css/forum","css/reviews","css/search_res","css/law","css/weather"], () => (__webpack_require__("./resources/css/scuba.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/chatGPT","css/scuba","css/freeDiving","css/snorkeling","css/partner","css/store","css/mypost","css/create","css/post","css/forum","css/reviews","css/search_res","css/law","css/weather"], () => (__webpack_require__("./resources/css/chatGPT.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/chatGPT","css/scuba","css/freeDiving","css/snorkeling","css/partner","css/store","css/mypost","css/create","css/post","css/forum","css/reviews","css/search_res","css/law","css/weather"], () => (__webpack_require__("./resources/css/weather.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/chatGPT","css/scuba","css/freeDiving","css/snorkeling","css/partner","css/store","css/mypost","css/create","css/post","css/forum","css/reviews","css/search_res","css/law","css/weather"], () => (__webpack_require__("./resources/css/law.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/chatGPT","css/scuba","css/freeDiving","css/snorkeling","css/partner","css/store","css/mypost","css/create","css/post","css/forum","css/reviews","css/search_res","css/law","css/weather"], () => (__webpack_require__("./resources/css/search_res.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/chatGPT","css/scuba","css/freeDiving","css/snorkeling","css/partner","css/store","css/mypost","css/create","css/post","css/forum","css/reviews","css/search_res","css/law","css/weather"], () => (__webpack_require__("./resources/css/reviews.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/chatGPT","css/scuba","css/freeDiving","css/snorkeling","css/partner","css/store","css/mypost","css/create","css/post","css/forum","css/reviews","css/search_res","css/law","css/weather"], () => (__webpack_require__("./resources/css/forum.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/chatGPT","css/scuba","css/freeDiving","css/snorkeling","css/partner","css/store","css/mypost","css/create","css/post","css/forum","css/reviews","css/search_res","css/law","css/weather"], () => (__webpack_require__("./resources/css/post.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/chatGPT","css/scuba","css/freeDiving","css/snorkeling","css/partner","css/store","css/mypost","css/create","css/post","css/forum","css/reviews","css/search_res","css/law","css/weather"], () => (__webpack_require__("./resources/css/create.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/chatGPT","css/scuba","css/freeDiving","css/snorkeling","css/partner","css/store","css/mypost","css/create","css/post","css/forum","css/reviews","css/search_res","css/law","css/weather"], () => (__webpack_require__("./resources/css/mypost.css")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app","css/chatGPT","css/scuba","css/freeDiving","css/snorkeling","css/partner","css/store","css/mypost","css/create","css/post","css/forum","css/reviews","css/search_res","css/law","css/weather"], () => (__webpack_require__("./resources/css/app.css")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

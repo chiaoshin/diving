@@ -36,6 +36,12 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    {{-- 登入，呈現使用者名稱 --}}
+                    {{-- @if(auth()->check())
+                    <li class="nav-item">
+                        <p>{{  auth()->user()->name}} 您好</p>
+                    </li>
+                    @endif --}}
                     <li class="nav-item">
                         <a class="fw-bold d-flex nav-link active" aria-current="page" href="/"><span class="material-symbols-sharp">home</span>首頁 Home</a>
                     </li>
@@ -46,7 +52,7 @@
                         <a class="fw-bold d-flex nav-link" href="#"><span class="material-symbols-sharp">map</span>地圖展示</a>
                     </li> -->
                     <li class="nav-item">
-                        <a class="fw-bold d-flex nav-link" href="#"><span class="material-symbols-sharp">group</span>討論區</a>
+                        <a class="fw-bold d-flex nav-link" href="{{ route('forum.index') }}"><span class="material-symbols-sharp">group</span>討論區</a>
                     </li>
                     <li class="nav-item">
                         <a class="fw-bold d-flex nav-link" href="{{ route('partner.index') }}"><span class="material-symbols-sharp">group_add</span>尋找潛伴</a>

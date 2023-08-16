@@ -30,6 +30,13 @@ class CreateHotelTable extends Migration
             $table->string('location')->comment('縣市');
             $table->double('lat')->comment("緯度");
             $table->double('lng')->comment("經度");
+
+            $table->double('star_rating')->nullable()->comment("星級");
+            $table->double('reviews')->nullable()->comment("評論數量");
+            $table->text('AI_reviews')->nullable()->comment("AI評論");
+            $table->text('reviews_url')->nullable()->comment("評論連結");
+
+            $table->string('preview_img_url')->nullable()->comment('背包客房預覽圖路徑');
             $table->timestamps();
         });
     }

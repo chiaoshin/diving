@@ -55,6 +55,7 @@
     font-size: 14px;
     font-weight: 400;
     border-radius: 5px;
+    /* display: none; */
 }
 
 #user-input::placeholder{
@@ -89,12 +90,12 @@
 .chat-box{
     display: flex;
     align-items: center;
-    padding: 10px 15px;
+    /* padding: 10px 15px; */
 }
 
 #chat-log{
     margin-bottom: 10px;
-    font-size: 14px;
+    font-size: 18px;
     line-height: 1.6;
 }
 
@@ -113,6 +114,10 @@
     border-radius: 6px;
 }
 
+.user, #user-icon{
+    display: none;
+}
+
 .bot{
     background-color: #ffffff;
 }
@@ -128,6 +133,14 @@
     padding: 10px 8px 11px;
 }
 
+#bot-icon{
+    margin-bottom: auto;
+}
+
 .display{
     display: none;
+}
+
+.information {
+    max-height: 500px;
 }

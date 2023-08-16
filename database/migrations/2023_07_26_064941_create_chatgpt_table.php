@@ -17,6 +17,7 @@ class CreateChatgptTable extends Migration
             $table->id('chatgpt_id')->comment('ChatGPT編號');
             $table->string('keyword')->comment("關鍵字");
             $table->text('respond')->comment("回應");
+            $table->string('preview_img_url')->nullable()->comment('預覽圖路徑');
             $table->timestamps();
         });
     }

@@ -1,0 +1,303 @@
+/* 右方討論版 */
+.notification-list {
+  /* width: 750px; 設置初始寬度 */
+  /* height: 150px; 設置初始高度 */
+  width: auto;
+  height: auto;
+  resize: both; /* 允許水平和垂直調整大小 */
+  margin-bottom: 20px;
+  padding: 10px;
+  background: #fff;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+}
+
+.notification-list .notification-list_content {
+  display: flex;
+}
+
+/* 使用者照片 */
+.notification-list_img img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50px;
+  margin-right: 20px;
+
+}
+
+.notification-list_feature-img img {
+  height: 100px;
+  width: 130px;
+  margin-left: 5px;
+}
+
+/* 標籤樣式 */
+.tabs input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+}
+
+.tabs label {
+  position: relative;
+  display: inline-block;
+  padding: 10px 15px;
+  background-color: #f5f5f5;
+  cursor: pointer;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.tabs label:hover {
+  background-color: #e0e0e0;
+}
+
+/* 標籤選中樣式 */
+.tabs input[type="radio"]:checked + label {
+  background-color: #fff;
+}
+
+.notification-list_feature-img {
+  margin-left: auto; /* 将图片推到最右边 */
+  margin-top: 25px; /* 调整上边距 */
+}
+
+.notification-list_detail h2 {
+  margin-top: -11px; /* 调整标题顶部外边距，向上移动文本 */
+}
+
+.notification-list_like img {
+  width: 25px; /* 调整图标的宽度 */
+  height: 25px; /* 调整图标的高度 */
+  margin-right: 5px; 
+}
+
+.box {
+  width: 500px;
+  }/*...控制 */
+
+.ellipsis {
+  overflow:hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  }/*...控制 */
+
+.like-count {
+  font-size: 18px;
+  margin-left: 5px;
+  vertical-align: middle;
+  position: relative;
+  top: -9px; /* 负的上边距将数字上移 */
+}/* 調整數量大小跟上下移動 */
+
+.tabs {
+	
+	max-width: 600px;
+}
+
+input {
+	opacity: 0;
+}
+
+label {
+	cursor: pointer;
+	background: -webkit-linear-gradient(#91ABC9, #91ABC9);
+	color: #eee;
+	border-radius: 5px 5px 0 0;
+	padding: 1.5% 3%;
+	float: left;
+	margin-right: 5px;
+	
+}
+
+label:hover {
+	background: -webkit-linear-gradient(#6877a6, #6881a6);
+}
+input:checked + label {
+	background: #ffffff;
+	color: #A9A9A9; /*點按鈕之後顏色*/
+}
+
+.tabs input:nth-of-type(1):checked ~ .panels .panel:first-child,
+.tabs input:nth-of-type(2):checked ~ .panels .panel:nth-child(2),
+.tabs input:nth-of-type(3):checked ~ .panels .panel:nth-child(3),
+.tabs input:nth-of-type(4):checked ~ .panels .panel:last-child {
+opacity: 1;
+display: block;
+}
+
+.panels {
+	float: left; /*上面按鈕*/
+	position: relative; /*調節比例*/
+	width: 100%; /*裡面表格跟外面表格比例*/
+  
+}
+
+.panel {
+  opacity: 0; /* 不可以刪掉 切換畫面使用 */
+  /*position: absolute;  不可以刪掉 切換畫面使用 */
+  width: -moz-fit-content;
+  width: fit-content;
+  display: none;
+  background: #4974a5;
+  border-radius: 0 10px 10px 10px; /* 外寬有點橢圓 */
+  padding: 4%; /* 不可以刪掉 固定畫面使用 */
+  cursor: pointer;
+}
+
+.no-underline {
+  color: black;
+  text-decoration: none;
+}
+
+/* 左方討論版 */
+
+/*白色框*/
+.container{
+  /* max-width: 1000px; 白框寬 */
+  /* width: 100%;   */
+  /* height: 500px;     */
+  padding: 40px 50px  40px  40px;
+  background: #fff;
+  margin: 0 20px;     
+  /* border-radius: 12px;   邊框圓 */
+  /* box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);        陰影效果 */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.topic{
+  font-size: 25px;        /*大小*/
+  font-weight: 500;       /*粗細*/
+  margin-bottom: 20px;    /*底部添加邊距空間*/
+  text-align: center;
+}
+.content{
+  /* display: flex; */
+  align-items: center;
+  /* height: 80vh; */
+  height: auto;
+  justify-content: space-between;  
+  /* 容器內的項目水平分佈 */
+}
+.content .list{   /*左欄*/
+  display: flex;
+  flex-direction: column;
+  width: 20%;             /*左欄寬度設置*/
+  margin-right: 50px;       /*左欄與右距離*/
+  /* position: relative; */
+}
+.content .list label{  /*左欄內*/
+  height: auto;      
+  font-size: 22px;    /*標籤字體大小*/
+  font-weight: 500;   /*標籤字體粗細*/
+  line-height: 60px;    
+  cursor: pointer;     
+  padding-left: 20px;     /*左欄與內側距離*/
+  transition: all 0.5s ease;   /*左與右距離*/
+  color: #333;
+  z-index: 12;
+  text-align: center;
+}
+.title{
+  font-size: 20px;
+}
+.man-img {
+height: 120px;
+width: 120px;
+display: block;
+margin: 0 auto;
+text-align: right;
+}
+.chat-img{
+height: 25px;
+width: 25px;
+}
+.person-img{
+height: 25px;
+width: 25px;
+}
+.post-img{
+height: 25px;
+width: 25px;
+}
+#home:checked ~ .list label.home,
+#person:checked ~ .list label.person,
+#post:checked ~ .list label.post{
+color: #fff;
+/* background-color: #e0e0e0; */
+}
+/* .content .list label:hover{   點選左欄項目字體變色
+color: #6cc2f1;
+color: #fff;
+} */
+.content .slider{
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 60px;
+  width: 100%;
+  border-radius: 20px;
+  /* background: #6ab4e4; */
+  /* background: #fff; */
+  transition: all 0.4s ease;
+}
+/* #home:checked ~ .list .slider{   點選左選單框變換的距離
+top: 180px;
+}
+#person:checked ~ .list .slider{
+top: 245px;
+}
+#post:checked ~ .list .slider{
+top: 310px;
+} */
+
+.content .text-content{
+width: 80%;
+height: 100%;
+}
+.content .text{
+display: none;
+}
+.content .text .title{
+font-size: 30px;
+margin-bottom: 10px;
+font-weight: bold;
+}
+.content .text p{
+text-align: justify;
+}
+.content .text-content .home{
+display: block;
+}
+/* #home:checked ~ .text-content .home,
+#person:checked ~ .text-content .person,
+#post:checked ~ .text-content .post{
+display: block;
+} */
+/* #person:checked ~ .text-content .home,
+#post:checked ~ .text-content .home{
+display: none;
+} */
+/* .content input{
+display: none;
+} */
+.home{
+  text-align: center;
+  background: none;
+}
+.person{
+  text-align: center;
+  background: none;
+}
+.post{
+  text-align: center;
+  background: none;
+}
+.center-container{
+  display: flex;
+  justify-content: flex-end; /* 靠右對齊 */
+  align-items: center; /* 垂直置中 */
+  width: 100%; /* 設定寬度 */
+  margin: 0 auto; /* 水平置中 */
+}

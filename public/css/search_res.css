@@ -1,1 +1,35 @@
+.rating-card {
+	background-color: #ffffff;
+	width: auto; /* 调整宽度 */
+    height: auto; /* 调整高度 */
+	padding: 0%;
+	margin-bottom: 0%;
+	
+	/* 影子 */
+	box-shadow:none; 
+	
+	/* 圓角 */
+	border-radius: 20px;
+}
 
+.rating-number {
+	font-size: 20px;
+	font-weight: 600;
+}
+.rating-number small {
+	font-size: 16px;
+}
+
+.rating-card h1{
+    display: inline;
+}
+
+.text-muted{
+    display: inline;
+}
+.card-text{
+    margin-bottom:0%;
+}
+.btn:hover{
+    background: #3162fc9e;
+}

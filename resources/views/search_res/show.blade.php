@@ -2,6 +2,7 @@
 
 
 @section("head")
+<link href="{{ asset("css/reviews.css") }}" rel="stylesheet">
 <link href="{{ asset("css/search_res.css") }}" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 @endsection
@@ -13,14 +14,24 @@
             <div class="col-md-5 offset-md-1">
             <div class="card mb-0" style="max-width: 500px;">
                 <div class="row g-0">
-                <div class="col-md-4">
-                    <img src="{{ asset("img/search_res/Free Pilot.jpg") }}" class="img-fluid rounded-start" alt="">
+                <div class="col-md-5 cover-bg" style="background-image: url('{{ asset($data['preview_img_url']) }}')">
+                    {{-- <img src="{{ asset("img/store/hotel2.png") }}" class="img-fluid rounded-start" alt=""> --}}
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-7">
                     <div class="card-body">
                     <h5 class="card-title"><b>{{ $data['name'] }}</b></h5>
                     <p class="card-text">{{ $data['address'] }}</p>
-                    <a href="{{ $data['url'] }}" class="btn btn-primary">看更多</a>
+                    <div class="rating-card">
+						          <div class="m-b-30">  <!-- ... 調整表格裡面的位置 ... -->
+							          <h1 class="rating-number">{{ $data['star_rating'] }}<small>/5</small></h1>
+                        <div class="text-muted">({{ number_format($data['reviews']) }} review)</div>
+							            <div class="rating-stars d-inline-block position-relative mr-2">
+								            <img src="{{ asset('img/reviews/grey-star.svg') }}" alt="">
+								            <div class="filled-star" style="width:{{ $data['rate_star_percent'] }}%"></div>  <!-- ... width可以調整星星占比 ... -->
+							            </div>
+						          </div>
+					          </div>
+                    <a href="{{ $data['url'] }}" class="btn btn-primary">查看更多</a>
                     </div>
                 </div>
                 </div>

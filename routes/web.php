@@ -11,6 +11,12 @@ use App\Http\Controllers\ScubaController;
 use App\Http\Controllers\HotelController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\Search_resController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ForgotController;
+use App\Http\Controllers\ForumController;
+use App\Http\Controllers\PostController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -47,13 +53,25 @@ Route::resource('store', StoreController::class);
 Route::resource('hotel', HotelController::class);
 Route::resource('shop', ShopController::class);
 Route::resource('search_res', Search_resController::class);
+
+Route::resource('register', RegisterController::class);
+Route::resource('forgot', ForgotController::class);
+Route::middleware('auth')->resource('forum', ForumController::class);
 Route::resource('partner', PartnerController::class)->only('index');
 // Route::resource('point_card', PointCardController::class);
 Route::resource('snorkeling', SnorkelingController::class)->only('index');
 Route::resource('freeDiving', FreeDivingController::class)->only('index');
 Route::resource('scuba', ScubaController::class)->only('index');
 
+Route::any('/login', [LoginController::class, 'login'])->name('login');
+Route::any('/register', [LoginController::class, 'register'])->name('register');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::any('/forgot', [LoginController::class, 'forgot'])->name('forgot');
+Route::any('/reset', [LoginController::class, 'reset'])->name('password.reset');
+
 Route::get('/search_markers', [IndexController::class, 'search_markers'])->name('markers.search');
+
+Route::resource('post', PostController::class);
 
 // Route::get('/store/{id}', function ($id) {
 //     echo $id;

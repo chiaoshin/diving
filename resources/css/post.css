@@ -1,0 +1,121 @@
+.main-content {
+	padding-top: 100px;
+	padding-bottom: 100px;
+
+}
+.post-block {
+	background: #fff;
+	padding: 25px;
+	margin-bottom: 25px;
+	border-radius: 5px;
+	overflow: hidden;
+	box-shadow: 0 2px 30px rgba(0, 0, 0, 0.1);
+	transition: all 0.2s;
+}
+.post-block img.author-img {
+	height: 45px;
+	width: 45px;
+	border-radius: 45px;
+    margin-right: 10px;
+}
+.post-block img.author-img.author-img--small {
+	height: 30px;
+	width: 30px;
+}/*留言頭貼*/
+
+.post-block__content img,
+.post-block__content video,
+.post-block__content audio {
+	max-width: 100%;
+	border-radius: 5px;
+}
+
+.hidden-checkbox {
+    display: none;
+}/* 點愛心按紐 */
+
+.heart-label {
+    cursor: pointer;
+}/* 點愛心會有手指 */
+
+/* 未选中状态下的图标样式 */
+.heart-label i.fa-heart {
+    color: rgb(212, 212, 212); /* 初始状态为空心，颜色为黑色 */
+    font-size: 18px; /* 初始大小 */
+    font-size: 24px; /* 放大后的大小 */
+}
+
+/* 选中状态下的图标样式 */
+.hidden-checkbox:checked + .heart-label i.fa-heart {
+    color: red; /* 选中后切换为实心，颜色为红色 */
+	font-size: 24px; /* 放大后的大小 */
+}
+
+/* 调整三个点的大小 */
+.three-dots {
+    font-size: 25px; /* 可以根据需要调整大小 */
+}
+.fa-ellipsis-v {
+    font-size: 25px; 
+}
+.dropdown-item img{
+ width: 20px; 
+ height: 20px; 
+ margin-right: 15px;
+}
+.dropdown-menu :active {
+ background-color:#D0D0D0 !important; /* 調整背景顏色  !important 表示屬性優先*/ 
+}
+
+.comment-reply {
+    display: none;
+    align-items: center; /* 垂直居中对齐 */
+}
+
+
+.input-box {
+    display: flex;
+    align-items: center;
+}/* 下面的傳送按紐 */
+
+
+
+
+.reply-link img {
+    max-width: 30px; /* 设置图片最大宽度为30px */
+    max-height: 30px; /* 设置图片最大高度为30px */
+	margin-top: -15px; /* 负的 margin-top 值，根据需要进行调整 */
+}
+
+.reply-input-container {
+    display: flex;
+    align-items: center;
+}
+
+
+/* G0 2UL4 */
+
+/* 上面的愛心样式 */
+.heart-label-top i.fa-heart {
+    color: rgb(212, 212, 212);
+    font-size: 18px;
+}
+
+.hidden-checkbox:checked + .heart-label-top i.fa-heart {
+    color: red;
+    font-size: 24px;
+}
+
+/* 下面的愛心样式 */
+.heart-label-bottom i.fa-heart {
+    color: rgb(212, 212, 212);
+    font-size: 18px;
+}
+
+.hidden-checkbox:checked + .heart-label-bottom i.fa-heart {
+    color: red;
+    font-size: 24px;
+}
+
+
+

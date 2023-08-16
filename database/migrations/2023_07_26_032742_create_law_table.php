@@ -24,7 +24,7 @@ class CreateLawTable extends Migration
             // $table->string('area')->comment('地區');
             // $table->string('location')->comment('縣市');
             // $table->string('address', 100)->comment("地址");
-            $table->string('event')->comment("民事/刑事");
+            $table->string('event')->comment("事件");
             $table->string('url')->comment("連結");
             $table->text('directions')->nullable()->comment("說明");
             $table->string('type')->comment("類型");

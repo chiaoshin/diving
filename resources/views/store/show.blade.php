@@ -6,6 +6,8 @@
 <link rel="stylesheet" href="{{ asset("css/chatGPT.css") }}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link href="{{ asset("css/law.css") }}" rel="stylesheet">
+
+<link href="{{ asset("css/reviews.css") }}" rel="stylesheet">
 @endsection
 
 @section("body")
@@ -48,7 +50,7 @@
                 <div class="img-bg">
                     <img class="img-fluid" src="{{ asset("img/store/hotel.png") }}">
                 </div>
-                <div class="information">
+                <div class="information hide-scroll">
                     <a class="category d-block mb-4" href="#">Spot Information &mdash; 詳細資訊</a>
                     <h2>
                         <a class="store-name" href="{{ $store->url }}" target="_blank">{{ $store->ch_name }}<br>
@@ -58,14 +60,22 @@
                         </a>
                     </h2>
                     <p>地址：<br>{{ $store->address }}</p>
-                    <p class="m-0">營業時間：<br />
+                    @if($store->checkin_start_from && $store->checkin_end_to && $store->checkout_start_from && $store->checkout_end_to)
+                    <p class="m-0">營業時間：
                         <!-- @TODO 可衡量要在前端還是後段加上 html -->
                         {!! $store->work_info !!}
-                    <p class="m-0">{{ $store->checkin_info }}</p>
-                    <p class="m-0">{{ $store->checkout_info }}</p>
+                        <p class="m-0">{{ $store->checkin_info }}</p>
+                        <p class="m-0">{{ $store->checkout_info }}</p>
                     </p>
+                    @else
+                    <p class="m-0">營業時間：
+                        {!! $store->work_info !!}
+                        <p class="m-0">不提供住宿</p>
+                    </p>
+                    @endif
+                    <!-- <br /> -->
                     <p>交通建議：<br>{{ $store->trans_form_info }}</p>
-                    <p>周邊潛點：<br>{{ $store->landscape_info }}</p>
+                    <p>建議潛點：<br>{{ $store->landscape_info }}</p>
                 </div>
             </div>
             <div class="content-item" id="chatgpt-suggest">
@@ -75,7 +85,7 @@
                 <div class="information">
                     <a class="category d-block mb-4" href="#">Suggestion &mdash; ChatGPT建議</a>
                     <h2><a href="#" class="store-name">建議內容</a></h2>
-                    <div class="container">
+                    <div class="container hide-scroll" style="max-height: 400px;">
                         <div class="info"></div>
 
                         <div class="chat-container">
@@ -92,12 +102,49 @@
                 </div>
             </div>
             <div class="content-item" id="attractions-discussion">
-                <div class="img-bg">
-                    <img class="img-fluid" src="{{ asset("img/store/hotel3.jpg") }}">
-                </div>
-                <div class="information">
+                <div class="information w-100">
                     <a class="category d-block mb-4" href="#">Comment &mdash; 評論</a>
-                    <div class="elfsight-app-50209091-9762-4705-a857-e6b2bf783d2e"></div>
+                    <section class="main-content">
+		                <div class="container">
+			                <div class="row">
+                                <div class="col">
+                                    <div class="rating-card">
+						                <div class="text-center m-b-30">  <!-- ... 調整表格裡面的位置 ... -->
+							                <h1 class="rating-number">{{ $store->star_rating }}<small>/5</small></h1>
+							                <div class="rating-stars d-inline-block position-relative mr-2">
+								                <img src="{{ asset('img/reviews/grey-star.svg') }}" alt="">
+								                <div class="filled-star" style="width:{{ $store->rate_star_percent }}%"></div>  <!-- ... width可以調整星星占比 ... -->
+							                </div>
+							                <div class="text-muted">{{ number_format($store->reviews) }} review</div> <br>
+							                <div class="container">  <!-- ... 按鈕 ... -->
+								                <div class="row">
+								    	            <div class="col-sm-12 d-flex justify-content-center">
+								    	    	        <a class="btn btn-lg mb-2" target="_blank" href="{{ $store->reviews_url }}" alt="點擊查看更多評論"><span>More Review</span></a>
+								    	            </div>
+								                </div>
+							                </div>
+						                </div>
+					                </div>
+                                </div>
+                                <div class="col">
+                                    <main class="l-card">
+								        <section class="l-card__user">
+								            <div class="l-card__userImage">
+								        	    <img src="{{ asset('img/reviews/robot.png') }}" alt="">
+								            </div>
+								            <div class="l-card__userInfo">
+									            <span>AI-Generated Summary</span>
+									            <span>Based on Google reviews</span>
+								            </div>
+								        </section>
+								        <section class="l-card__text">
+								            <p>{!! nl2br($store->AI_reviews) !!}</p>
+								        </section>
+							        </main>
+                                </div>                  
+			                </div>             
+		                </div>
+	                </section>
                 </div>
             </div>
         </div>
