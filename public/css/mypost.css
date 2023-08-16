@@ -1,11 +1,19 @@
+/* 設置整體容器的寬度和高度 */
+.notification-container {
+  width: auto;
+  height: auto;
+  padding: 20px; /* 增加一些內邊距 */
+  background-color: #4974a5; /* 設定背景顏色為藍色 */
+  border-radius: 0 10px 10px 10px; /* 外寬有點橢圓 */
+}
 
 .notification-list {
-  width: 750px; /* 設置初始寬度 */
-  height: 150px; /* 設置初始高度 */
-  resize: both; /* 允許水平和垂直調整大小 */
-  margin-bottom: 20px;
+  width: auto;
+  height: auto;
+  resize: both;
+  margin-bottom: 30px; /* 增加间距 */
   padding: 10px;
-  background: #fff;
+  background: #ffffff;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
 }
 
@@ -13,55 +21,31 @@
   display: flex;
 }
 
+
+
 /* 使用者照片 */
 .notification-list_img img {
   height: 40px;
   width: 40px;
   border-radius: 50px;
-  margin-right: 20px;
+  margin-right: 10px;
 
 }
 
 .notification-list_feature-img img {
-  height: 100px;
-  width: 130px;
-  
-}
-
-/* 標籤樣式 */
-.tabs input[type="radio"] {
-  position: absolute;
-  opacity: 0;
-}
-
-.tabs label {
-  position: relative;
-  display: inline-block;
-  padding: 10px 15px;
-  background-color: #f5f5f5;
-  cursor: pointer;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-}
-
-.tabs label:hover {
-  background-color: #e0e0e0;
-}
-
-/* 標籤選中樣式 */
-.tabs input[type="radio"]:checked + label {
-  background-color: #fff;
+  height: 200px;
+  width: 250px;
 }
 
 .notification-list_feature-img {
   margin-left: auto; /* 将图片推到最右边 */
   margin-top: 25px; /* 调整上边距 */
+  margin: auto;
 }
 
 .notification-list_detail h1 {
   margin-top: -11px; /* 调整标题顶部外边距，向上移动文本 */
 }
-
 
 
 .box {
@@ -82,38 +66,6 @@
   top: -9px; /* 负的上边距将数字上移 */
 }/* 調整數量大小跟上下移動 */
 
-.tabs {
-	
-	max-width: 600px;
-}
-
-input {
-	opacity: 0;
-}
-
-
-.tabs input:nth-of-type(1):checked ~ .panels .panel:first-child,
-.tabs input:nth-of-type(2):checked ~ .panels .panel:nth-child(2),
-.tabs input:nth-of-type(3):checked ~ .panels .panel:nth-child(3),
-.tabs input:nth-of-type(4):checked ~ .panels .panel:last-child {
-opacity: 1;
-}
-
-.panels {
-	float: left; /*上面按鈕*/
-	position: relative; /*調節比例*/
-	width: 100%; /*裡面表格跟外面表格比例*/
-}
-
-.panel {
-  opacity: 0; /* 不可以刪掉 切換畫面使用 */
-  position: absolute; /* 不可以刪掉 切換畫面使用 */
-  background: #4974a5;
-  border-radius: 0 10px 10px 10px; /* 外寬有點橢圓 */
-  padding: 4%; /* 不可以刪掉 固定畫面使用 */
-  
-}
-
 
 .wrapper {
   display: inline-flex;
@@ -125,8 +77,8 @@ opacity: 1;
   padding: 5px;
   margin: 7px; /* 中間空間 */
   margin-top: 15px; /* 可以調整四個按鈕上下 */
-  width: 30px;  /* 你可以将这里的值调整为你想要的宽度 */
-  height: 30px; /* 你可以将这里的值调整为你想要的高度 */
+  width: 35px;  /* 你可以将这里的值调整为你想要的宽度 */
+  height: 35px; /* 你可以将这里的值调整为你想要的高度 */
   display: flex;
   justify-content: center;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
@@ -204,8 +156,8 @@ opacity: 1;
 .wrapper .icon.delete img,
 .wrapper .icon.share img,
 .wrapper .icon.post img {
-  width: 30px; /* 与上面的 .icon 宽度保持一致 */
-  height: 30px; /* 与上面的 .icon 高度保持一致 */
+  width: 35px; /* 与上面的 .icon 宽度保持一致 */
+  height: 35px; /* 与上面的 .icon 高度保持一致 */
 }
 
 

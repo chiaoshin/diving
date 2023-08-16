@@ -16,7 +16,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ForgotController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\PostController;
-
+use App\Http\Controllers\AboutMeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,6 +72,8 @@ Route::any('/reset', [LoginController::class, 'reset'])->name('password.reset');
 Route::get('/search_markers', [IndexController::class, 'search_markers'])->name('markers.search');
 
 Route::resource('post', PostController::class);
+
+Route::resource('aboutMe', AboutMeController::class)->only('index');
 
 // Route::get('/store/{id}', function ($id) {
 //     echo $id;

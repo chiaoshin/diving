@@ -8,7 +8,7 @@ use App\Models\Post;
 class PostController extends Controller
 {
     public function index() {
-        $mypost = Post::all();
+        $mypost = Post::where('user_id', auth()->user()->id)->get();
 
         return view('post.index',compact('mypost'));
     }
@@ -16,7 +16,7 @@ class PostController extends Controller
     public function show($id) {
         $post = Post::find($id);
 
-        return view('post/show','post.index', compact('post'));
+        return view('post/show', compact('post'));
     }
 
     public function create() {
@@ -41,11 +41,31 @@ class PostController extends Controller
         }
     }
 
-    public function update() {
+    public function edit($id)
+    {
+        $post = Post::find($id);
 
+        return view('post.edit',compact('post'));
     }
 
-    public function delete() {
+    public function update(Request $request, $id) {
+        $data = request()->validate([
+            "title" => "required|string",
+            "content" => "required|string",
+            "tags" => "nullable|array"
+        ]);
 
+        $result = Post::updatePost($id, $data);
+
+        if ($result['status_code'] == 'error') {
+            return redirect()->back()->withErrors(['error' => $result['status_message']]);
+        }else{
+            return redirect()->route('forum.index');
+        }
+    }
+
+    public function destroy($id) {
+        $obj = Post::find($id);
+        $obj->delete();
     }
 }

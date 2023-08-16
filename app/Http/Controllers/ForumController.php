@@ -20,9 +20,9 @@ class ForumController extends Controller
          * 1. 前端改完畫面結構後 要改成點選切換後再讀資料
          * 2. 發表/刪除文章留言或者按讚/取消按讚，要更新 reviews 與 like
          */
-        $posts = Post::limit(10)->get();
+        $posts = Post::all();
 
-        $hot_posts = Post::orderBy('like', 'DESC')->orderBy('reviews', 'DESC')->limit(10)->get();
+        $hot_posts = Post::orderBy('like', 'DESC')->orderBy('reviews', 'DESC')->get();
 
         $topic_posts = Post::with('tags')->whereHas('tags')->get();
 

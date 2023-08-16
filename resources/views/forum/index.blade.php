@@ -36,7 +36,7 @@
 							</a>
 						</label>
 						<label for="person" class="person">
-							  <a href="{{ route('forum.index') }}" class="no-underline text-white">
+							  <a href="{{ route('aboutMe.index') }}" class="no-underline text-white">
 								<img src="{{ asset('img/forum/left/person.png') }}" class="person-img">
 								  <span class="title"><b>關於我</b></span>
 							</a>

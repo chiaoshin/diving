@@ -40,13 +40,42 @@ class Post extends Model
 
                 unset($data['file']);
                 
-                $data['user_id'] = 1;
+                $data['user_id'] = auth()->user()->id;
                 
                 $model = self::create($data);
 
                 if (isset($data['tags']) && count($data['tags']) > 0) {
                     $model->attachTags($data['tags']);
                 }
+            });
+
+            return [
+                'status_code' => 'success',
+                'status_message' => '新增成功'
+            ];
+        } catch (\Throwable $th) {
+            Log::error($th);
+
+            return [
+                'status_code' => 'error',
+                'status_message' => '新增失敗'
+            ];
+        }
+    }
+
+    public static function updatePost($id, $data) {
+        try {
+            DB::transaction(function () use ($data, $id) {
+                if (isset($data['tags'])){
+                    $tags = $data['tags'];
+                }else{
+                    $tags = [];
+                }
+                
+                $model = self::find($id);
+                
+                $model->update($data);
+                $model->syncTags($tags);
             });
 
             return [

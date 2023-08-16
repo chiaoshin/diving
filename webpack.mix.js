@@ -28,6 +28,7 @@ mix.js('resources/js/app.js', 'public/js')
     .css('resources/css/post.css', 'public/css')
     .css('resources/css/create.css', 'public/css')
     .css('resources/css/mypost.css', 'public/css')
+    .css('resources/css/aboutMe.css', 'public/css')
     .postCss('resources/css/app.css', 'public/css', [
         //
     ]);
