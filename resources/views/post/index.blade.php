@@ -17,54 +17,73 @@
             <div class="col col-9">
                 <div class="notification-container">
                     <!--第一段-->
-                    @foreach($mypost as $data)
-                    <div class="notification-list">
-                        {{-- <div class="notification-list_content" style="overflow-x: scroll;"> --}}
-                        <div class="notification-list_content">
-                            <div class="notification-list_img">
-                                <img src="{{ asset('img/forum/users/user2.png') }}" alt="user">
-                            </div>
-                            <div class="notification-list_detail">
-                                <p><b><h2>{{ $data->title }}</h2></b></p>
-                                <div class="box">
-                                    <p class="ellipsis">{{ $data->content }}</p>
-                                </div>
-                
-                                <div class="notification-list_buttons">
-                                    <ul class="wrapper">
-                                        <a href="{{ route('post.edit',$data->id) }}">
-                                        <li class="icon edit">
-                                          <span class="tooltip">編輯</span>
-                                          <span><img src="{{ asset('img/forum/button/edit.png') }}" ></span>
-                                        </li>
-                                        </a>
-                                        <a>
-                                        <li class="icon delete" data-id="{{ $data->id }}">
-                                          <span class="tooltip">刪除</span>
-                                          <span><img src="{{ asset('img/forum/button/delete.png') }}" ></span>
-                                        </li>
-                                        </a>
-                                        <a href="{{ route('post.show', $data->id) }}">
-                                            <li class="icon post">
-                                              <span class="tooltip">貼文</span>
-                                              <span><img src="{{ asset('img/forum/button/email.png') }}" ></span>
+                    @if(isset($data->id)){
+                        @foreach($mypost as $data)
+                            <div class="notification-list">
+                            {{-- <div class="notification-list_content" style="overflow-x: scroll;"> --}}
+                                <div class="notification-list_content">
+                                    <div class="notification-list_img">
+                                        <img src="{{ asset('img/forum/users/user2.png') }}" alt="user">
+                                    </div>
+                                    <div class="notification-list_detail">
+                                        <p><b><h2>{{ $data->title }}</h2></b></p>
+                                        <div class="box">
+                                            <p class="ellipsis">{{ $data->content }}</p>
+                                        </div>
+                                    
+                                    <div class="notification-list_buttons">
+                                        <ul class="wrapper">
+                                            <a href="{{ route('post.edit',$data->id) }}">
+                                            <li class="icon edit">
+                                              <span class="tooltip">編輯</span>
+                                              <span><img src="{{ asset('img/forum/button/edit.png') }}" ></span>
                                             </li>
                                             </a>
-                                        <a>
-                                        <li class="icon share">
-                                          <span class="tooltip">分享</span>
-                                          <span><img src="{{ asset('img/forum/button/share.png') }}" ></span>
-                                        </li>
-                                        </a>
-                                    </ul>
+                                            <a>
+                                            <li class="icon delete" data-id="{{ $data->id }}">
+                                              <span class="tooltip">刪除</span>
+                                              <span><img src="{{ asset('img/forum/button/delete.png') }}" ></span>
+                                            </li>
+                                            </a>
+                                            <a href="{{ route('post.show', $data->id) }}">
+                                                <li class="icon post">
+                                                  <span class="tooltip">貼文</span>
+                                                  <span><img src="{{ asset('img/forum/button/email.png') }}" ></span>
+                                                </li>
+                                                </a>
+                                            <a>
+                                            <li class="icon share">
+                                              <span class="tooltip">分享</span>
+                                              <span><img src="{{ asset('img/forum/button/share.png') }}" ></span>
+                                            </li>
+                                            </a>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="notification-list_feature-img">
+                                    <img src="{{ asset($data->image_url) }}" alt="Feature image">
                                 </div>
                             </div>
-                            <div class="notification-list_feature-img">
-                                <img src="{{ asset($data->image_url) }}" alt="Feature image">
-                            </div>
-                        </div>
                     </div>	
                     @endforeach
+                    }   
+                    @else
+                        <div class="notification-list">
+                            {{-- <div class="notification-list_content" style="overflow-x: scroll;"> --}}
+                                <div class="notification-list_content">
+                                    <div class="notification-list_img">
+                                        <img src="{{ asset('img/forum/users/user2.png') }}" alt="user">
+                                    </div>
+                                    <div class="notification-list_detail">
+                                        <p><b><h2>沒有文章內容</h2></b></p>
+                                        <div class="box">
+                                            <p class="ellipsis">沒有文章內容</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>	
+                    @endif
             </div>
         </div>
     </div>			
