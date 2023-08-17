@@ -17,7 +17,7 @@
             <div class="col col-9">
                 <div class="notification-container">
                     <!--第一段-->
-                    @if(isset($data->id)){
+                    @if(!isset($data->id)){
                         @foreach($mypost as $data)
                             <div class="notification-list">
                             {{-- <div class="notification-list_content" style="overflow-x: scroll;"> --}}
