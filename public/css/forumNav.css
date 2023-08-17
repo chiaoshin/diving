@@ -1,0 +1,64 @@
+body {
+  background-color: #A9C2D3;  /*设置背景颜色为浅灰色 */
+}
+.man-img {
+	height: 130px;
+	width: 130px;
+  display: block;
+  margin-top: 20px;
+  margin-left: 60px; 
+}
+.topic{
+  font-size: 30px;        /*大小*/
+  font-weight: 500;       /*粗細*/
+  margin-top: 15px;      /* 上方添加邊距空間 */
+  margin-bottom: 20px;   /* 底部添加邊距空間 */
+  margin-left: 80px;     
+  /* 左側添加邊距空間 */
+}
+.button{
+  background-color: 	#A9C2D3  !important ;
+  border: 0px solid #A9C2D3;
+  width: 200px ; 
+  color: #ffffff ;
+  outline: none;
+  box-shadow: none !important;
+  font-size: 20px;
+}
+.button:hover {
+  background-color:#4d7997 !important;
+  color: #ffffff;
+}
+.share-img{
+	height: 25x;
+	width: 25px;
+}
+.person-img{
+	height: 25px;
+	width: 25px;
+}
+.chat-img{
+	height: 25px;
+	width: 25px;
+}
+.post-img{
+	height: 25px;
+	width: 25px;
+}
+.logout-img{
+	height: 25px;
+	width: 25px;
+}
+.body-container {
+  width: 300px;
+  height: 500px;
+  padding: 20px; /* 增加一些內邊距 */
+  background-color: #A9C2D3; /* 設定背景顏色為藍色 */
+  border-radius: 0 10px 10px 10px; /* 外寬有點橢圓 */
+}
+
+
+
+
+
+

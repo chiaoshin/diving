@@ -14,7 +14,7 @@ class PartnerController extends Controller
      */
     public function index()
     {
-        $data = Partner::all();
+        $data = Partner::where('group_time', '>=', date('Y-m-d'))->get();
 
         return view('partner/show', compact('data'));
     }

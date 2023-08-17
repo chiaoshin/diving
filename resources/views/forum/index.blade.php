@@ -2,6 +2,7 @@
 
 
 @section("head")
+<link href="{{ asset("css/forumNav.css") }}" rel="stylesheet">
 <link href="{{ asset("css/forum.css") }}" rel="stylesheet">
 {{-- <link rel="stylesheet" href="{{ asset("css/login.css") }}"> --}}
 
@@ -12,55 +13,7 @@
 	<div class="row">
 		<div class="col col-3">
 			{{-- <iframe src="{{ route('forum.index') }}" name="iframe_a" height="500px" width="100%" title="Iframe Example" style="overflow: hidden;"></iframe> --}}
-			<div class="center-container">
-				<div class="row">
-					<div class="list row">
-						<div class="col">
-							<img src="{{ asset('img/forum/left/man.png') }}" class="man-img">
-							<div class="topic">
-								@if(auth()->check())
-									<p>{{  auth()->user()->name}}</p>
-								@endif
-							</div>
-						</div>
-						<label for="home" class="home">
-							<a href="{{ route('forum.index') }}" class="no-underline text-white">
-								<img src="{{ asset('img/forum/left/chat.png') }}" class="chat-img">
-								<span class="title"><b>論壇</b></span>
-							</a>
-						</label>
-						<label for="post" class="post">
-							<a href="{{ route('post.create') }}" class="no-underline text-white">
-								<img src="{{ asset('img/forum/left/post.png') }}" class="post-img">
-								  <span class="title"><b>發文</b></span>
-							</a>
-						</label>
-						<label for="person" class="person">
-							  <a href="{{ route('aboutMe.index') }}" class="no-underline text-white">
-								<img src="{{ asset('img/forum/left/person.png') }}" class="person-img">
-								  <span class="title"><b>關於我</b></span>
-							</a>
-						</label>
-						<label for="post" class="post">
-							<a href="{{ route('post.index') }}" class="no-underline text-white">
-								<img src="{{ asset('img/forum/left/post.png') }}" class="post-img">
-								  <span class="title"><b>我的文章</b></span>
-							</a>
-						</label>
-						<label for="logout" class="post">
-							<a href="{{ route('logout') }}" class="no-underline text-white">
-								{{-- <img src="{{ asset('img/forum/left/post.png') }}" class="post-img"> --}}
-								<span class="material-symbols-sharp">logout<span class="title">登出</span></span>  
-								{{-- <span class="title"><b>登出</b></span> --}}
-							</a>
-						</label>
-						<div class="slider"></div>
-					</div>
-					<input type="radio" name="slider" checked id="home">
-					<input type="radio" name="slider" id="person">
-					<input type="radio" name="slider" id="post">
-				</div>
-			</div>
+			@include("forumNav.show")
 		</div>
 		<div class="col col-9">
 			<div class='row'>

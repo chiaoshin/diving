@@ -2,15 +2,15 @@
 
 
 @section("head")
+<link href="{{ asset("css/forumNav.css") }}" rel="stylesheet">
 <link href="{{ asset("css/aboutMe.css") }}" rel="stylesheet">
-
 @endsection
 
 @section("body")
 <div class="container">
     <div class="row">
         <div class="col col-3">
-
+            @include("forumNav.show")
         </div>
         <div class="col col-9">
             <div class="col-12">

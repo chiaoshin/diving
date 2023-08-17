@@ -8,6 +8,7 @@ use App\Models\Post;
 class PostController extends Controller
 {
     public function index() {
+
         $mypost = Post::where('user_id', auth()->user()->id)->get();
 
         return view('post.index',compact('mypost'));

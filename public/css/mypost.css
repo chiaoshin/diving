@@ -40,7 +40,7 @@
 .notification-list_feature-img {
   margin-left: auto; /* 将图片推到最右边 */
   margin-top: 25px; /* 调整上边距 */
-  margin: auto;
+  margin: auto 0 auto auto;
 }
 
 .notification-list_detail h1 {

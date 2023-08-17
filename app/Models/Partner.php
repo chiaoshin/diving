@@ -15,6 +15,6 @@ class Partner extends Model
 
     public function getFormatDateAttribute()
     {
-        return date('n月j號', strtotime($this->group_time));
+        return date('Y年n月j號', strtotime($this->group_time));
     }
 }
