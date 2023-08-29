@@ -23,13 +23,13 @@ $fake_data2 = [
 @endphp
 
 @section("head")
-<!-- amCharts javascript sources -->
+{{-- <!-- amCharts javascript sources --> --}}
 <script type="text/javascript" src="https://www.amcharts.com/lib/3/ammap.js"></script>
 <!-- <script type="text/javascript" src="https://www.amcharts.com/lib/3/maps/js/taiwanLow.js"></script> -->
 <script src="{{ asset('js/taiwanLow.js') }}"></script>
 <script src="https://www.amcharts.com/lib/4/geodata/lang/tw_ZH.js"></script>
 
-<!-- map 效能處理 -->
+{{-- <!-- map 效能處理 --> --}}
 <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/MarkerCluster.css">
 </link>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/MarkerCluster.Default.css">
@@ -37,27 +37,52 @@ $fake_data2 = [
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/leaflet.markercluster.js"></script>
 
 
-<!-- 評論&結果畫面 -->
+{{-- <!-- 評論&結果畫面 --> --}}
 <link href="{{ asset("css/reviews.css") }}" rel="stylesheet">
 <link href="{{ asset("css/search_res.css") }}" rel="stylesheet">
 
-<!-- map 嵌入 -->
+{{-- <!-- map 嵌入 --> --}}
 <!-- <link href="{{ asset("css/leaflet.css") }}" rel="stylesheet"> -->
 <link href="{{ asset("css/map.css") }}" rel="stylesheet">
-<!-- weather 導入 -->
+{{-- <!-- weather 導入 --> --}}
 <link href="{{ asset("css/weather.css") }}" rel="stylesheet">
+
+<style>
+    /* .search-container {
+    width: 100%;
+    background-color: #f0f0f0;
+    padding: 10px;
+    初始位置
+    position: static;
+  } */
+
+    .fixed-search {
+    /* 捲動固定 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f0f0f0;
+    padding: 10px;
+    /* 其他樣式，可自行調整 */
+    border-bottom: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* 確保在其他內容之上 */
+    z-index: 2000;
+  }
+</style>
 
 @endsection
 
 @section("body")
-<!-- 輪播 -->
+{{-- <!-- 輪播 --> --}}
 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
     </div>
-    <!-- 圖片切換 -->
+    {{-- <!-- 圖片切換 --> --}}
     <div class="carousel-inner">
         <div class="carousel-item active">
             <img src="./img/header_img.jpg" class="d-block w-100" alt="col1">
@@ -69,7 +94,7 @@ $fake_data2 = [
             <img src="./img/header_img.jpg" class="d-block w-100" alt="col3">
         </div>
     </div>
-    <!-- 左右箭頭 -->
+    {{-- <!-- 左右箭頭 --> --}}
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
@@ -80,8 +105,9 @@ $fake_data2 = [
     </button>
 </div>
 
-<!-- search bar -->
-<div class="search-container container-fluid">
+{{-- <!-- search bar --> --}}
+{{-- <div class="search-container container-fluid bg-light" style="position:fixed; top:7%; width:100%;"> --}}
+    <div class="search-container container-fluid bg-light" style="">
     <form>
         <div class="row">
             <div class="col-12 col-md-3 d-flex mt-2">
@@ -123,7 +149,7 @@ $fake_data2 = [
     </form>
 </div>
 
-<!-- HOT Point card -->
+{{-- <!-- HOT Point card --> --}}
 <div class="container-fluid p-5" id='hot-site-title'>
     <div class="row">
         <div class="col-12">
@@ -159,7 +185,7 @@ $fake_data2 = [
     </div>
 </div>
 
-<!-- All Map -->
+{{-- <!-- All Map --> --}}
 <div class="container-fluid p-5">
     <div class="row">
         <div class="col-12">
@@ -168,16 +194,26 @@ $fake_data2 = [
     </div>
 
     <div class="row position-relative" style="border: solid 1px #928d8d; padding: 0.5rem;">
-        <button class="zoom-btn" data-lat="23.6978" data-lng="120.9605" data-zoom="7">本島</button>
-        <div id='zoom-switch-container' class='p-0'></div>
-
-        <!-- leaflet地圖 -->
-        <div id="map"></div>
+        <div class="row">
+            <div class="col col-2">
+                {{--  --}}
+                <div class="btn_group">
+                    <div class="div">
+                        <button class="zoom-btn btn w-75 mb-3 pl-3" data-lat="23.6978" data-lng="120.9605" data-zoom="7">本島</button>
+                    </div>
+                    <div id='zoom-switch-container' class='p-0'></div>
+                </div>
+            </div>
+            <div class="col col-10">
+                {{-- <!-- leaflet地圖 --> --}}
+                <div id="map"></div>
+            </div>
+        </div>
     </div>
 
 </div>
 
-<!-- weather -->
+{{-- <!-- weather --> --}}
 <div class="container-fluid p-5">
     <div class="row">
         <div class="col-12">
@@ -286,7 +322,7 @@ $fake_data2 = [
     </div>
 </div>
 
-<!-- activity -->
+{{-- <!-- activity --> --}}
 <div class="conntainer-fluid p-5">
     <div class="row">
         <div class="col-12">
@@ -321,11 +357,12 @@ $fake_data2 = [
 <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
 <script>
     const markers = @json($diveSite);
+    const danger_area = @json($danger_area);
 
-    // marker color
+    // marker color/打點圖片更換
     var mapIcon = new L.Icon({
-        // iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
-        iconUrl: '{{ asset("img/map/潛點.png") }}',
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+        // iconUrl: '{{ asset("img/map/潛點.png") }}',
         shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
         iconSize: [25, 41],
         iconAnchor: [12, 41],
@@ -383,175 +420,184 @@ $fake_data2 = [
         createMarkers(markers)
 
         // 危險海域(直接打點,拆兩個表紀錄)
-        var polygon1 = L.polygon([
-            [25.195111, 121.415583],
-            [25.187278, 121.404833]
-        ]).setStyle({
-            fillColor: '#FF0000',
-            color: '#FF0000'
-        }).addTo(map).bindPopup('<h3>新北市淡水區沙崙沿岸海域</h3>' + '<p>禁止水域遊憩活動區域</p>' + '<br> <p> 自淨水廠前海堤A點起， 向南沿沙灘高潮線至淡水河出海口交界B點止之區域。 </p>');
+        danger_area.forEach(row => {
+            let positions = row.positions.map(r => [r.lat, r.lng])
+            let polygon = L.polygon(positions).setStyle({
+                fillColor: '#FF0000',
+                color: '#FF0000'
+            }).addTo(map).bindPopup(row.description);
+        })
 
-        var polygon2 = L.polygon([
-            [22.934628, 120.175472],
-            [22.933136, 120.170942],
-            [22.911783, 120.172142],
-            [22.912428, 120.176967]
-        ]).setStyle({
-            fillColor: '#FF0000',
-            color: '#FF0000'
-        }).addTo(map).bindPopup('<h3>臺南市南區灣裡(含黃金海岸)近岸海域</h3>' + '<p>禁止從事所有水域遊憩活動</p>');
+        // 全部寫在DangerAreaSeeder
+        // var polygon1 = L.polygon([
+        //     [25.195111, 121.415583],
+        //     [25.187278, 121.404833]
+        // ]).setStyle({
+        //     fillColor: '#FF0000',
+        //     color: '#FF0000'
+        // }).addTo(map).bindPopup('<h3>新北市淡水區沙崙沿岸海域</h3>' + '<p>禁止水域遊憩活動區域</p>' + '<br> <p> 自淨水廠前海堤A點起， 向南沿沙灘高潮線至淡水河出海口交界B點止之區域。 </p>');
 
-        var polygon3 = L.polygon([
-            [26.2175, 119.979444],
-            [26.2125, 119.984167],
-            [26.203056, 119.971944],
-            [26.204722, 119.970278],
-            [26.21, 119.97]
-        ]).setStyle({
-            fillColor: '#FF0000',
-            color: '#FF0000'
-        }).addTo(map).bindPopup('<h3>連江縣北竿鄉?里附近海域</h3>' + '<p>禁止從事各項水域遊憩活動</p>');
+        // var polygon2 = L.polygon([
+        //     [22.934628, 120.175472],
+        //     [22.933136, 120.170942],
+        //     [22.911783, 120.172142],
+        //     [22.912428, 120.176967]
+        // ]).setStyle({
+        //     fillColor: '#FF0000',
+        //     color: '#FF0000'
+        // }).addTo(map).bindPopup('<h3>臺南市南區灣裡(含黃金海岸)近岸海域</h3>' + '<p>禁止從事所有水域遊憩活動</p>');
 
-        var polygon4 = L.polygon([
-            [24.480224, 121.849641],
-            [24.479599, 121.859254],
-            [24.312948, 121.77308],
-            [24.313261, 121.783037]
-        ]).setStyle({
-            fillColor: '#FF0000',
-            color: '#FF0000'
-        }).addTo(map).bindPopup('<h3>宜蘭縣南澳地區海域</h3>' + '<p>禁止水域遊憩活動</p>');
+        // var polygon3 = L.polygon([
+        //     [26.2175, 119.979444],
+        //     [26.2125, 119.984167],
+        //     [26.203056, 119.971944],
+        //     [26.204722, 119.970278],
+        //     [26.21, 119.97]
+        // ]).setStyle({
+        //     fillColor: '#FF0000',
+        //     color: '#FF0000'
+        // }).addTo(map).bindPopup('<h3>連江縣北竿鄉?里附近海域</h3>' + '<p>禁止從事各項水域遊憩活動</p>');
 
-        var polygon5 = L.polygon([
-            [22.452778, 120.458611],
-            [22.4475, 120.451389],
-            [22.446111, 120.452222],
-            [22.449167, 120.460556]
-        ]).setStyle({
-            fillColor: '#FF0000',
-            color: '#FF0000'
-        }).addTo(map).bindPopup('<h3>大鵬灣潟湖潮口水域</h3>' + '<p>禁止遊客於上述區域從事各項水域遊憩活動</p>');
+        // var polygon4 = L.polygon([
+        //     [24.480224, 121.849641],
+        //     [24.479599, 121.859254],
+        //     [24.312948, 121.77308],
+        //     [24.313261, 121.783037]
+        // ]).setStyle({
+        //     fillColor: '#FF0000',
+        //     color: '#FF0000'
+        // }).addTo(map).bindPopup('<h3>宜蘭縣南澳地區海域</h3>' + '<p>禁止水域遊憩活動</p>');
 
-        var polygon6 = L.polygon([
-            [23.7885, 119.598368],
-            [23.784251, 119.598368],
-            [23.784251, 119.602022],
-            [23.7885, 119.602022]
-        ]).setStyle({
-            fillColor: '#FF0000',
-            color: '#FF0000'
-        }).addTo(map).bindPopup('<h3>澎湖縣目斗嶼海域</h3>' + '<p>禁止從事所有水域遊憩活動</p>');
+        // var polygon5 = L.polygon([
+        //     [22.452778, 120.458611],
+        //     [22.4475, 120.451389],
+        //     [22.446111, 120.452222],
+        //     [22.449167, 120.460556]
+        // ]).setStyle({
+        //     fillColor: '#FF0000',
+        //     color: '#FF0000'
+        // }).addTo(map).bindPopup('<h3>大鵬灣潟湖潮口水域</h3>' + '<p>禁止遊客於上述區域從事各項水域遊憩活動</p>');
 
-        var polygon7 = L.polygon([
-            [25.285489, 121.50971],
-            [25.285332, 121.513423]
-        ]).setStyle({
-            fillColor: '#FF0000',
-            color: '#FF0000'
-        }).addTo(map).bindPopup('<h3>麟山鼻岬角兩側水域(至等深線20公尺水域)</h3>' + '<p>禁止遊客從事水域遊憩活動管理辦法所定義之各項水域遊憩活動</p>');
+        // var polygon6 = L.polygon([
+        //     [23.7885, 119.598368],
+        //     [23.784251, 119.598368],
+        //     [23.784251, 119.602022],
+        //     [23.7885, 119.602022]
+        // ]).setStyle({
+        //     fillColor: '#FF0000',
+        //     color: '#FF0000'
+        // }).addTo(map).bindPopup('<h3>澎湖縣目斗嶼海域</h3>' + '<p>禁止從事所有水域遊憩活動</p>');
 
-        var polygon8 = L.polygon([
-            [25.294631, 121.533492],
-            [25.294688, 121.540374]
-        ]).setStyle({
-            fillColor: '#FF0000',
-            color: '#FF0000'
-        }).addTo(map).bindPopup('<h3>富貴角岬角兩側水域(至等深線20公尺水域)</h3>' + '<p>禁止遊客從事水域遊憩活動管理辦法所定義之各項水域遊憩活動</p>');
+        // var polygon7 = L.polygon([
+        //     [25.285489, 121.50971],
+        //     [25.285332, 121.513423]
+        // ]).setStyle({
+        //     fillColor: '#FF0000',
+        //     color: '#FF0000'
+        // }).addTo(map).bindPopup('<h3>麟山鼻岬角兩側水域(至等深線20公尺水域)</h3>' + '<p>禁止遊客從事水域遊憩活動管理辦法所定義之各項水域遊憩活動</p>');
 
-        var polygon9 = L.polygon([
-            [25.231418, 121.648864],
-            [25.226152, 121.651506]
-        ]).setStyle({
-            fillColor: '#FF0000',
-            color: '#FF0000'
-        }).addTo(map).bindPopup('<h3>獅頭山岬角兩側水域(獅頭山公園附近海域至等深線20公尺水域)</h3>' + '<p>禁止遊客從事水域遊憩活動管理辦法所定義之各項水域遊憩活動</p>');
+        // var polygon8 = L.polygon([
+        //     [25.294631, 121.533492],
+        //     [25.294688, 121.540374]
+        // ]).setStyle({
+        //     fillColor: '#FF0000',
+        //     color: '#FF0000'
+        // }).addTo(map).bindPopup('<h3>富貴角岬角兩側水域(至等深線20公尺水域)</h3>' + '<p>禁止遊客從事水域遊憩活動管理辦法所定義之各項水域遊憩活動</p>');
 
-        var polygon10 = L.polygon([
-            [25.207678, 121.690098],
-            [25.206862, 121.692723]
-        ]).setStyle({
-            fillColor: '#FF0000',
-            color: '#FF0000'
-        }).addTo(map).bindPopup('<h3>野柳岬角兩側水域(至等深線20公尺水域)</h3>' + '<p>禁止遊客從事水域遊憩活動管理辦法所定義之各項水域遊憩活動</p>');
+        // var polygon9 = L.polygon([
+        //     [25.231418, 121.648864],
+        //     [25.226152, 121.651506]
+        // ]).setStyle({
+        //     fillColor: '#FF0000',
+        //     color: '#FF0000'
+        // }).addTo(map).bindPopup('<h3>獅頭山岬角兩側水域(獅頭山公園附近海域至等深線20公尺水域)</h3>' + '<p>禁止遊客從事水域遊憩活動管理辦法所定義之各項水域遊憩活動</p>');
 
-        var polygon11 = L.polygon([
-            [25.125147, 121.915211],
-            [25.126419, 121.914036],
-            [25.124256, 121.912733],
-            [25.124372, 121.913072]
-        ]).setStyle({
-            fillColor: '#FF0000',
-            color: '#FF0000'
-        }).addTo(map).bindPopup('<h3>新北市瑞芳區鼻頭漁港外海域</h3>' + '<p>禁止潛水活動</p>');
+        // var polygon10 = L.polygon([
+        //     [25.207678, 121.690098],
+        //     [25.206862, 121.692723]
+        // ]).setStyle({
+        //     fillColor: '#FF0000',
+        //     color: '#FF0000'
+        // }).addTo(map).bindPopup('<h3>野柳岬角兩側水域(至等深線20公尺水域)</h3>' + '<p>禁止遊客從事水域遊憩活動管理辦法所定義之各項水域遊憩活動</p>');
 
-        var polygon12 = L.polygon([
-            [25.135583, 121.8265],
-            [25.128472, 121.834222]
-        ]).setStyle({
-            fillColor: '#FF0000',
-            color: '#FF0000'
-        }).addTo(map).bindPopup('<h3>新北市瑞芳區深澳海域</h3>' + '<p>禁止橡皮艇活動</p>');
+        // var polygon11 = L.polygon([
+        //     [25.125147, 121.915211],
+        //     [25.126419, 121.914036],
+        //     [25.124256, 121.912733],
+        //     [25.124372, 121.913072]
+        // ]).setStyle({
+        //     fillColor: '#FF0000',
+        //     color: '#FF0000'
+        // }).addTo(map).bindPopup('<h3>新北市瑞芳區鼻頭漁港外海域</h3>' + '<p>禁止潛水活動</p>');
 
-        var polygon15 = L.polygon([
-            [25.172725, 121.38745],
-            [25.160392, 121.401744],
-            [25.168964, 121.413694]
-        ]).setStyle({
-            fillColor: '#FF0000',
-            color: '#FF0000'
-        }).addTo(map).bindPopup('<h3>新北市八里 紅海灘海域</h3>' + '<p>禁止從事風箏衝浪活動</p>');
+        // var polygon12 = L.polygon([
+        //     [25.135583, 121.8265],
+        //     [25.128472, 121.834222]
+        // ]).setStyle({
+        //     fillColor: '#FF0000',
+        //     color: '#FF0000'
+        // }).addTo(map).bindPopup('<h3>新北市瑞芳區深澳海域</h3>' + '<p>禁止橡皮艇活動</p>');
 
-        var polygon16 = L.polygon([
-            [23.219191, 120.082761],
-            [23.21794, 120.082031],
-            [23.218287, 120.081296],
-            [23.219538, 120.081775]
-        ]).setStyle({
-            fillColor: '#FF0000',
-            color: '#FF0000'
-        }).addTo(map).bindPopup('<h3>臺南市馬沙溝海域(游泳區)</h3>' + '<p>限制僅得從事游泳活動 ，並依公告限制時間及注意事項為之</p>');
+        // var polygon15 = L.polygon([
+        //     [25.172725, 121.38745],
+        //     [25.160392, 121.401744],
+        //     [25.168964, 121.413694]
+        // ]).setStyle({
+        //     fillColor: '#FF0000',
+        //     color: '#FF0000'
+        // }).addTo(map).bindPopup('<h3>新北市八里 紅海灘海域</h3>' + '<p>禁止從事風箏衝浪活動</p>');
 
-        var polygon17 = L.polygon([
-            [23.21794, 120.082031],
-            [23.216857, 120.08171],
-            [23.217897, 120.079004],
-            [23.221972, 120.071964],
-            [23.219538, 120.081775],
-            [23.218287, 120.081296]
-        ]).setStyle({
-            fillColor: '#FF0000',
-            color: '#FF0000'
-        }).addTo(map).bindPopup('<h3>臺南市馬沙溝海域(非動力區)</h3>' + '<p>限制僅得從事乘騎獨木舟、風浪板及立式划槳活動，並依公告活動時間及注意事項為之</p>');
+        // var polygon16 = L.polygon([
+        //     [23.219191, 120.082761],
+        //     [23.21794, 120.082031],
+        //     [23.218287, 120.081296],
+        //     [23.219538, 120.081775]
+        // ]).setStyle({
+        //     fillColor: '#FF0000',
+        //     color: '#FF0000'
+        // }).addTo(map).bindPopup('<h3>臺南市馬沙溝海域(游泳區)</h3>' + '<p>限制僅得從事游泳活動 ，並依公告限制時間及注意事項為之</p>');
 
-        var polygon18 = L.polygon([
-            [23.220191, 120.083211],
-            [23.219191, 120.082761],
-            [23.221972, 120.071964],
-            [23.217897, 120.079004],
-            [23.218591, 120.0772],
-            [23.221925, 120.078701]
-        ]).setStyle({
-            fillColor: '#FF0000',
-            color: '#FF0000'
-        }).addTo(map).bindPopup('<h3>臺南市馬沙溝海域(動力區)</h3>' + '<p>限制僅得從事乘騎水上 摩托車、香蕉船活動， 並依公告活動時間及注意事項為之</p>');
+        // var polygon17 = L.polygon([
+        //     [23.21794, 120.082031],
+        //     [23.216857, 120.08171],
+        //     [23.217897, 120.079004],
+        //     [23.221972, 120.071964],
+        //     [23.219538, 120.081775],
+        //     [23.218287, 120.081296]
+        // ]).setStyle({
+        //     fillColor: '#FF0000',
+        //     color: '#FF0000'
+        // }).addTo(map).bindPopup('<h3>臺南市馬沙溝海域(非動力區)</h3>' + '<p>限制僅得從事乘騎獨木舟、風浪板及立式划槳活動，並依公告活動時間及注意事項為之</p>');
 
-        var polygon19 = L.polygon([
-            [22.621667, 120.256667],
-            [22.624444, 120.262778],
-            [22.634167, 120.2525],
-            [22.635833, 120.255833],
-        ]).setStyle({
-            fillColor: '#FF0000',
-            color: '#FF0000'
-        }).addTo(map).bindPopup('<h3>高雄市西子灣海域</h3>' + '<p>以風浪板、香蕉船、拖 曳浮胎、獨木舟活動為限，並依公告活動時間及注意事項為之</p>');
+        // var polygon18 = L.polygon([
+        //     [23.220191, 120.083211],
+        //     [23.219191, 120.082761],
+        //     [23.221972, 120.071964],
+        //     [23.217897, 120.079004],
+        //     [23.218591, 120.0772],
+        //     [23.221925, 120.078701]
+        // ]).setStyle({
+        //     fillColor: '#FF0000',
+        //     color: '#FF0000'
+        // }).addTo(map).bindPopup('<h3>臺南市馬沙溝海域(動力區)</h3>' + '<p>限制僅得從事乘騎水上 摩托車、香蕉船活動， 並依公告活動時間及注意事項為之</p>');
 
-        var polygon20 = L.polygon([
-            [25.164747, 121.708008],
-            [25.166058, 121.707708]
-        ]).setStyle({
-            fillColor: '#FF0000',
-            color: '#FF0000'
-        }).addTo(map).bindPopup('<h3>基隆市大武崙澳底沙灘海域</h3>' + '<p>限制僅得從事非動力水域遊憩活動</p>');
+        // var polygon19 = L.polygon([
+        //     [22.621667, 120.256667],
+        //     [22.624444, 120.262778],
+        //     [22.634167, 120.2525],
+        //     [22.635833, 120.255833],
+        // ]).setStyle({
+        //     fillColor: '#FF0000',
+        //     color: '#FF0000'
+        // }).addTo(map).bindPopup('<h3>高雄市西子灣海域</h3>' + '<p>以風浪板、香蕉船、拖 曳浮胎、獨木舟活動為限，並依公告活動時間及注意事項為之</p>');
+
+        // var polygon20 = L.polygon([
+        //     [25.164747, 121.708008],
+        //     [25.166058, 121.707708]
+        // ]).setStyle({
+        //     fillColor: '#FF0000',
+        //     color: '#FF0000'
+        // }).addTo(map).bindPopup('<h3>基隆市大武崙澳底沙灘海域</h3>' + '<p>限制僅得從事非動力水域遊憩活動</p>');
     }
 
     // 『清除打點』
@@ -847,7 +893,7 @@ $fake_data2 = [
                 let value = zoomSwitchMapper[$(this).val()][key]
 
                 $("#zoom-switch-container").append(`
-                    <button class="zoom-btn w-100" data-lat="${value[0]}" data-lng="${value[1]}" data-zoom="${value[2]}">${key}</button>
+                    <button class="zoom-btn btn  w-75 mb-3 pl-3" data-lat="${value[0]}" data-lng="${value[1]}" data-zoom="${value[2]}">${key}</button>
                 `)
             })
         }
@@ -888,6 +934,17 @@ $fake_data2 = [
         // http://127.0.0.1:8000/search_res?location=%E5%B1%8F%E6%9D%B1%E7%B8%A3&page=2
     })
 
+    // 搜尋欄捲動事件
+    window.addEventListener('scroll', function() {
+    const searchContainer = document.querySelector('.search-container');
+    const scrollY = window.scrollY;
+
+    if (scrollY > 480) { // 根據您希望的捲動位置調整數值
+      searchContainer.classList.add('fixed-search');
+    } else {
+      searchContainer.classList.remove('fixed-search');
+    }
+  });
 
 </script>
 

@@ -1,5 +1,24 @@
 @extends("layouts/app")
 
+@php
+    if (!function_exists("createTreeComment")) {
+        function createTreeComment($commentList, &$commentHTML) {
+            foreach($commentList as $comment) {
+                $commentHTML .= view('post.comment', compact("comment"))->render();
+
+                if (count($comment['children']) > 0) {
+                    $replyHTML = "";
+
+                    createTreeComment($comment['children'], $replyHTML);
+
+                    $commentHTML .= $replyHTML;
+                }
+            }
+
+            return $commentHTML;
+        }
+    }
+@endphp
 
 @section("head")
 <link href="{{ asset("css/post.css") }}" rel="stylesheet">
@@ -47,64 +66,34 @@
                     &nbsp
                     <div class="div d-flex flex-row">
                         {{-- 愛心按鈕 --}}
-                        <div class="d-flex">
-                            <input type="checkbox" id="heart-checkbox" class="hidden-checkbox">
+                        <div class="d-flex heart-checkbox-top" data-id='{{ $post->id }}' data-type='post'>
+                            {{-- <input type="checkbox" id="heart-checkbox" class="hidden-checkbox"> --}}
                             <label for="heart-checkbox" class="heart-label">
-                                <i class="fa fa-heart"></i>&nbsp&nbsp<b>{{ $post->like }}</b>
+                                <i class="fa fa-heart {{ $post->getUserIsLike(auth()->user()->id) ? 'active' : '' }}"></i>&nbsp&nbsp<b>{{ $post->likes }}</b>
                             </label>
                         </div>
 
                         {{-- Message數量 --}}
                         <div class="d-flex">
-                            &nbsp&nbsp<b>{{ $post->reviews }}</b>
+                            &nbsp&nbsp<b>{{ $post->post_reviews }}</b>
                         </div>
                     </div>
 
                     <hr>
                     <div class="post-block__comments">
                         <!-- Comment Input -->
-                        
-                        <!-- Comment content -->
-                        <div class="comment-view-box mb-3">
-                            <div class="d-flex mb-2">
-                                <img src="{{ asset('img/post/users/user1.png') }}" class="author-img author-img--small mr-2">
-                                <div>
-                                    <h6><a>c109193111</a>　<small class="text-muted">1m</small></h6>
-                                    在哪裡看起來好好玩<p>
-                                        
-                                    <div class="d-flex flex-row">
-                                        <!-- 愛心按鈕
-                                        <a href="#!" class="text-dark mr-2"><span><i class="fa fa-heart-o"></i></span></a> -->
-                                        
-                                        <div class="d-flex">                
-                                            <input type="checkbox" id="heart-checkbox-top" class="hidden-checkbox">
-                                            <label for="heart-checkbox-top" class="heart-label">
-                                                <i class="fa fa-heart"></i>&nbsp&nbsp<b>9</b>
-                                            </label>                                            
-                                        </div>
-                                        &nbsp
-                                         <!-- 在每个评论内容的末尾添加 Reply 按鈕 -->
-                                         <button class="btn btn-link reply-link">
-                                            <img src="{{ asset('img/post/feeling/chat.png') }}" alt="Reply">
-                                        </button>
-                                                
-                                         <!-- 隐藏的输入框，用于回复评论 -->
-                                         <div class="comment-reply">
-                                            <div class="reply-input-container">
-                                                <input type="text" class="form-control" placeholder="Add your reply">
-                                                <button class="btn btn-primary reply-button"><i class="fa fa-paper-plane"></i></button>
-                                            </div>
-                                        </div>
+                        @php
+                            $commentHTML = "";
 
-                                    </div>
-                                </div>
-                                
-                            </div>
-                        </div>
+                            createTreeComment($commentTree, $commentHTML);
+                        @endphp
+
+                        <!-- Comment content -->
+                        {!! $commentHTML !!}
 
                         
                         <!-- More Comments -->
-                        <hr>
+                        {{-- <hr>
                         <div class="comment-view-box mb-3">
                             <div class="d-flex mb-2">
                                 <img src="{{ asset('img/post/users/user1.png') }}" class="author-img author-img--small mr-2">
@@ -142,7 +131,7 @@
                                 </div>
                                 
                             </div>
-                        </div>
+                        </div> --}}
                         <hr>
                         
                             <!-- 固定的回复框，放在评论区表格的最底部 -->
@@ -180,11 +169,86 @@
         var replyContent = $(this).siblings("input").val();
 
         // 在此处可以添加将回复内容提交到服务器的逻辑
+        $.ajax({
+            url: "{{ route('comment.store') }}",
+            method: "POST",
+            data: {
+                content: replyContent,
+                post_id: "{{ $post->id }}",
+                _token: "{{ csrf_token() }}"
+            },
+            dataType: 'json',
+            success: function(res) {
+                if (res.status_code == 'success') {
+                    window.location.reload()
+                }
+            }
+        })
 
         // 清空输入框并隐藏
         $(this).siblings("input").val("");
         $(this).closest(".comment-reply").hide();
         });
     });
+
+    $(".reply-link").click(function() {
+        swal.fire({
+            html: `<input type='text' id='replyMessage' class='form-control'>`,
+            preConfirm: () => {
+                let value = $("#replyMessage").val();
+
+                $.ajax({
+                    url: "{{ route('comment.store') }}",
+                    method: "POST",
+                    data: {
+                        content: value,
+                        post_id: "{{ $post->id }}",
+                        parent_id: $(this).data('id'),
+                        _token: "{{ csrf_token() }}"
+                    },
+                    dataType: 'json',
+                    success: function(res) {
+                        if (res.status_code == 'success') {
+                            window.location.reload()
+                        }
+                    }
+                })
+            }
+        })
+    })
+
+    $(".deleteComment").click(function() {
+        $.ajax({
+            url: "{{ route('comment.destroy', ':id') }}".replace(':id', $(this).data('cid')),
+            method: "DELETE",
+            data: {
+                _token: "{{ csrf_token() }}",
+            },
+            dataType: 'json',
+            success: function(res) {
+                if (res.status_code == 'success') {
+                    window.location.reload()
+                }
+            }
+        })
+    })
+
+    $(".heart-checkbox-top").click(function() {
+        $.ajax({
+            url: "{{ route('like') }}",
+            method: "POST",
+            data: {
+                _token: "{{ csrf_token() }}",
+                link_id: $(this).data('id'),
+                link_type: $(this).data('type'),
+            },
+            success: (res) => {
+                if (res.status_code == 'success') {
+                    $(this).find('i').toggleClass('active');
+                    $(this).find('b').text(res.new_count);
+                }
+            }
+        })
+    })
 </script>
 @endsection

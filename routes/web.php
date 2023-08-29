@@ -17,6 +17,8 @@ use App\Http\Controllers\ForgotController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\AboutMeController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\LikeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,6 +76,10 @@ Route::get('/search_markers', [IndexController::class, 'search_markers'])->name(
 Route::resource('post', PostController::class);
 
 Route::resource('aboutMe', AboutMeController::class)->only('index');
+
+Route::resource('comment', CommentController::class);
+
+Route::post('/like', [LikeController::class, 'like'])->name('like');
 
 // Route::get('/store/{id}', function ($id) {
 //     echo $id;

@@ -52,7 +52,7 @@
                 </div>
                 <div class="information">
                     <a class="category d-block mb-4" href="#">Suggestion &mdash; ChatGPT建議</a>
-                    <h2><a href="#" class="store-name">建議內容</a></h2>
+                    {{-- <h2><a href="#" class="store-name">建議內容</a></h2> --}}
                     <div class="container hide-scroll" style="max-height: 400px;">
                         <div class="info"></div>
 

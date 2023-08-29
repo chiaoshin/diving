@@ -22,7 +22,8 @@ class DatabaseSeeder extends Seeder
             ShopSeeder::class,
             LawSeeder::class,
             ChatgptSeeder::class,
-            UserSeeder::class
+            UserSeeder::class,
+            DangerAreaSeeder::class
         ]);
     }
 }

@@ -19,6 +19,22 @@ class Post extends Model
         return $this->hasOne(User::class, 'id', 'user_id');
     }
 
+    public function comments() {
+        return $this->hasMany(Comment::class, 'post_id')->where('level', 1);
+    }
+
+    public function getLikesAttribute() {
+        return UserLike::where([['link_id', '=', $this->id], ['link_type', '=', 'post']])->count();
+    }
+
+    public function getUserIsLike($user) {
+        return UserLike::where([['user_id', '=', $user], ['link_id', '=', $this->id], ['link_type', '=', 'post']])->exists();
+    }
+
+    public function getPostReviewsAttribute() {
+        return Comment::where([['post_id', '=', $this->id]])->count();
+    }
+
     public function getImageUrlAttribute() {
         if ($this->preview_img_url) {
             return asset(str_replace('public', 'storage', $this->preview_img_url));

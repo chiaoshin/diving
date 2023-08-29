@@ -49,9 +49,9 @@
 														</div>
 														<div class="notification-list_like">
 															{{-- 使用 FontAwesome 的爱心图标 --}}
-														<span class="like-count"><img src="{{ asset('img/forum/feeling/love.png') }}" alt="user">{{ $post->like }}</span>
+														<span class="like-count"><img src="{{ asset('img/forum/feeling/love.png') }}" alt="user">{{ $post->likes }}</span>
 														{{-- 圖案跟圖案空白 --}}
-														<span class="like-count"><img src="{{ asset('img/forum/feeling/chat.png') }}" alt="user">{{ $post->reviews }}</span>
+														<span class="like-count"><img src="{{ asset('img/forum/feeling/chat.png') }}" alt="user">{{ $post->post_reviews }}</span>
 													</div>
 													{{-- <span style=""><p><small>10 mins ago</small></p></span> --}}
 													@if($post->tags)

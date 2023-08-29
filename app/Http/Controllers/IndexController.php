@@ -8,6 +8,7 @@ use App\Models\Store;
 use App\Models\Shop;
 use App\Models\Hotel;
 use App\Models\Chatgpt;
+use App\Models\DangerArea;
 
 class IndexController extends Controller
 {
@@ -19,8 +20,9 @@ class IndexController extends Controller
     public function index()
     {
         $diveSite = Index::getFormatterMarkers([]);
+        $danger_area = DangerArea::with('positions')->get();
 
-        return view('index', compact("diveSite"));
+        return view('index', compact("diveSite", "danger_area"));
     }
 
     public function search_markers()

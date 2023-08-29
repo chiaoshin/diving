@@ -117,5 +117,8 @@
     font-size: 24px;
 }
 
+i.active {
+    color: red !important;
+}
 
 

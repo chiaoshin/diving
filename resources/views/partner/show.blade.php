@@ -11,9 +11,9 @@
         <main class="table">
             <section class="table__header">
                 <h2><b>尋找潛伴 looking for a partner</b></h2>
-                <div class="input-group">
-                    <input type="text" id="searchInput" placeholder="Search Data...">
-                    <img src="{{ asset('img/partner/search.png') }}" alt="">
+                <div class="input-group column">
+                    <input class="display: inline-block;" style="nowrap;" type="text" id="searchInput" placeholder="Search Data...">
+                    <img class="display: inline-block;" style="width:30px; height:30px;" src="{{ asset('img/partner/search.png') }}" alt="">
                 </div>
                 <img src="{{ asset('img/partner/abc.png') }}" alt="" class="size">
             </section>
