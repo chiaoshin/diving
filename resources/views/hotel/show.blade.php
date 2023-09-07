@@ -13,7 +13,13 @@
 @section("body")
 <div id="custom-content">
     <div class="title">
-        <h2 class="my-5 text-center text-dark">{{ $hotel->ch_name }}</h2>
+        {{-- <h2 class="my-5 text-center text-dark">{{ $hotel->ch_name }}</h2> --}}
+        <h2 class="mt-5 text-center text-dark" style="text-decoration: none;"><a class="store-name text-dark" href="{{ $hotel->url }}" target="_blank">{{ $hotel->ch_name }}</a></h2>
+        <h3 class="mb-3 text-center text-dark">
+            @if ($hotel->en_name)
+                ({{ $hotel->en_name }})
+            @endif
+        </h3>
         @if(!is_null($hotel->law))
             <div class="modal-container">
                 <input id="modal-toggle" type="checkbox">
@@ -51,22 +57,25 @@
                     <img class="img-fluid" src="{{ asset("img/store/hotel.png") }}">
                 </div>
                 <div class="information hide-scroll">
-                    <a class="category d-block mb-4" href="#">Spot Information &mdash; 詳細資訊</a>
-                    <h2>
+                    <a class="category d-block mb-4" href="#">Information &mdash; 詳細資訊</a>
+                    {{-- <h2>
                         <a class="store-name" href="{{ $hotel->url }}" target="_blank">{{ $hotel->ch_name }}<br>
                         @if ($hotel->en_name)
                             ({{ $hotel->en_name }})
                         @endif
                         </a>
-                    </h2>
-                    <p>地址：<br>{{ $hotel->address }}</p>
-                    <p class="m-0">營業時間：<br />
+                    </h2> --}}
+                    <h5>地址：</h5>
+                    <p>{{ $hotel->address }}</p>
+                    <h5>營業時間：</h5>
+                    <p class="m-0">
                         <!-- @TODO 可衡量要在前端還是後段加上 html -->
                         {!! $hotel->work_info !!}
-                    <p class="m-0">{{ $hotel->checkin_info }}</p>
-                    <p class="m-0">{{ $hotel->checkout_info }}</p>
+                        <p class="m-0">{{ $hotel->checkin_info }}</p>
+                        <p class="m-0">{{ $hotel->checkout_info }}</p>
                     </p>
-                    <p>交通建議：<br>{{ $hotel->transform_info }}</p>
+                    <h5>交通建議：</h5>
+                    <p>{{ $hotel->transform_info }}</p>
                 </div>
             </div>
             <div class="content-item" id="chatgpt-suggest">
@@ -75,7 +84,7 @@
                 </div>
                 <div class="information">
                     <a class="category d-block mb-4" href="#">Suggestion &mdash; ChatGPT建議</a>
-                    <h2><a href="#" class="store-name">建議內容</a></h2>
+                    {{-- <h2><a href="#" class="store-name">建議內容</a></h2> --}}
                     <div class="container hide-scroll" style="max-height: 400px;">
                         <div class="info"></div>
 

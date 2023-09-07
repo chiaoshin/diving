@@ -30,6 +30,8 @@ mix.js('resources/js/app.js', 'public/js')
     .css('resources/css/mypost.css', 'public/css')
     .css('resources/css/aboutMe.css', 'public/css')
     .css('resources/css/forumNav.css', 'public/css')
+    .css('resources/css/store.css', 'public/css')
+    .css('resources/css/partnerAdd.css', 'public/css')
     .postCss('resources/css/app.css', 'public/css', [
         //
     ]);

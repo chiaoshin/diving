@@ -59,7 +59,7 @@ Route::resource('search_res', Search_resController::class);
 Route::resource('register', RegisterController::class);
 Route::resource('forgot', ForgotController::class);
 Route::middleware('auth')->resource('forum', ForumController::class);
-Route::resource('partner', PartnerController::class)->only('index');
+Route::resource('partner', PartnerController::class);
 // Route::resource('point_card', PointCardController::class);
 Route::resource('snorkeling', SnorkelingController::class)->only('index');
 Route::resource('freeDiving', FreeDivingController::class)->only('index');

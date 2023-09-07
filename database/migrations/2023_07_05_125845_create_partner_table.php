@@ -15,6 +15,7 @@ class CreatePartnerTable extends Migration
     {
         Schema::create('partner', function (Blueprint $table) {
             $table->id('partner_id')->comment('夥伴編號');
+            $table->string('name')->comment('使用者名稱');
             $table->date('group_time')->comment("出團日");
             $table->string('location')->comment("地點");
             $table->integer('money')->comment("金額");

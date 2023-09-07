@@ -14,7 +14,47 @@
         </div>
         <div class="col col-9">
             <div class="col-12">
-                <form class="file-upload">
+                <div class="card">
+                    <div class="up-container">
+                        <img src="{{ asset('img/aboutMe/man.png') }}" class="man-img">
+                      <input type="file" id="customFile" name="file" hidden="">
+                      <label class="btn btn-change" for="customFile"> <img src="{{ asset('img/aboutMe/change.png') }}" class="change-img"><b> 更換照片</b></label>
+                    </div>
+                    <div class="down-container">
+                        <div class="row">
+                            <label class="username"><b><br> 使用者名稱：</b></label>
+                            <input type="text" class="form1" value="{{ auth()->user()->name }}" placeholder="請輸入名稱">
+                            
+                            <label class="gender"><b> 生理性別：</b></label>
+                            <div class="radio-container">
+                                <label class="radio-button">
+                                  <input id="radio1" name="radio-group" type="radio">
+                                  <span class="radio-checkmark"></span>
+                                  <span class="radio-label">男生</span>
+                                </label>
+                              
+                                <label class="radio-button">
+                                  <input id="radio2" name="radio-group" type="radio">
+                                  <span class="radio-checkmark"></span>
+                                  <span class="radio-label">女生</span>
+                                </label>
+                            </div>
+                
+                            <label class="email"><b>  電子信箱：</b></label>
+                            <input value="{{ auth()->user()->email }}" class="form3" readonly>
+                
+                                {{-- <label class="phone"><b>  電話：</b></label>
+                                <input value="0987-654321" class="form4" readonly> --}}
+                
+                            <div class="twobutton">
+                                <button class="btn btn-save"><b> 儲存 </b><img src="{{ asset('img/aboutMe/save.png') }}" class="save-img"></button>
+                                <button class="btn btn-cancel"><b> 取消 </b><img src="{{ asset('img/aboutMe/cancel.png') }}" class="cancel-img"></button>
+                            </div>
+                          </div>
+                        </div>
+                  </div>
+
+                {{-- <form class="file-upload">
                     <div class="col-md-3 m-auto">
                        <div class="text-center">
                         <h4 class="mb-2 mt-3">我的相片</h4>
@@ -53,7 +93,7 @@
                                     </div>
                                 </div>
                             </div>
-                </form> 
+                </form>  --}}
             </div>
         </div>
     </div>

@@ -1,46 +1,179 @@
-.bg-primary {          /*灰背景*/
-    background-color:	#F0F0F0 !important;
-    padding-left: 1rem !important;
-    padding-right: 1rem;
-    padding-top: 1.25rem !important;
-    padding-bottom: 1.25rem !important;
-    border-radius: 0.25rem !important;
-    margin-bottom: 20px;
-    /* width: 500px; Set the desired width */
-    height: 250px;
-} 
+
+body {
+    background-color: #A9C2D3;  /*设置背景颜色为浅灰色 */
+  }
+  .card {
+    background-color: #6075AA;
+    display: flex;
+    align-items: center;
+    border-radius: 30px;
+    padding: 5px;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.523);
+    /* width: 50%; */
+    height: 790px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
 .btn-change {
     color: #090909;
     background-color:	#F0F0F0;
     margin-top: 10px;
+    border: 0px solid;
+    outline: none;
+    box-shadow: none !important;
 }
-.form-control {
-    display: block;
-   width: 100%;           /*輸入框*/
+.btn-change:hover {
+    background-color:#91abed!important;
+    color: #ffffff;
+  }
+.form1,.form2 {
+   width:90%;           /*輸入框*/
    padding: 0.5rem 1rem;
    font-size: 15px;
    font-weight: 500;
-   line-height: 1.6;
+   margin:  15px auto; 
    color: #29292e;
    background-color: #fff;
-   border: 2px solid #e5dfe4;
-   appearance: none;
    border-radius: 5px;   /*圓角*/
+   border: 1px solid transparent;
+   outline: none;
+   margin-top: 20px;
 }
+.form3,.form4 {
+    width:90%;           /*輸入框*/
+    padding: 0.5rem 1rem;
+    font-size: 15px;
+    font-weight: 500;
+    margin:  15px auto; 
+    color: #29292e;
+    background-color: #eae4e4;
+    border-radius: 5px;   /*圓角*/
+    border: 1px solid transparent;
+    outline: none;
+    margin-top: 20px;
+ }
 .man-img {
 	height: 150px;
 	width: 150px;
     display: block;
     margin: 0 auto;
 }
+.change-img{
+	height: 20px;
+	width: 20px;
+}
+.gender,.email,.phone{
+    color: rgb(10, 10, 10);
+    margin-bottom: -10px;
+    font-size: large;
+    margin-top: 10px
+}
+.username{
+    color: rgb(10, 10, 10);
+    margin-bottom: -10px;
+    font-size: large;
+    margin-top: 2px
+}
+.radio-container {
+    display: flex;
+    gap: 40px;
+    margin: 8px auto;
+    justify-content: center; 
+    color: #090909;
+  }
+  .radio-button {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .radio-button input[type="radio"] {
+    display: none;
+  }
+  
+  .radio-checkmark {
+    display: inline-block;
+    position: relative;
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+    border: 2px solid #0c0c0c;
+    border-radius: 50%;
+  }
+  
+  .radio-checkmark:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #4b2fe9;
+    transition: all 0.2s ease-in-out;
+  }
+  .radio-button input[type="radio"]:checked ~ .radio-checkmark:before {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  .radio-label {
+    font-size: 20px;
+    font-weight: 600;
+  }
+  
+.up-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 250px;
+    padding: 10px;
+    margin: 20px;
+    border-radius: 20px;
+  }
+  .down-container {
+    background: #B2BDDA; 
+    flex: 6;
+    padding: 10px;
+    margin: 20px;
+    border-radius:10px;
+    margin-top: 0px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
+  }
 .btn-save{
-    background-color:	#D0D0D0;
+    background-color:#597ff0;
     margin-top: 10px;
     margin-left: 20px; 
-
+    border: 0px solid;
+    outline: none;
+    box-shadow: none !important;
 }
 .btn-cancel{
-    background-color:	#D0D0D0;
+    background-color:#e75959;
     margin-top: 10px;
     margin-left: 20px; 
+    border: 0px solid;
+    outline: none;
+    box-shadow: none !important;
+
 }
+ .btn-save:hover{
+    background-color:#536dad !important;
+    color: #ffffff;
+  }
+.btn-cancel:hover{
+    background-color:#b83b3b !important;
+    color: #ffffff;
+  }
+.save-img,.cancel-img{
+	height: 20px;
+	width: 20px;
+}
+.twobutton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+}
+

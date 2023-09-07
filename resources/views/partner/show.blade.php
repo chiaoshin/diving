@@ -10,19 +10,29 @@
     <div class='col-12 col-sm-10 p-4 m-auto'>
         <main class="table">
             <section class="table__header">
-                <h2><b>尋找潛伴 looking for a partner</b></h2>
-                <div class="input-group column">
-                    <input class="display: inline-block;" style="nowrap;" type="text" id="searchInput" placeholder="Search Data...">
-                    <img class="display: inline-block;" style="width:30px; height:30px;" src="{{ asset('img/partner/search.png') }}" alt="">
+                <div class="header-title">
+                    <h4>
+                        <img src="{{ asset('img/partner/abc.png') }}" alt="" class="size">
+                        <span><b>尋找潛伴 looking for a partner</b></span>
+                    </h4>
                 </div>
-                <img src="{{ asset('img/partner/abc.png') }}" alt="" class="size">
+
+                <div class="input-group column">
+                    <input class="" style="" type="search" id="searchInput" placeholder="Search Data...">
+                    <span>
+                        <img class="" style="width:25px; height:25px;" src="{{ asset('img/partner/search.png') }}" alt="">
+                    </span>
+                </div>
+
+                <div class="frame">
+                    <a href="{{ route('partner.create') }}" class="no-underline text-white"><button class="custom-btn btn-title"><b>新增文章</b></button></a>	 
+                </div>
             </section>
 
             <section class="table__body">
                 <table>
                     <thead>
                         <tr>
-                            <th class="text-center tc"> ID </th>
                             <th class="text-center tc"> customer </th>
                             <th class="text-center tc" onclick="sortTableByDate()"> 出團日 </th>
                             <th class="text-center tc"> 地點 </th>
@@ -31,20 +41,20 @@
                             <th class="text-center tc"> 潛水類型 </th>
                             <th class="text-center tc"> 有無考證 </th>
                             <th class="text-center tc"> 人數限制 </th>
-                            <th class="text-center tc"> 目前人數 </th>
+                            <th class="text-center tc"> 剩餘人數 </th>
                         </tr>
                     </thead>
                     <tbody id="tbody">
                         @foreach($data as $row)
                         <tr>
-                            <td class="text-center tc">{{ $row->partner_id }}</td>
-                            <td class="text-center tc">
+                            {{-- <td class="text-center tc">
                                 @if($row->partner_id % 2 == 0)
                                 <img src="{{ asset('img/partner/girl.jpg') }}" alt="">
                                 @else
                                 <img src="{{ asset('img/partner/boy.jpg') }}" alt="">
                                 @endif
-                            </td>
+                            </td> --}}
+                            <td class="text-center tc">{{ $row->name }}</td>
                             <td class="text-center tc">{{ $row->format_date }}</td>
                             <td class="text-center tc">{{ $row->location }}</td>
                             <td class="text-center tc">${{ number_format($row->money) }}</td>
@@ -53,7 +63,7 @@
                             <td class="text-center tc">{{ $row->license }}</td>
                             <td class="text-center tc">{{ $row->people_limit }}</td>
                             <td class="text-center tc">
-                                <p class="status {{ $row->people_number <= 4 ? $row->people_number <= 2 ? 'cancelled' : 'pending' : 'delivered' }}">{{ $row->people_number }}</p>
+                                <p class="status {{ $row->people_number <= 7 ? $row->people_number <= 3 ? 'cancelled' : 'pending' : 'delivered' }}">{{ $row->people_number }}</p>
                             </td>
                         </tr>
                         @endforeach
@@ -84,14 +94,7 @@
                     let d_str = `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}號`
                     tbody += `
                         <tr>
-                            <td class="text-center tc">${row.partner_id}</td>
-                            <td class="text-center tc">
-                                ${
-                                    row.partner_id % 2 == 0 ?
-                                    "<img src='{{ asset('img/partner/girl.jpg') }}' alt=''>" :
-                                    "<img src='{{ asset('img/partner/boy.jpg') }}' alt=''>"
-                                }
-                            </td>
+                            <td class="text-center tc">${row.name}</td>
                             <td class="text-center tc">${d_str}</td>
                             <td class="text-center tc">${row.location}</td>
                             <td class="text-center tc">${row.money.toLocaleString()}</td>
@@ -100,7 +103,7 @@
                             <td class="text-center tc">${row.license}</td>
                             <td class="text-center tc">${row.people_limit}</td>
                             <td class="text-center tc">
-                                <p class="status ${row.people_number <= 4 ? row.people_number <= 2 ? 'cancelled' : 'pending' : 'delivered'}">${row.people_number}</p>
+                                <p class="status ${row.people_number <= 7 ? row.people_number <= 3 ? 'cancelled' : 'pending' : 'delivered'}">${row.people_number}</p>
                             </td>   
                         </tr>
                     `

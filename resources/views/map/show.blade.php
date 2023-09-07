@@ -12,7 +12,13 @@
 @section("body")
 <div id="custom-content">
     <div class="title">
-        <h2 class="my-5 text-center text-dark">{{ $map->ch_name }}</h2>
+        {{-- <h2 class="my-5 text-center text-dark">{{ $map->ch_name }}</h2> --}}
+        <h2 class="mt-5 text-center text-dark" style="text-decoration: none;"><a class="store-name text-dark" href="{{ $map->url }}" target="_blank">{{ $map->ch_name }}</a></h2>
+        <h3 class="mb-3 text-center text-dark">
+            @if ($map->en_name)
+                ({{ $map->en_name }})
+            @endif
+        </h3>
     </div>
 
     <div class="tab-action-row">
@@ -34,16 +40,18 @@
                     <img class="img-fluid" src="{{ asset("img/store/hotel.png") }}">
                 </div>
                 <div class="information  hide-scroll">
-                    <a class="category d-block mb-4" href="#">Spot Information &mdash; 詳細資訊</a>
-                    <h2>
+                    <a class="category d-block mb-4" href="#">Information &mdash; 詳細資訊</a>
+                    {{-- <h2>
                         <a class="store-name" href="{{ $map->url }}" target="_blank">{{ $map->ch_name }}<br>
                         @if ($map->en_name)
                             ({{ $map->en_name }})
                         @endif
                         </a>
-                    </h2>
-                    <p>地址：<br><a href="https://www.google.com/search?q={{ $map->address }}&sourceid=chrome&ie=UTF-8" target="_blank" rel="noopener noreferrer">{{ $map->address }}</a></p>
-                    <p>敘述：<br>{{ $map->description_info }}</p>
+                    </h2> --}}
+                    <h5>地址：</h5>
+                    <p><a href="https://www.google.com/search?q={{ $map->address }}&sourceid=chrome&ie=UTF-8" target="_blank" rel="noopener noreferrer">{{ $map->address }}</a></p>
+                    <h5>敘述：</h5>
+                    <p>{{ $map->description_info }}</p>
                 </div>
             </div>
             <div class="content-item" id="chatgpt-suggest">

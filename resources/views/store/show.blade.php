@@ -13,7 +13,12 @@
 @section("body")
 <div id="custom-content">
     <div class="title">
-        <h2 class="my-5 text-center text-dark">{{ $store->ch_name }}</h2>
+        <h2 class="mt-5 text-center text-dark" style="text-decoration: none;"><a class="store-name text-dark" href="{{ $store->url }}" target="_blank">{{ $store->ch_name }}</a></h2>
+        <h3 class="mb-3 text-center text-dark">
+            @if ($store->en_name)
+                ({{ $store->en_name }})
+            @endif
+        </h3>
         @if(!is_null($store->law))
             <div class="modal-container">
                 <input id="modal-toggle" type="checkbox">
@@ -51,31 +56,35 @@
                     <img class="img-fluid" src="{{ asset("img/store/hotel.png") }}">
                 </div>
                 <div class="information hide-scroll">
-                    <a class="category d-block mb-4" href="#">Spot Information &mdash; 詳細資訊</a>
-                    <h2>
+                    <a class="category d-block mb-4" href="#">Information &mdash; 詳細資訊</a>
+                    {{-- <h2>
                         <a class="store-name" href="{{ $store->url }}" target="_blank">{{ $store->ch_name }}<br>
                         @if ($store->en_name)
                             ({{ $store->en_name }})
                         @endif
                         </a>
-                    </h2>
-                    <p>地址：<br>{{ $store->address }}</p>
+                    </h2> --}}
+                    <h5>地址：</h5>
+                    <p>{{ $store->address }}</p>
                     @if($store->checkin_start_from && $store->checkin_end_to && $store->checkout_start_from && $store->checkout_end_to)
-                    <p class="m-0">營業時間：
+                    <h5>營業時間：</h5>
+                    <p class="m-0">
                         <!-- @TODO 可衡量要在前端還是後段加上 html -->
                         {!! $store->work_info !!}
                         <p class="m-0">{{ $store->checkin_info }}</p>
                         <p class="m-0">{{ $store->checkout_info }}</p>
                     </p>
                     @else
-                    <p class="m-0">營業時間：
+                    <h5>營業時間：</h5>
+                    <p class="m-0">
                         {!! $store->work_info !!}
-                        <p class="m-0">不提供住宿</p>
+                        <p class="m-0 text-danger">不提供住宿</p>
                     </p>
                     @endif
-                    <!-- <br /> -->
-                    <p>交通建議：<br>{{ $store->trans_form_info }}</p>
-                    <p>建議潛點：<br>{{ $store->landscape_info }}</p>
+                    <h5>交通建議：</h5>
+                    <p>{{ $store->trans_form_info }}</p>
+                    <h5>潛點建議：</h5>
+                    <p>{{ $store->landscape_info }}</p>
                 </div>
             </div>
             <div class="content-item" id="chatgpt-suggest">
@@ -84,7 +93,7 @@
                 </div>
                 <div class="information">
                     <a class="category d-block mb-4" href="#">Suggestion &mdash; ChatGPT建議</a>
-                    <h2><a href="#" class="store-name">建議內容</a></h2>
+                    {{-- <h2><a href="#" class="store-name">建議內容</a></h2> --}}
                     <div class="container hide-scroll" style="max-height: 400px;">
                         <div class="info"></div>
 

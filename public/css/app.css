@@ -114,3 +114,7 @@ body {
     background-position: center;
     background-repeat: no-repeat;
 }
+select.form-control {
+    /* width: 200px; 設置寬度為您希望的大小，以像素為單位 */
+    font-size: 21px; /* 設置字體大小為16像素，您可以根據需要調整這個值 */
+}

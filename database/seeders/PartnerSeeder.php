@@ -14,8 +14,20 @@ class PartnerSeeder extends Seeder
      */
     public function run()
     {
+        // Partner::create([
+        //     "group_time" => date('Y-m-d'),
+        //     "location" => "小琉球",
+        //     "money" => 400,
+        //     "email" => "C1091931100@gmail.com",
+        //     "type" => "浮潛",
+        //     "license" => "無",
+        //     "people_limit" => 8,
+        //     "people_number" => 4,
+        // ]);
+
         Partner::create([
-            "group_time" => date('Y-m-d'),
+            "name" => "王曉明",
+            "group_time" => "2023-12-05",
             "location" => "小琉球",
             "money" => 400,
             "email" => "C1091931100@gmail.com",
@@ -26,7 +38,8 @@ class PartnerSeeder extends Seeder
         ]);
 
         Partner::create([
-            "group_time" => "2023-01-01",
+            "name" => "昭小美",
+            "group_time" => "2023-09-10",
             "location" => "綠島",
             "money" => 14000,
             "email" => "C1091931101@gmail.com",
@@ -37,6 +50,7 @@ class PartnerSeeder extends Seeder
         ]);
 
         Partner::create([
+            "name" => "王莉莉",
             "group_time" => "2023-08-15",
             "location" => "墾丁",
             "money" => 2500,
@@ -48,6 +62,7 @@ class PartnerSeeder extends Seeder
         ]);
 
         Partner::create([
+            "name" => "陳明明",
             "group_time" => "2023-08-20",
             "location" => "小琉球",
             "money" => 400,
@@ -59,10 +74,11 @@ class PartnerSeeder extends Seeder
         ]);
 
         Partner::create([
+            "name" => "林戚戚",
             "group_time" => "2023-08-22",
             "location" => "蘭嶼",
             "money" => 12000,
-            "email" => "C1091931104@gmail.com",
+            "email" => "C109193104@gmail.com",
             "type" => "水肺潛水",
             "license" => "有",
             "people_limit" => 8,
@@ -70,10 +86,11 @@ class PartnerSeeder extends Seeder
         ]);
 
         Partner::create([
+            "name" => "鄭美美",
             "group_time" => "2023-08-24",
             "location" => "綠島",
             "money" => 400,
-            "email" => "C1091931105@gmail.com",
+            "email" => "C109193105@gmail.com",
             "type" => "浮潛",
             "license" => "無",
             "people_limit" => 10,
@@ -81,10 +98,11 @@ class PartnerSeeder extends Seeder
         ]);
 
         Partner::create([
-            "group_time" => "2023-08-28",
+            "name" => "何東東",
+            "group_time" => "2023-11-08",
             "location" => "墾丁",
             "money" => 15000,
-            "email" => "C1091931106@gmail.com",
+            "email" => "C109193106@gmail.com",
             "type" => "自由潛水",
             "license" => "有",
             "people_limit" => 6,
@@ -92,10 +110,11 @@ class PartnerSeeder extends Seeder
         ]);
 
         Partner::create([
-            "group_time" => "2023-09-01",
+            "name" => "胡喃喃",
+            "group_time" => "2023-10-01",
             "location" => "小琉球",
             "money" => 2500,
-            "email" => "C1091931107@gmail.com",
+            "email" => "C109193107@gmail.com",
             "type" => "水肺潛水",
             "license" => "無",
             "people_limit" => 8,
@@ -103,25 +122,15 @@ class PartnerSeeder extends Seeder
         ]);
 
         Partner::create([
-            "group_time" => "2023-09-05",
+            "name" => "曾咚咚",
+            "group_time" => "2023-08-25",
             "location" => "綠島",
             "money" => 13000,
-            "email" => "C1091931108@gmail.com",
+            "email" => "C109193108@gmail.com",
             "type" => "自由潛水",
             "license" => "有",
             "people_limit" => 6,
             "people_number" => 4,
-        ]);
-
-        Partner::create([
-            "group_time" => "2023-09-20",
-            "location" => "綠島",
-            "money" => 400,
-            "email" => "C1091931109@gmail.com",
-            "type" => "浮潛",
-            "license" => "無",
-            "people_limit" => 10,
-            "people_number" => 2,
         ]);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Partner;
 
+
 class PartnerController extends Controller
 {
     /**
@@ -14,10 +15,17 @@ class PartnerController extends Controller
      */
     public function index()
     {
-        $data = Partner::where('group_time', '>=', date('Y-m-d'))->get();
+        $data = Partner::where('group_time', '>=', date('Y-m-d'))->orderBy('group_time', 'ASC')->get();
 
         return view('partner/show', compact('data'));
     }
+    public function create() {
+        // $partner = Partner::find($id);
+
+        // return view('partner.create',compact('partner'));
+        return view('partner.create');
+    }
+    
 
     /**
      * Show the form for creating a new resource.
