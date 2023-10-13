@@ -11,7 +11,7 @@
 			
     <form id="contact" action="" method="post">
         <img src="{{ asset('img/partnerAdd/user.png') }}" alt="Profile Picture" class="profile-picture">
-        
+          @csrf
           <fieldset>
             <br><label><b>出團日</b></label>
             <input type="date" name="dateofbirth" id="dateofbirth">
@@ -27,7 +27,7 @@
           <fieldset>
             <br><label><b>Email</b></label>
             {{-- <input placeholder="Email" type="email" value="{{ $partner->email }}"  required autofocus> --}}
-            <input placeholder="Email" type="email" value="abc@gmail.com"  required autofocus>
+            <input placeholder="Email" type="email" value="{{ auth()->user()->email }}"  required autofocus>
           </fieldset>
         
         </fieldset>

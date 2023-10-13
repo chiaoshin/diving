@@ -51,7 +51,7 @@
                     <h5>地址：</h5>
                     <p><a href="https://www.google.com/search?q={{ $map->address }}&sourceid=chrome&ie=UTF-8" target="_blank" rel="noopener noreferrer">{{ $map->address }}</a></p>
                     <h5>敘述：</h5>
-                    <p>{{ $map->description_info }}</p>
+                    <p class="justify-alignment">{{ $map->description_info }}</p>
                 </div>
             </div>
             <div class="content-item" id="chatgpt-suggest">

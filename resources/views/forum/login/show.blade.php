@@ -28,6 +28,9 @@
 									@endforeach
 									</div>
 								@endif
+								@if (!is_null($redirect_url))
+								<input type='hidden' value='{{ $redirect_url }}' name='redirect_url'>
+								@endif
 								<div class="mb-3">
 									<div class="input-group mb-3">
 										<div class="input-group-prepend">

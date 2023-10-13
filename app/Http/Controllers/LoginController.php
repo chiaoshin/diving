@@ -17,7 +17,9 @@ class LoginController extends Controller
             return $this->postLogin($request);
         }
 
-        return view('forum.login.show');
+        $redirect_url = $request->get('redirect_url');
+
+        return view('forum.login.show', compact('redirect_url'));
     }
 
     public function postLogin($request){
@@ -30,8 +32,13 @@ class LoginController extends Controller
 
         if (Auth::attempt($data)) {
             $request->session()->regenerate();
- 
-            return redirect()->route('forum.index');
+
+            $redirect_url = $request->get('redirect_url');
+            if (is_null($redirect_url)) {
+                return redirect()->route('forum.index');
+            }else{
+                return redirect()->to($redirect_url);
+            }
         }
  
         return back()->withErrors([

@@ -184,7 +184,8 @@ class Search_resController extends Controller
                     'url' => $url,
                     "rate_star_percent" => $obj->rate_star_percent,
                     "reviews" => $obj->reviews,
-                    "star_rating" => $obj->star_rating
+                    "star_rating" => $obj->star_rating,
+                    "preview_img_url" =>  $obj->preview_img_url
                 ]);
             }
 
@@ -213,7 +214,7 @@ class Search_resController extends Controller
             'totalPage' => ceil($total / $searchParm['limit']),
             'queryParams' => $queryParams
         ];
-
+        
         return view('search_res/show', compact('result', 'pageInfo'));
     }
 

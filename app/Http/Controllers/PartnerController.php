@@ -20,6 +20,9 @@ class PartnerController extends Controller
         return view('partner/show', compact('data'));
     }
     public function create() {
+        if (!auth()->check()) {
+            return redirect()->route('login', ['redirect_url' => route('partner.create')]);
+        }
         // $partner = Partner::find($id);
 
         // return view('partner.create',compact('partner'));

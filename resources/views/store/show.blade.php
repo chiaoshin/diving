@@ -27,6 +27,7 @@
                 <div class="modal-content">
                     <label class="modal-close" for="modal-toggle">&#x2715;</label>
                     <h3><span class="material-symbols-sharp">gavel</span> 判決書</h3>
+                    <br>
                     <h5>事件類別：<span>{{ $store->law->event }}</sapn></h5>
                     <p>{{ $store->law->directions }}</p> 
                     <a href="{{ $store->law->url }}" target="_blank">判決書完整內容連結</a>

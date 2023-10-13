@@ -56,7 +56,8 @@ trait MarkerFormatter
                 "rate_star_percent" => $obj->rate_star_percent,
                 "reviews" => $obj->reviews,
                 "star_rating" => $obj->star_rating,
-                "preview_img_url" => $obj->preview_img_url
+                "preview_img_url" => $obj->preview_img_url,
+                "counter" => $obj->event_counter
             ];
         })->toArray();
 
@@ -67,11 +68,25 @@ trait MarkerFormatter
         }
     }
 
+    public function getEventCounterAttribute() {
+        if (static::class != "App\Models\Index") {
+            return 0;
+        }
+
+        if ($this->map_id < 30) {
+            return 0;
+        }else if($this->map_id >= 30 && $this->map_id <=80) {
+            return 4;
+        }else{
+            return 11;
+        }
+    }
+
     public function getRateStarPercentAttribute() {
         $score = floor($this->star_rating) * 20 + 5;
 
         $float = round(($this->star_rating - floor($this->star_rating)) * 10, 0);
-        
-        return $score + $float;
+
+        return min($score + $float, 99);
     }
 }
