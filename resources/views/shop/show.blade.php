@@ -67,15 +67,15 @@
                         </a>
                     </h2> 
                     --}}
-                    <h5>地址：</h5>
-                    <p>{{ $shop->address }}</p>
-                    <h5>營業時間：</h5>
-                    <p class="m-0">
+                    <h4>地址：</h4>
+                    <p class="big_p">{{ $shop->address }}</p>
+                    <h4>營業時間：</h4>
+                    <p class="m-0 big_p">
                         <!-- @TODO 可衡量要在前端還是後段加上 html -->
                         {!! $shop->work_info !!}
                     </p>
-                    <h5>交通建議：</h5>
-                    <p>{{ $shop->transform_note }}</p>
+                    <h4>交通建議：</h4>
+                    <p class="big_p">{{ $shop->transform_note }}</p>
                 </div>
             </div>
             <div class="content-item" id="chatgpt-suggest">

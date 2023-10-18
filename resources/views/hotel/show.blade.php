@@ -66,17 +66,17 @@
                         @endif
                         </a>
                     </h2> --}}
-                    <h5>地址：</h5>
-                    <p>{{ $hotel->address }}</p>
-                    <h5>營業時間：</h5>
-                    <p class="m-0">
+                    <h4>地址：</h4>
+                    <p class="big_p">{{ $hotel->address }}</p>
+                    <h4>營業時間：</h4>
+                    <p class="m-0 big_p">
                         <!-- @TODO 可衡量要在前端還是後段加上 html -->
                         {!! $hotel->work_info !!}
-                        <p class="m-0">{{ $hotel->checkin_info }}</p>
-                        <p class="m-0">{{ $hotel->checkout_info }}</p>
+                        <p class="m-0 big_p">{{ $hotel->checkin_info }}</p>
+                        <p class="m-0 big_p">{{ $hotel->checkout_info }}</p>
                     </p>
-                    <h5>交通建議：</h5>
-                    <p>{{ $hotel->transform_info }}</p>
+                    <h4>交通建議：</h4>
+                    <p class="big_p">{{ $hotel->transform_info }}</p>
                 </div>
             </div>
             <div class="content-item" id="chatgpt-suggest">

@@ -29,6 +29,7 @@ class CreateMapTable extends Migration
             $table->text('reviews_url')->nullable()->comment("評論連結");
 
             $table->string('preview_img_url')->nullable()->comment('潛點預覽圖路徑');
+            $table->double('accidents')->nullable()->comment('事故發生次數');
             $table->timestamps();
         });
     }

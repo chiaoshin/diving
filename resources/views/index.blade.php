@@ -31,10 +31,8 @@ $fake_data2 = [
 
 {{-- <!-- map 效能處理 --> --}}
 <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/MarkerCluster.css">
-</link>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/MarkerCluster.Default.css">
-</link>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/leaflet.markercluster.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css">
 
 {{-- map control定位套件 --}}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.css" />
@@ -88,13 +86,13 @@ $fake_data2 = [
     {{-- <!-- 圖片切換 --> --}}
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img src="./img/header_img.jpg" class="d-block w-100" alt="col1">
+            <img src="./img/header_new_img1.png" class="d-block w-100" alt="col1">
         </div>
         <div class="carousel-item">
-            <img src="./img/header_img.jpg" class="d-block w-100" alt="col2">
+            <img src="./img/header_new_img2.png" class="d-block w-100" alt="col2">
         </div>
         <div class="carousel-item">
-            <img src="./img/header_img.jpg" class="d-block w-100" alt="col3">
+            <img src="./img/header_new_img3.png" class="d-block w-100" alt="col3">
         </div>
     </div>
     {{-- <!-- 左右箭頭 --> --}}
@@ -110,7 +108,7 @@ $fake_data2 = [
 
 {{-- <!-- search bar --> --}}
 {{-- <div class="search-container container-fluid bg-light" style="position:fixed; top:7%; width:100%;"> --}}
-    <div class="search-container container-fluid bg-light" style="">
+<div class="search-container container-fluid bg-light" style="">
     <form>
         <div class="row">
             <div class="col-12 col-md-3 d-flex mt-2">
@@ -232,92 +230,92 @@ $fake_data2 = [
             <table class="table table-bordered ">
                 <thead>
                   <tr>
-                    <th scope="col" class="data">日期</th>
-                    <th scope="col" class="data" td colspan="4">9/22(五)</th></td>
-                    <th scope="col" class="data" td colspan="4">9/23(六)</th></td>
-                    <th scope="col" class="data" td colspan="4">9/24(日)</th></td>
-                    <th scope="col" class="data" td colspan="4">9/25(一)</th></td>
-                    <th scope="col" class="data" td colspan="4">9/26(二)</th></td>
-                    <th scope="col" class="data" td colspan="4">9/27(三)</th></td>
-                    <th scope="col" class="data" td colspan="4">9/28(四)</th></td>
+                    <th scope="col" class="data big-title">日期</th>
+                    <th scope="col" class="data big_p" td colspan="4">10/20(五)</th></td>
+                    <th scope="col" class="data big_p" td colspan="4">10/21(六)</th></td>
+                    <th scope="col" class="data big_p" td colspan="4">10/22(日)</th></td>
+                    <th scope="col" class="data big_p" td colspan="4">10/23(一)</th></td>
+                    <th scope="col" class="data big_p" td colspan="4">10/24(二)</th></td>
+                    <th scope="col" class="data big_p" td colspan="4">10/25(三)</th></td>
+                    <th scope="col" class="data big_p" td colspan="4">10/26(四)</th></td>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td class="weather-description text">天氣狀況</td>
-                    <td colspan="4"><img src="{{ asset('img/weather/clouldy.png') }}" class="img_weather" ></td>
-                    <td colspan="4"><img src="{{ asset('img/weather/clouldy.png') }}" class="img_weather"></td>
-                    <td colspan="4"><img src="{{ asset('img/weather/sun.png') }}" class="img_weather"></td>
-                    <td colspan="4"><img src="{{ asset('img/weather/sun.png') }}" class="img_weather"></td>
-                    <td colspan="4"><img src="{{ asset('img/weather/rain.png') }}" class="img_weather"></td>
-                    <td colspan="4"><img src="{{ asset('img/weather/rain.png') }}" class="img_weather"></td>
-                    <td colspan="4"><img src="{{ asset('img/weather/rainstorm.png') }}" class="img_weather"></td>
+                    <td class="weather-description text big-title">天氣狀況</td>
+                    <td colspan="4" class="big_p"><img src="{{ asset('img/weather/clouldy.png') }}" class="img_weather" ></td>
+                    <td colspan="4" class="big_p"><img src="{{ asset('img/weather/clouldy.png') }}" class="img_weather"></td>
+                    <td colspan="4" class="big_p"><img src="{{ asset('img/weather/sun.png') }}" class="img_weather"></td>
+                    <td colspan="4" class="big_p"><img src="{{ asset('img/weather/sun.png') }}" class="img_weather"></td>
+                    <td colspan="4" class="big_p"><img src="{{ asset('img/weather/rain.png') }}" class="img_weather"></td>
+                    <td colspan="4" class="big_p"><img src="{{ asset('img/weather/rain.png') }}" class="img_weather"></td>
+                    <td colspan="4" class="big_p"><img src="{{ asset('img/weather/rainstorm.png') }}" class="img_weather"></td>
                   </tr>
 
                     <tr>
-                      <td class="weather-description text">溫度</td>
-                      <td colspan="4">29℃</td>
-                      <td colspan="4">26℃</td>
-                      <td colspan="4">33℃</td>
-                      <td colspan="4">30℃</td>
-                      <td colspan="4">27℃</td>
-                      <td colspan="4">28℃</td>
-                      <td colspan="4">20℃</td>
+                      <td class="weather-description text big-title">溫度</td>
+                      <td colspan="4" class="big_p">29℃</td>
+                      <td colspan="4" class="big_p">26℃</td>
+                      <td colspan="4" class="big_p">33℃</td>
+                      <td colspan="4" class="big_p">30℃</td>
+                      <td colspan="4" class="big_p">27℃</td>
+                      <td colspan="4" class="big_p">28℃</td>
+                      <td colspan="4" class="big_p">20℃</td>
                     </tr>
 
                     <tr>
-                      <td class="weather-description text">降雨機率</td>
-                      <td colspan="4">40%</td>
-                      <td colspan="4">20%</td>
-                      <td colspan="4">10%</td>
-                      <td colspan="4">40%</td>
-                      <td colspan="4">60%</td>
-                      <td colspan="4">54%</td>
-                      <td colspan="4">100%</td>
+                      <td class="weather-description text big-title">降雨機率</td>
+                      <td colspan="4" class="big_p">40%</td>
+                      <td colspan="4" class="big_p">20%</td>
+                      <td colspan="4" class="big_p">10%</td>
+                      <td colspan="4" class="big_p">40%</td>
+                      <td colspan="4" class="big_p">60%</td>
+                      <td colspan="4" class="big_p">54%</td>
+                      <td colspan="4" class="big_p">100%</td>
                     </tr>
 
                     <tr>
-                      <td class="weather-description text">浪高</td>
-                      <td colspan="4">0.4</td>
-                      <td colspan="4">0.4</td>
-                      <td colspan="4">0.4</td>
-                      <td colspan="4">0.3</td>
-                      <td colspan="4">0.4</td>
-                      <td colspan="4">0.3</td>
-                      <td colspan="4">0.4</td>
+                      <td class="weather-description text big-title">浪高</td>
+                      <td colspan="4" class="big_p">0.4</td>
+                      <td colspan="4" class="big_p">0.4</td>
+                      <td colspan="4" class="big_p">0.4</td>
+                      <td colspan="4" class="big_p">0.3</td>
+                      <td colspan="4" class="big_p">0.4</td>
+                      <td colspan="4" class="big_p">0.3</td>
+                      <td colspan="4" class="big_p">0.4</td>
                     </tr>
 
                     <tr>
-                      <td class="weather-description text">流向</td>
-                      <td colspan="4"><img src="{{ asset('img/weather/right.png') }}" class="img_position"><br>東</td>
-                      <td colspan="4"><img src="{{ asset('img/weather/left.png') }}" class="img_position"><br>西</td>
-                      <td colspan="4"><img src="{{ asset('img/weather/down.png') }}" class="img_position"><br>南</td>
-                      <td colspan="4"><img src="{{ asset('img/weather/up-left.png') }}" class="img_position"><br>西北</td>
-                      <td colspan="4"><img src="{{ asset('img/weather/down-right.png') }}" class="img_position"><br>東南</td>
-                      <td colspan="4"><img src="{{ asset('img/weather/down.png') }}" class="img_position"><br>南</td>
-                      <td colspan="4"><img src="{{ asset('img/weather/down-left.png') }}" class="img_position"><br>西南</td>
+                      <td class="weather-description text big-title">流向</td>
+                      <td colspan="4" class="big_p"><img src="{{ asset('img/weather/right.png') }}" class="img_position"><br>東</td>
+                      <td colspan="4" class="big_p"><img src="{{ asset('img/weather/left.png') }}" class="img_position"><br>西</td>
+                      <td colspan="4" class="big_p"><img src="{{ asset('img/weather/down.png') }}" class="img_position"><br>南</td>
+                      <td colspan="4" class="big_p"><img src="{{ asset('img/weather/up-left.png') }}" class="img_position"><br>西北</td>
+                      <td colspan="4" class="big_p"><img src="{{ asset('img/weather/down-right.png') }}" class="img_position"><br>東南</td>
+                      <td colspan="4" class="big_p"><img src="{{ asset('img/weather/down.png') }}" class="img_position"><br>南</td>
+                      <td colspan="4" class="big_p"><img src="{{ asset('img/weather/down-left.png') }}" class="img_position"><br>西南</td>
                     </tr>
 
                      <tr>
-                      <td class="weather-description text">潮汐</td>
-                      <td>漲潮</td><td>退潮</td><td>漲潮</td><td>退潮</td>
-                      <td>漲潮</td><td>退潮</td><td>漲潮</td><td>退潮</td>
-                      <td>漲潮</td><td>退潮</td><td>漲潮</td><td>退潮</td>
-                      <td>漲潮</td><td>退潮</td><td>漲潮</td><td>退潮</td>
-                      <td>漲潮</td><td>退潮</td><td>漲潮</td><td>退潮</td>
-                      <td>漲潮</td><td>退潮</td><td>漲潮</td><td>退潮</td>
-                      <td>漲潮</td><td>退潮</td><td>漲潮</td><td>退潮</td>
+                      <td class="weather-description text big-title">潮汐</td>
+                      <td class="big_p">漲潮</td><td class="big_p">退潮</td><td class="big_p">漲潮</td><td class="big_p">退潮</td>
+                      <td class="big_p">漲潮</td><td class="big_p">退潮</td><td class="big_p">漲潮</td><td class="big_p">退潮</td>
+                      <td class="big_p">漲潮</td><td class="big_p">退潮</td><td class="big_p">漲潮</td><td class="big_p">退潮</td>
+                      <td class="big_p">漲潮</td><td class="big_p">退潮</td><td class="big_p">漲潮</td><td class="big_p">退潮</td>
+                      <td class="big_p">漲潮</td><td class="big_p">退潮</td><td class="big_p">漲潮</td><td class="big_p">退潮</td>
+                      <td class="big_p">漲潮</td><td class="big_p">退潮</td><td class="big_p">漲潮</td><td class="big_p">退潮</td>
+                      <td class="big_p">漲潮</td><td class="big_p">退潮</td><td class="big_p">漲潮</td><td class="big_p">退潮</td>
                     </tr>
 
                     <tr>
-                      <td class="weather-description text">時間</td>
-                      <td>00:36</td><td>05:39</td><td>09:53</td><td>17:06</td>
-                      <td>00:36</td><td>05:39</td><td>09:53</td><td>17:06</td>
-                      <td>00:36</td><td>05:39</td><td>09:53</td><td>17:06</td>
-                      <td>00:36</td><td>05:39</td><td>09:53</td><td>17:06</td>
-                      <td>00:36</td><td>05:39</td><td>09:53</td><td>17:06</td>
-                      <td>00:36</td><td>05:39</td><td>09:53</td><td>17:06</td>
-                      <td>00:36</td><td>05:39</td><td>09:53</td><td>17:06</td>
+                      <td class="weather-description text big-title">時間</td>
+                      <td class="big_p">00:36</td><td class="big_p">05:39</td><td class="big_p">09:53</td><td class="big_p">17:06</td>
+                      <td class="big_p">00:36</td><td class="big_p">05:39</td><td class="big_p">09:53</td><td class="big_p">17:06</td>
+                      <td class="big_p">00:36</td><td class="big_p">05:39</td><td class="big_p">09:53</td><td class="big_p">17:06</td>
+                      <td class="big_p">00:36</td><td class="big_p">05:39</td><td class="big_p">09:53</td><td class="big_p">17:06</td>
+                      <td class="big_p">00:36</td><td class="big_p">05:39</td><td class="big_p">09:53</td><td class="big_p">17:06</td>
+                      <td class="big_p">00:36</td><td class="big_p">05:39</td><td class="big_p">09:53</td><td class="big_p">17:06</td>
+                      <td class="big_p">00:36</td><td class="big_p">05:39</td><td class="big_p">09:53</td><td class="big_p">17:06</td>
                     </tr>
                 </tbody>
             </table>
@@ -360,7 +358,68 @@ $fake_data2 = [
 <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
 {{-- map control定位套件 --}}
 <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.js" charset="utf-8"></script>
+<script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
 <script src="{{ asset('js/leaflet-providers.js') }}"></script>
+<script>
+/* 
+* 載入氣象檔案
+*/
+let weather_data
+let wave_data
+let wave_2_data
+
+const load_wave_2_data = () => {
+    fetch('https://cwaopendata.s3.ap-northeast-1.amazonaws.com/Model/M-B0078-001.json')
+    .then(res=>{
+        return res.blob()
+    }).then((blob_content) => {
+        let b = new Blob([blob_content], {type:"binary/octet-stream"})
+        let reader = new FileReader()
+        reader.onload = function() {
+            let json_data = JSON.parse(this.result)
+            wave_2_data = json_data["cwaopendata"]["dataset"]["location"]
+
+            console.log("API Done")
+        };
+        reader.readAsText(b)
+    })
+}
+
+const load_wave_data = () => {
+    fetch('https://cwaopendata.s3.ap-northeast-1.amazonaws.com/Forecast/F-A0021-001.json')
+    .then(res=>{
+        return res.blob()
+    }).then((blob_content) => {
+        let b = new Blob([blob_content], {type:"binary/octet-stream"})
+        let reader = new FileReader()
+        reader.onload = function() {
+            let json_data = JSON.parse(this.result)
+            wave_data = json_data["cwaopendata"]["Resources"]["Resource"]["Data"]["TideForecasts"]
+
+            console.log("API Done")
+        };
+        reader.readAsText(b)
+    })
+}
+
+const load_weather_data = () => {
+    fetch('')
+    .then(res=>{
+        return res.blob()
+    }).then((blob_content) => {
+        let b = new Blob([blob_content], {type:"binary/octet-stream"})
+        let reader = new FileReader()
+        reader.onload = function() {
+            let json_data = JSON.parse(this.result)
+
+            weather_data = json_data["cwaopendata"]["dataset"]["locations"]
+            console.log("API Done")
+        };
+        reader.readAsText(b)
+    })
+}
+
+</script>
 <script>
     const markers = @json($diveSite);
     const danger_area = @json($danger_area);
@@ -408,7 +467,7 @@ $fake_data2 = [
         // iconUrl: '{{ asset("img/map/scuba-diver-svgrepo-com.svg") }}',
         iconUrl: '{{ asset("img/map/dive.png") }}',
         shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-        iconSize: [50, 60],
+        iconSize: [40, 50],
         iconAnchor: [12, 41],
         popupAnchor: [1, -34],
         shadowSize: [41, 41]
@@ -436,6 +495,7 @@ $fake_data2 = [
 
     let map;
     let markerGroup = [];
+    let markers_group;
 
     // 【初始化地圖】
     function initMap() {
@@ -455,23 +515,19 @@ $fake_data2 = [
 
         // 圖層切換
         const basemaps = {
-        街道地圖_StreetView: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution: '© <a href="https://www.openstreetmap.org/copyright">OSM開源地圖</a>'}),
-        暗黑版_Jawg_Matrix: L.tileLayer('https://{s}.tile.jawg.io/jawg-matrix/{z}/{x}/{y}{r}.png?access-token=MNiPzMGxrs9OfKmwhx85CXMeBukniOVvEMn2vWuDwyGV6qClwU6muHYnTjSqwjee', {attribution: '<a href="http://jawg.io" title="Tiles Courtesy of Jawg Maps" target="_blank">&copy; <b>Jawg</b>Maps</a>'}),
-        TGOS地圖: L.tileLayer('https://wmts.nlsc.gov.tw/wmts/EMAP/default/EPSG:3857/{z}/{y}/{x}', {attribution: '&copy; <a href="https://www.tgos.tw/tgos/web/tgos_home.aspx">TGOS</a>'}),
-        
-        山脈_地形地勢Topography: L.tileLayer.wms('http://ows.mundialis.de/services/service?',   {layers: 'TOPO-WMS'}),
-        省道_Places: L.tileLayer.wms('http://ows.mundialis.de/services/service?', {layers: 'OSM-Overlay-WMS'}),
-        
-        GOOGLE: L.tileLayer('https://maps.googleapis.com/maps/api/tile?{z}&x={x}&y={y}', {attribution: '© Google'}),
-        微軟地圖: L.tileLayer('http://ecn.t{server}.tiles.virtualearth.net/tiles/{type}/{z}/{x}/{y}.{format}?g=854&mkt={culture}', {attribution: '© Microsoft'}),
-        中文: L.tileLayer('https://wmts.nlsc.gov.tw/wmts/EMAP98/default/GoogleMapsCompatible/{z}/{y}/{x}', {attribution: '&copy; <a href="https://www.tgos.tw/tgos/web/tgos_home.aspx">TGOS</a>'}),
-        英文: L.tileLayer('https://wmts.nlsc.gov.tw/wmts/EMAP97/default/GoogleMapsCompatible/{z}/{y}/{x}', {attribution: '&copy; <a href="https://www.tgos.tw/tgos/web/tgos_home.aspx">TGOS</a>'}),
+        街道地圖: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution: '© <a href="https://www.openstreetmap.org/copyright">OSM開源地圖</a>'}),
+        // 熱點圖: L.tileLayer('https://wmts.nlsc.gov.tw/wmts/EMAP/default/EPSG:3857/{z}/{y}/{x}', {attribution: '&copy; <a href="https://www.tgos.tw/tgos/web/tgos_home.aspx">TGOS</a>'}),
+        道路清晰版: L.tileLayer('https://{s}.tile.jawg.io/jawg-matrix/{z}/{x}/{y}{r}.png?access-token=MNiPzMGxrs9OfKmwhx85CXMeBukniOVvEMn2vWuDwyGV6qClwU6muHYnTjSqwjee', {attribution: '<a href="http://jawg.io" title="Tiles Courtesy of Jawg Maps" target="_blank">&copy; <b>Jawg</b>Maps</a>'}),
         衛星: L.tileLayer('https://wmts.nlsc.gov.tw/wmts/PHOTO_MIX/default/GoogleMapsCompatible/{z}/{y}/{x}', {attribution: '&copy; <a href="https://www.tgos.tw/tgos/web/tgos_home.aspx">TGOS</a>'}),
-    
-    };
+        
+        // 山脈_地形地勢Topography: L.tileLayer.wms('http://ows.mundialis.de/services/service?',   {layers: 'TOPO-WMS'}),
+        // 省道_Places: L.tileLayer.wms('http://ows.mundialis.de/services/service?', {layers: 'OSM-Overlay-WMS'}),
+        // GOOGLE: L.tileLayer('https://maps.googleapis.com/maps/api/tile?{z}&x={x}&y={y}', {attribution: '© Google'}),
+        // 微軟地圖: L.tileLayer('http://ecn.t{server}.tiles.virtualearth.net/tiles/{type}/{z}/{x}/{y}.{format}?g=854&mkt={culture}', {attribution: '© Microsoft'}),
+        }; 
         
         L.control.layers(basemaps).addTo(map);
-        basemaps.街道地圖_StreetView.addTo(map);
+        basemaps.街道地圖.addTo(map);
         
         //map定位功能 
         // L.control.locate().addTo(map);
@@ -683,6 +739,8 @@ $fake_data2 = [
 
     // 『清除打點』
     function clearMakers() {
+        markers_group.clearLayers()
+
         markerGroup.forEach(row => {
             map.removeLayer(row)
         })
@@ -690,6 +748,12 @@ $fake_data2 = [
 
     // 『新增打點』
     function createMarkers(data) {
+        markers_group = L.markerClusterGroup({
+            spiderfyOnMaxZoom: false,
+            showCoverageOnHover: false,
+            zoomToBoundsOnClick: false,
+        });
+
         data.forEach(row => {
             let icon
 
@@ -716,14 +780,17 @@ $fake_data2 = [
 
             let marker = L.marker([row.lat, row.lng], {
                 icon: icon
-            }).addTo(map).bindPopup(`
+            }).bindPopup(`
                 <h2>${row.name}</h2>
                 <a href="${row.url}" class="h4" style="text-decoration: none;">查看更多</a><br/>
                 <a href="https://www.google.com/search?q=${row.name}&sourceid=chrome&ie=UTF-8" target="_blank" title="${row.address}">${row.address}</a>
             `)
 
             markerGroup.push(marker)
+            markers_group.addLayer(marker)
         })
+
+        map.addLayer(markers_group);
     }
 
     initMap()
@@ -766,29 +833,29 @@ $fake_data2 = [
 
     // 所有搜尋_zoom切換
     let cityPositionMapper = {
-        '澎湖縣': [23.654072, 119.596528, 9.25],
-        '金門縣': [24.450180, 118.367563, 11.5],
-        '連江縣': [26.164330, 120.248569, 10],
-        '臺北市': [25.093967, 121.554655, 11],
-        '新北市': [24.944788, 121.556745, 10],
-        '基隆市': [25.121252, 121.719304, 11],
-        '桃園市': [24.918439, 121.243436, 10.5],
-        '新竹市': [24.787220, 120.939825, 11],
-        '新竹縣': [24.735878, 121.139237, 10.5],
-        '宜蘭縣': [24.570412, 121.653605, 9],
-        '花蓮縣': [23.852462, 121.406987, 9],
-        '臺東縣': [22.951539, 121.051822, 9],
-        '苗栗縣': [24.500105, 120.902437, 10.5],
-        '臺中市': [24.228988, 120.915181, 10.5],
-        '彰化縣': [23.975269, 120.490295, 10.5],
-        '南投縣': [23.858716, 120.935998, 9.25],
-        '雲林縣': [23.715187, 120.390177, 10.5],
-        '嘉義市': [23.481751, 120.446901, 12],
-        '嘉義縣': [23.483329, 120.512126, 10.5],
-        '臺南市': [23.166952, 120.303771, 10],
-        '高雄市': [22.983211, 120.585943, 9.5],
-        '屏東縣': [22.510463, 120.651370, 9],
-        '澎湖縣': [23.654072, 119.596528, 9.25]
+        '澎湖縣': [23.654072, 119.596528, 14],
+        '金門縣': [24.450180, 118.367563, 14],
+        '連江縣': [26.164330, 120.248569, 14],
+        '臺北市': [25.093967, 121.554655, 14],
+        '新北市': [25.11321941799068, 121.90830358631158, 14],
+        '基隆市': [25.121252, 121.719304, 14],
+        '桃園市': [24.918439, 121.243436, 14],
+        '新竹市': [24.787220, 120.939825, 14],
+        '新竹縣': [24.735878, 121.139237, 14],
+        '宜蘭縣': [24.570412, 121.653605, 14],
+        '花蓮縣': [23.852462, 121.406987, 14],
+        '臺東縣': [22.951539, 121.051822, 14],
+        '苗栗縣': [24.500105, 120.902437, 14],
+        '臺中市': [24.228988, 120.915181, 14],
+        '彰化縣': [23.975269, 120.490295, 14],
+        '南投縣': [23.858716, 120.935998, 14],
+        '雲林縣': [23.715187, 120.390177, 14],
+        '嘉義市': [23.481751, 120.446901, 14],
+        '嘉義縣': [23.483329, 120.512126, 14],
+        '臺南市': [23.166952, 120.303771, 14],
+        '高雄市': [22.983211, 120.585943, 14],
+        '屏東縣': [21.93816589937437, 120.77412452862782, 13],
+        // '澎湖縣': [23.654072, 119.596528, 9.25]
     }
 
     // 潛游地圖_縣市切換按鈕
@@ -1036,7 +1103,9 @@ $fake_data2 = [
     } else {
       searchContainer.classList.remove('fixed-search');
     }
-  });
+});
+
+
 
 </script>
 

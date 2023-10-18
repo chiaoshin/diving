@@ -65,27 +65,27 @@
                         @endif
                         </a>
                     </h2> --}}
-                    <h5>地址：</h5>
-                    <p>{{ $store->address }}</p>
+                    <h4>地址：</h4>
+                    <p class="big_p">{{ $store->address }}</p>
                     @if($store->checkin_start_from && $store->checkin_end_to && $store->checkout_start_from && $store->checkout_end_to)
-                    <h5>營業時間：</h5>
-                    <p class="m-0">
+                    <h4>營業時間：</h4>
+                    <p class="m-0 big_p">
                         <!-- @TODO 可衡量要在前端還是後段加上 html -->
                         {!! $store->work_info !!}
-                        <p class="m-0">{{ $store->checkin_info }}</p>
-                        <p class="m-0">{{ $store->checkout_info }}</p>
+                        <p class="m-0 big_p">{{ $store->checkin_info }}</p>
+                        <p class="m-0 big_p">{{ $store->checkout_info }}</p>
                     </p>
                     @else
-                    <h5>營業時間：</h5>
-                    <p class="m-0">
+                    <h4>營業時間：</h4>
+                    <p class="m-0 big_p">
                         {!! $store->work_info !!}
-                        <p class="m-0 text-danger">不提供住宿</p>
+                        <p class="m-0 text-danger big_p">不提供住宿</p>
                     </p>
                     @endif
-                    <h5>交通建議：</h5>
-                    <p>{{ $store->trans_form_info }}</p>
-                    <h5>潛點建議：</h5>
-                    <p>{{ $store->landscape_info }}</p>
+                    <h4>交通建議：</h4>
+                    <p class="big_p">{{ $store->trans_form_info }}</p>
+                    <h4>潛點建議：</h4>
+                    <p class="big_p">{{ $store->landscape_info }}</p>
                 </div>
             </div>
             <div class="content-item" id="chatgpt-suggest">
