@@ -73,13 +73,7 @@ trait MarkerFormatter
             return 0;
         }
 
-        if ($this->map_id < 30) {
-            return 0;
-        }else if($this->map_id >= 30 && $this->map_id <=80) {
-            return 4;
-        }else{
-            return 11;
-        }
+        return $this->accidents ?? 0;
     }
 
     public function getRateStarPercentAttribute() {

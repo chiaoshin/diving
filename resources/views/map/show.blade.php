@@ -48,10 +48,10 @@
                         @endif
                         </a>
                     </h2> --}}
-                    <h5>地址：</h5>
-                    <p><a href="https://www.google.com/search?q={{ $map->address }}&sourceid=chrome&ie=UTF-8" target="_blank" rel="noopener noreferrer">{{ $map->address }}</a></p>
-                    <h5>敘述：</h5>
-                    <p class="justify-alignment">{{ $map->description_info }}</p>
+                    <h4>地址：</h4>
+                    <p class="big_p"><a href="https://www.google.com/search?q={{ $map->address }}&sourceid=chrome&ie=UTF-8" target="_blank" rel="noopener noreferrer">{{ $map->address }}</a></p>
+                    <h4>敘述：</h4>
+                    <p class="justify-alignment big_p">{{ $map->description_info }}</p>
                 </div>
             </div>
             <div class="content-item" id="chatgpt-suggest">

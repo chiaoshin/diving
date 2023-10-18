@@ -203,6 +203,12 @@ $fake_data2 = [
                         <button class="zoom-btn btn w-75 mb-3 pl-3" data-lat="23.6978" data-lng="120.9605" data-zoom="7">本島</button>
                     </div>
                     <div id='zoom-switch-container' class='p-0'></div>
+                    <div class="div ps-5">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                            <label class="form-check-label" for="flexSwitchCheckDefault"><b>熱區群聚圖</b></label>
+                          </div>                          
+                    </div>
                 </div>
             </div>
             <div class="col col-10">
@@ -496,6 +502,7 @@ const load_weather_data = () => {
     let map;
     let markerGroup = [];
     let markers_group;
+    let using_data = [];
 
     // 【初始化地圖】
     function initMap() {
@@ -524,7 +531,7 @@ const load_weather_data = () => {
         // 省道_Places: L.tileLayer.wms('http://ows.mundialis.de/services/service?', {layers: 'OSM-Overlay-WMS'}),
         // GOOGLE: L.tileLayer('https://maps.googleapis.com/maps/api/tile?{z}&x={x}&y={y}', {attribution: '© Google'}),
         // 微軟地圖: L.tileLayer('http://ecn.t{server}.tiles.virtualearth.net/tiles/{type}/{z}/{x}/{y}.{format}?g=854&mkt={culture}', {attribution: '© Microsoft'}),
-        }; 
+        };
         
         L.control.layers(basemaps).addTo(map);
         basemaps.街道地圖.addTo(map);
@@ -551,7 +558,7 @@ const load_weather_data = () => {
         }).addTo(map);
 
         // 『打點初始化』(潛水地點)
-        createMarkers(markers)
+        createMarkersWithoutGroups(markers)
 
         // marker 彈跳視窗
         // L.marker([22.7247326,120.3124143]).addTo(map).bindPopup('<h2>高雄科技大學<h2><br><p>上課的地方</p>').openPopup();
@@ -739,7 +746,7 @@ const load_weather_data = () => {
 
     // 『清除打點』
     function clearMakers() {
-        markers_group.clearLayers()
+        markers_group?.clearLayers()
 
         markerGroup.forEach(row => {
             map.removeLayer(row)
@@ -748,6 +755,10 @@ const load_weather_data = () => {
 
     // 『新增打點』
     function createMarkers(data) {
+        using_data = data;
+
+        clearMakers()
+
         markers_group = L.markerClusterGroup({
             spiderfyOnMaxZoom: false,
             showCoverageOnHover: false,
@@ -793,6 +804,55 @@ const load_weather_data = () => {
         map.addLayer(markers_group);
     }
 
+    function createMarkersWithoutGroups(data) {
+        using_data = data;
+
+        clearMakers()
+
+        data.forEach(row => {
+            let icon
+
+            if (row.type == 'map') {
+                // icon = mapIcon
+                // 發生事件頻率(無:綠色、<5：橘色、>=5：紅色)
+                if(row.counter>=5)
+                {
+                    icon = mapIconRed
+                }else if(row.counter>0&&row.counter<5)
+                {
+                    icon = mapIconOrange
+                }
+                else if(row.counter==0){
+                    icon = mapIconGreen
+                }
+            }else if(row.type == 'store'){
+                icon = storeIcon
+            }else if(row.type == 'hotel'){
+                icon = hotelIcon
+            }else if(row.type == 'shop'){
+                icon = shopIcon
+            }
+
+            let marker = L.marker([row.lat, row.lng], {
+                icon: icon
+            }).addTo(map).bindPopup(`
+                <h2>${row.name}</h2>
+                <a href="${row.url}" class="h4" style="text-decoration: none;">查看更多</a><br/>
+                <a href="https://www.google.com/search?q=${row.name}&sourceid=chrome&ie=UTF-8" target="_blank" title="${row.address}">${row.address}</a>
+            `)
+
+            markerGroup.push(marker)
+        })
+    }
+
+    function switch_groups(type) {
+        if (type == 'group') {
+            createMarkers(using_data)
+        }else{
+            createMarkersWithoutGroups(using_data)
+        }
+    }
+
     initMap()
 
     // Select Change Event
@@ -814,12 +874,20 @@ const load_weather_data = () => {
             success: (res) => {
                 clearMakers()
 
-                createMarkers(res)
+                createMarkersWithoutGroups(res)
             },
             error: (err) => {
                 console.log(err)
             }
         })
+    })
+
+    $("#flexSwitchCheckDefault").change(function(){
+        if($(this).prop("checked")) {
+            switch_groups("group")
+        }else{
+            switch_groups("single")
+        }
     })
 
     // 所有搜尋_縣市區域切換
