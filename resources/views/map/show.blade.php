@@ -37,7 +37,8 @@
         <div class="custom-tab-content">
             <div class="content-item active" id="attractions-info">
                 <div class="img-bg">
-                    <img class="img-fluid" src="{{ asset("img/store/hotel.png") }}">
+                    {{-- {{ asset("img/store/hotel.png") }} --}}
+                    <img class="img-fluid" src="{{ asset($map->preview_img_url) }}">
                 </div>
                 <div class="information  hide-scroll">
                     <a class="category d-block mb-4" href="#">Information &mdash; 詳細資訊</a>
