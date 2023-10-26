@@ -206,7 +206,7 @@ $fake_data2 = [
                     <div class="div ps-5">
                         <div class="form-check form-switch">
                             <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                            <label class="form-check-label" for="flexSwitchCheckDefault"><b>熱區群聚圖</b></label>
+                            <label class="form-check-label" for="flexSwitchCheckDefault"><b>區域熱點數</b></label>
                           </div>                          
                     </div>
                 </div>
@@ -231,19 +231,19 @@ $fake_data2 = [
         <div id="map"></div>
     </div> -->
     <!-- 表格 -->
-    <div class="row position-relative" style="border: solid 1px #928d8d; padding: 0.5rem;">
+    {{-- <div class="row position-relative" style="border: solid 1px #928d8d; padding: 0.5rem;">
         <div class="div">
             <table class="table table-bordered ">
                 <thead>
                   <tr>
                     <th scope="col" class="data big-title">日期</th>
-                    <th scope="col" class="data big_p" td colspan="4">10/20(五)</th></td>
-                    <th scope="col" class="data big_p" td colspan="4">10/21(六)</th></td>
-                    <th scope="col" class="data big_p" td colspan="4">10/22(日)</th></td>
-                    <th scope="col" class="data big_p" td colspan="4">10/23(一)</th></td>
-                    <th scope="col" class="data big_p" td colspan="4">10/24(二)</th></td>
-                    <th scope="col" class="data big_p" td colspan="4">10/25(三)</th></td>
-                    <th scope="col" class="data big_p" td colspan="4">10/26(四)</th></td>
+                    <th scope="col" class="data big_p" td colspan="4">10/27(五)</th></td>
+                    <th scope="col" class="data big_p" td colspan="4">10/28(六)</th></td>
+                    <th scope="col" class="data big_p" td colspan="4">10/29(日)</th></td>
+                    <th scope="col" class="data big_p" td colspan="4">10/30(一)</th></td>
+                    <th scope="col" class="data big_p" td colspan="4">10/31(二)</th></td>
+                    <th scope="col" class="data big_p" td colspan="4">11/1(三)</th></td>
+                    <th scope="col" class="data big_p" td colspan="4">11/2(四)</th></td>
                   </tr>
                 </thead>
                 <tbody>
@@ -326,6 +326,11 @@ $fake_data2 = [
                 </tbody>
             </table>
         </div>
+    </div> --}}
+    <div id="weather-container" style="border: solid 1px #928d8d; padding: 0.5rem;">
+        <div class="">
+            <select class="form-control" id="location"></select>
+        </div>
     </div>
 </div>
 
@@ -374,55 +379,334 @@ let weather_data
 let wave_data
 let wave_2_data
 
-const load_wave_2_data = () => {
-    fetch('https://cwaopendata.s3.ap-northeast-1.amazonaws.com/Model/M-B0078-001.json')
-    .then(res=>{
-        return res.blob()
-    }).then((blob_content) => {
-        let b = new Blob([blob_content], {type:"binary/octet-stream"})
-        let reader = new FileReader()
-        reader.onload = function() {
-            let json_data = JSON.parse(this.result)
-            wave_2_data = json_data["cwaopendata"]["dataset"]["location"]
+let format_result = {}
 
-            console.log("API Done")
-        };
-        reader.readAsText(b)
+const load_wave_2_data = () => {
+    return new Promise((resolve) => {
+        fetch('https://cwaopendata.s3.ap-northeast-1.amazonaws.com/Model/M-B0078-001.json')
+        .then(res=>{
+            return res.blob()
+        }).then((blob_content) => {
+            let b = new Blob([blob_content], {type:"binary/octet-stream"})
+            let reader = new FileReader()
+            reader.onload = function() {
+                let json_data = JSON.parse(this.result)
+                wave_2_data = json_data["cwaopendata"]["dataset"]["location"]
+
+                console.log("API Done")
+
+                resolve()
+            };
+            reader.readAsText(b)
+        })
     })
 }
 
 const load_wave_data = () => {
-    fetch('https://cwaopendata.s3.ap-northeast-1.amazonaws.com/Forecast/F-A0021-001.json')
-    .then(res=>{
-        return res.blob()
-    }).then((blob_content) => {
-        let b = new Blob([blob_content], {type:"binary/octet-stream"})
-        let reader = new FileReader()
-        reader.onload = function() {
-            let json_data = JSON.parse(this.result)
-            wave_data = json_data["cwaopendata"]["Resources"]["Resource"]["Data"]["TideForecasts"]
+    return new Promise((resolve) => {
+        fetch('https://cwaopendata.s3.ap-northeast-1.amazonaws.com/Forecast/F-A0021-001.json')
+        .then(res=>{
+            return res.blob()
+        }).then((blob_content) => {
+            let b = new Blob([blob_content], {type:"binary/octet-stream"})
+            let reader = new FileReader()
+            reader.onload = function() {
+                let json_data = JSON.parse(this.result)
+                wave_data = json_data["cwaopendata"]["Resources"]["Resource"]["Data"]["TideForecasts"]
 
-            console.log("API Done")
-        };
-        reader.readAsText(b)
+                console.log("API Done")
+
+                resolve()
+            };
+            reader.readAsText(b)
+        })
     })
 }
 
 const load_weather_data = () => {
-    fetch('')
-    .then(res=>{
-        return res.blob()
-    }).then((blob_content) => {
-        let b = new Blob([blob_content], {type:"binary/octet-stream"})
-        let reader = new FileReader()
-        reader.onload = function() {
-            let json_data = JSON.parse(this.result)
+    return new Promise((resolve) => {
+        fetch('https://cwaopendata.s3.ap-northeast-1.amazonaws.com/Forecast/F-B0053-074.json')
+        .then(res=>{
+            return res.blob()
+        }).then((blob_content) => {
+            let b = new Blob([blob_content], {type:"binary/octet-stream"})
+            let reader = new FileReader()
+            reader.onload = function() {
+                let json_data = JSON.parse(this.result)
 
-            weather_data = json_data["cwaopendata"]["dataset"]["locations"]
-            console.log("API Done")
-        };
-        reader.readAsText(b)
+                weather_data = json_data["cwaopendata"]["dataset"]["locations"]
+                console.log("API Done")
+
+                resolve()
+            };
+            reader.readAsText(b)
+        })
     })
+}
+
+const get_date = (date_str) => {
+    let date_obj = new Date(date_str)
+
+    return `${date_obj.getFullYear()}-${date_obj.getMonth() + 1}-${date_obj.getDate()}`
+}
+
+const get_time = (date_str) => {
+    let date_obj = new Date(date_str)
+
+    return `${date_obj.getHours()}:${(date_obj.getMinutes() + "").padStart(2, "0")}`
+}
+
+const fetchall = async () => {
+    await load_wave_data()
+    await load_weather_data()
+    await load_wave_2_data()
+}
+
+const format_data = () => {
+    // 整理天氣資料
+    weather_data.location.forEach(row => {
+        let nid = row.parameterSet.parameter.parameterValue
+        if (!(nid in format_result)) {
+            format_result[nid] = {
+                locationName: row.locationName
+            }
+        }
+
+        row.weatherElement.forEach((row_data, index) => {
+            format_result[nid][row_data.description] = row_data.time.map(data => {
+                if (Array.isArray(data.elementValue)) {
+                    return data.elementValue[0].value
+                }else{
+                    return data.elementValue.value
+                }
+            })
+
+            // 設定日期, 日期格式都相同, 因此用第一個資料的 start_time 來做設定即可
+            if (index == 0) {
+                format_result[nid]["日期"] = row_data.time.map(data => {
+                    return get_date(data.startTime)
+                })
+            }
+        })
+    })
+
+    // 整理潮汐資料
+    Object.keys(format_result).forEach(key => {
+        let id = key + "00"
+
+        let target_data = wave_data.filter(row => row.Location?.LocationId == id)
+
+        if (target_data.length > 0) {
+            let timedata = target_data[0].Location.TimePeriods.Daily
+            let timeinfo = {}
+
+            timedata.forEach(row => {
+                if (Array.isArray(row.Time)) {
+                    timeinfo[row.Date] = row.Time.map(data => {
+                        return {
+                            datetime: data.DateTime,
+                            tide: data.Tide
+                        }
+                    })
+                }else{
+                    timeinfo[row.Date] = row.Time
+                }
+            })
+
+            format_result[key]["潮汐"] = timeinfo
+        }else{
+            format_result[key]["潮汐"] = {}
+        }
+    })
+
+    // 整理海浪資料
+    Object.keys(format_result).forEach(key => {
+        let id = key + "00"
+
+        let target_data = wave_2_data.filter(row => row.locationCode == id)
+        
+        let time_info = {}
+
+        target_data.forEach(row => {
+            let date_key = get_date(row.time.dataTime)
+
+            if (!(date_key in time_info)) {
+                time_info[date_key] = {}
+            }
+
+            time_info[date_key][row.time.dataTime] = {}
+
+            row.weatherElement.map(row_data => {
+                time_info[date_key][row.time.dataTime][row_data.elementName] = row_data.elementValue.value
+            })
+        })
+        
+        format_result[key]["海浪"] = time_info
+    })
+
+    // 設定下拉選單資料
+    let optgroup = {
+        "新北市": ["N001", "N002", "N003", "N004"],
+        "屏東縣": ["N014", "N007", "N008", "N009", "N010", "N013", "N015", "N011", "N012"],
+        "宜蘭縣": ["N006"],
+        "台東縣": ["N005", "N016", "N017", "N018", "N019"]
+    }
+
+    let options = ""
+
+    Object.keys(optgroup).forEach(group_name => {
+        options += `<optgroup label="${group_name}">`
+        optgroup[group_name].forEach(key => {
+            options += `<option value="${key}">${format_result[key]["locationName"]}</option>`
+        })
+        options += "</optgroup>";
+    })
+
+    $("#location").html(options)
+}
+
+// 天氣對照圖
+const generate_weather_html = (id) => {
+    let image_mapper = {
+        "多雲短暫雨": "{{ asset('img/weather/CR.svg') }}",
+        "陰時多雲短暫雨":"{{ asset('img/weather/CR2.svg') }}",
+    }
+    
+    let arrow_mapper = {
+        "sw": "{{ asset('img/weather/down-left.png') }}"
+    }
+
+    let html = `
+    <div id='weather-information'>
+        <div class='weather-container'>
+            <div class="data-column label">
+                <div class="date" style="background-color: #9999cc; color:black;">
+                    <span>日期</span>
+                </div>
+                <div class="tempature">
+                    <span>溫度</span>
+                </div>
+                <div class="rain_rate">
+                    <span>降雨機率</span>
+                </div>
+                <div class="weather_type">
+                    <span>天氣狀況</span>
+                </div>
+                <div class="wave_type">
+                    <span>海況</span>
+                </div>
+                <div class="tidal_type">
+                    <span>潮汐</span>
+                </div>
+            </div>
+        
+    `
+
+    let data = format_result[id]
+
+    // 依序產生日期, 溫度, 降雨機率
+    for(let i = 0; i < 7; i ++) {
+        let today = data["日期"][i]
+
+        let date_obj = new Date(today)
+        let day = date_obj.getDay()
+        let days = ["日","一","二","三","四","五","六"]
+
+        let img_html = ""
+
+        if (data["天氣現象"][i] in image_mapper) {
+            img_html = `<img style="width: 50px;" src="${image_mapper[data["天氣現象"][i]]}">`
+        }else{
+            img_html = data["天氣現象"][i]
+        }
+        
+        html += `
+        <div class="data-column">
+        <div class="date">
+            <span>${(date_obj.getMonth() + 1 + "").padStart(2, "0")}/${(date_obj.getDate() + "").padStart(2, "0")}(${days[day]})</span>
+        </div>
+        <div class="tempature">
+            <span>${data["平均溫度"][i]}˚C</span>
+        </div>
+        <div class="rain_rate">
+            <span>${data["24小時降雨機率"][i] ?? 0}%</span>
+        </div>
+        <div class="weather_type">
+            <span>${img_html}</span>
+        </div>
+        `
+
+        // 設定浪高資料
+        // 浪高資料每 3 小時一次
+        // 所以要顯示多筆
+        let today_wave_data = data["海浪"][today]
+
+        if (!today_wave_data) {
+            html += `<div class="wave_data">無當日海浪資料</div>`
+        }else{
+            html += `<div class="wave_data"><div class="d-flex m-auto">`
+            Object.keys(today_wave_data).forEach(time_key => {
+                html += `
+                <div class="wave-data-box">
+                    <div class="wave-time-row">
+                        時間:${get_time(time_key)}
+                    </div>
+                    <div class="wave-value-row">
+                `
+                Object.keys(today_wave_data[time_key]).filter(key => ["浪高", "流向"].includes(key)).forEach(value_key => {
+                    if (value_key == "流向") {
+                        let arrow_html = ""
+                        if (today_wave_data[time_key][value_key] in arrow_mapper) {
+                            arrow_html = `<img style="width: 25px;" src="${arrow_mapper[today_wave_data[time_key][value_key]]}">`
+                        }else{
+                            arrow_html = today_wave_data[time_key][value_key]
+                        }
+
+                        html += `<p>${value_key}:${arrow_html}</p>`
+                    }else{
+                        html += `<p>${value_key}:${today_wave_data[time_key][value_key]}</p>`
+                    }
+                })
+                html += "</div></div>"
+            })
+            html += "</div></div>"
+        }
+
+        // 設定當日潮汐資料
+        let today_tidal_data = data["潮汐"][today]
+
+        if (!today_tidal_data) {
+            html += `<div class="wave_data">無當日潮汐資料</div>`
+        } else {
+            html += `<div class="tidal_data"><div class="d-flex m-auto">`
+            today_tidal_data.forEach(row_data => {
+                html += `
+                <div class="tidal-data-box">
+                    <div class="tidal-time-row">
+                        <p>時間:${get_time(row_data.datetime)}</p>
+                    </div>
+                    <div class="tidal-value-row">
+                        <p>${row_data.tide}</p>
+                    </div>
+                </div>
+                `
+            })
+            html += "</div></div>"
+        }
+        html += "</div>"
+    }
+    html += "</div></div>"
+
+    $("#weather-information").remove()
+    $("#weather-container").append(html)
+}
+
+const process = async () => {
+    await fetchall()
+
+    format_data()
+
+    generate_weather_html("N001")
 }
 
 </script>
@@ -904,8 +1188,8 @@ const load_weather_data = () => {
         '澎湖縣': [23.654072, 119.596528, 14],
         '金門縣': [24.450180, 118.367563, 14],
         '連江縣': [26.164330, 120.248569, 14],
-        '臺北市': [25.093967, 121.554655, 14],
-        '新北市': [25.11321941799068, 121.90830358631158, 14],
+        '臺北市': [25.056083, 121.559522, 14],
+        '新北市': [25.119584, 121.912055, 14],
         '基隆市': [25.121252, 121.719304, 14],
         '桃園市': [24.918439, 121.243436, 14],
         '新竹市': [24.787220, 120.939825, 14],
@@ -937,10 +1221,10 @@ const load_weather_data = () => {
             '花蓮縣': [23.852462, 121.406987, 9]
         },
         '臺北市': {
-            '臺北市': [25.093967, 121.554655, 11]
+            '臺北市': [25.056083, 121.559522, 14]
         },
         '新北市': {
-            '新北市': [24.944788, 121.556745, 10]
+            '新北市': [25.119584, 121.912055, 10]
         },
         '基隆市': {
             '基隆市': [25.121252, 121.719304, 11]
@@ -988,8 +1272,8 @@ const load_weather_data = () => {
             '宜蘭縣': [24.570412, 121.653605, 9]
         },
         '屏東縣': {
-            '屏東縣': [22.510463, 120.651370, 9],
-            '小琉球': [22.340036, 120.369805, 12]
+            '屏東縣': [21.93816589937437, 120.77412452862782, 13],
+            '小琉球': [22.347902, 120.383985, 17]
         },
         '澎湖縣': {
             '澎湖縣': [23.654072, 119.596528, 9.25]
@@ -1163,17 +1447,23 @@ const load_weather_data = () => {
 
     // 搜尋欄捲動事件
     window.addEventListener('scroll', function() {
-    const searchContainer = document.querySelector('.search-container');
-    const scrollY = window.scrollY;
+        const searchContainer = document.querySelector('.search-container');
+        const scrollY = window.scrollY;
 
-    if (scrollY > 480) { // 根據您希望的捲動位置調整數值
-      searchContainer.classList.add('fixed-search');
-    } else {
-      searchContainer.classList.remove('fixed-search');
-    }
-});
+        if (scrollY > 480) { // 根據您希望的捲動位置調整數值
+        searchContainer.classList.add('fixed-search');
+        } else {
+        searchContainer.classList.remove('fixed-search');
+        }
+    });
 
+    $(function() {
+        process()
+    })
 
+    $("#location").change(function() {
+        generate_weather_html($(this).val())
+    })
 
 </script>
 

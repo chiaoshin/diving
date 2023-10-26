@@ -80,7 +80,7 @@
                     <h4>營業時間：</h4>
                     <p class="m-0 big_p">
                         {!! $store->work_info !!}
-                        <p class="m-0 text-danger big_p">不提供住宿</p>
+                        <p class="m-0 text-danger big_p">不提供住宿時間</p>
                     </p>
                     @endif
                     <h4>交通建議：</h4>

@@ -64,16 +64,130 @@
     font-weight: bold;
 
   }
-  .big-title{
-    font-size: 24px;
+  
+
+
+
+  
+#weather-information {
+    display: flex;
+}
+
+.weather-container {
+    margin: auto;
+    display: flex;
+    max-width: 1000px;
+    overflow-x: scroll;
+    /* column-gap: 10px; */
+}
+
+.data-column {
+    min-width: 300px;
+    text-align: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.data-column.label {
+    min-width: -moz-fit-content;
+    min-width: fit-content;
+    padding-right: 0;
+}
+
+.data-column.label .wave_type {
+    min-height: 150px;
+    display: flex;
+}
+
+.data-column.label .wave_type span {
+    margin: auto;
+}
+
+.data-column .weather_type {
+    height: 100px;
+    display: flex;
+}
+
+.data-column .weather_type span {
+    margin: auto;
+}
+
+.data-column.label .tidal_type {
+    min-height: 150px;
+    display: flex;
+}
+
+.data-column.label .tidal_type span {
+    margin: auto;
+}
+
+.data-column.label div {
+    background-color: #d8d8eb;
+    color: #5b00ae;
+    font-weight: bold;
+    border: solid 1px white;
+}
+
+.data-column > div {
+    padding: 10px;
+    border: solid 1px white;
+}
+
+.data-column .date {
+    background-color: #bebebe;
+    font-weight: bold;
+}
+
+.wave_data {
+    display: flex;
+    overflow-x: scroll;
+    min-height: 150px;
+}
+
+.tidal-time-row,
+.tidal-value-row,
+.wave-time-row, 
+.wave-value-row{
+  border: solid 1px white;
+}
+
+.tidal_data {
+  display: flex;
+  overflow-x: scroll;
+  min-height: 100px;
+  height: 150px;
+}
+
+.tidal-data-box,
+.wave-data-box {
+  width: 100px;
+}
+
+.tidal-data-box p,
+.wave-data-box p {
+  margin: 0;
+}
+
+@media screen and (max-width: 576px) {
+
+}
+
+@media screen and (min-width: 576px)  and (max-width: 767px){
+
+}
+
+@media screen and (min-width: 768px)  and (max-width: 991px){
+
+}
+
+@media screen and (min-width: 992px)  and (max-width: 1199px){
+  .weather-container {
+    max-width: 100%;
   }
-  .big_p{
-    font-size: 25px;
+}
+
+@media screen and (min-width: 1200px) {
+  .weather-container {
+    max-width: 100%;
   }
-  
-  
-
-
-
-  
-
+}
