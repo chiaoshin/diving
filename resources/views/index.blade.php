@@ -206,7 +206,7 @@ $fake_data2 = [
                     <div class="div ps-5">
                         <div class="form-check form-switch">
                             <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                            <label class="form-check-label" for="flexSwitchCheckDefault"><b>區域熱點數</b></label>
+                            <label class="form-check-label" for="flexSwitchCheckDefault"><b>群聚圖</b></label>
                           </div>                          
                     </div>
                 </div>
@@ -568,12 +568,46 @@ const format_data = () => {
 // 天氣對照圖
 const generate_weather_html = (id) => {
     let image_mapper = {
-        "多雲短暫雨": "{{ asset('img/weather/CR.svg') }}",
-        "陰時多雲短暫雨":"{{ asset('img/weather/CR2.svg') }}",
+        "短暫雨": "{{ asset('img/weather/CR1.svg') }}",
+        "多雲":"{{ asset('img/weather/CR2.svg') }}",
+        "陰":"{{ asset('img/weather/CR3.svg') }}",
+        "短暫陣雨":"{{ asset('img/weather/CR4.svg') }}",
+        "晴":"{{ asset('img/weather/CR5.svg') }}",
+        "晴時多雲":"{{ asset('img/weather/CR8.svg') }}",
+
+        "陰時多雲短暫雨":"{{ asset('img/weather/CR6.svg') }}",
+        "陰時多雲":"{{ asset('img/weather/CR11.svg') }}",
+        "陰短暫雨":"{{ asset('img/weather/CR12.svg') }}",
+        "陰短暫陣雨":"{{ asset('img/weather/CR12.svg') }}",
+        "陰天":"{{ asset('img/weather/CR14.svg') }}",
+        "陰時多雲短暫陣雨":"{{ asset('img/weather/CR15.svg') }}",
+
+        "多雲時陰":"{{ asset('img/weather/CR7.svg') }}",
+        "多雲時晴":"{{ asset('img/weather/CR9.svg') }}",
+        "多雲短暫陣雨":"{{ asset('img/weather/CR10.svg') }}",
+        "多雲短暫雨":"{{ asset('img/weather/CR10.svg') }}",
+        "多雲時陰短暫雨":"{{ asset('img/weather/CR13.svg') }}",
+        "多雲時陰短暫陣雨":"{{ asset('img/weather/CR13.svg') }}",
     }
     
     let arrow_mapper = {
-        "sw": "{{ asset('img/weather/down-left.png') }}"
+        "n": "{{ asset('img/weather/up.png') }}",
+        "s": "{{ asset('img/weather/down.png') }}",
+        "w": "{{ asset('img/weather/left.png') }}",
+        "e": "{{ asset('img/weather/right.png') }}",
+        "nw": "{{ asset('img/weather/up-left.png') }}",
+        "ne": "{{ asset('img/weather/up-right.png') }}",
+        "se": "{{ asset('img/weather/down-right.png') }}",
+        "sw": "{{ asset('img/weather/down-left.png') }}",
+
+        "ssw": "{{ asset('img/weather/down-left.png') }}",
+        "wsw": "{{ asset('img/weather/down-left.png') }}",
+        "wnw": "{{ asset('img/weather/up-left.png') }}",
+        "nnw": "{{ asset('img/weather/up-left.png') }}",
+        "nne": "{{ asset('img/weather/up-right.png') }}",
+        "ene": "{{ asset('img/weather/up-right.png') }}",
+        "sse": "{{ asset('img/weather/down-right.png') }}",
+        "ese": "{{ asset('img/weather/down-right.png') }}",
     }
 
     let html = `
@@ -809,7 +843,7 @@ const process = async () => {
         街道地圖: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution: '© <a href="https://www.openstreetmap.org/copyright">OSM開源地圖</a>'}),
         // 熱點圖: L.tileLayer('https://wmts.nlsc.gov.tw/wmts/EMAP/default/EPSG:3857/{z}/{y}/{x}', {attribution: '&copy; <a href="https://www.tgos.tw/tgos/web/tgos_home.aspx">TGOS</a>'}),
         道路清晰版: L.tileLayer('https://{s}.tile.jawg.io/jawg-matrix/{z}/{x}/{y}{r}.png?access-token=MNiPzMGxrs9OfKmwhx85CXMeBukniOVvEMn2vWuDwyGV6qClwU6muHYnTjSqwjee', {attribution: '<a href="http://jawg.io" title="Tiles Courtesy of Jawg Maps" target="_blank">&copy; <b>Jawg</b>Maps</a>'}),
-        衛星: L.tileLayer('https://wmts.nlsc.gov.tw/wmts/PHOTO_MIX/default/GoogleMapsCompatible/{z}/{y}/{x}', {attribution: '&copy; <a href="https://www.tgos.tw/tgos/web/tgos_home.aspx">TGOS</a>'}),
+        // 衛星: L.tileLayer('https://wmts.nlsc.gov.tw/wmts/PHOTO_MIX/default/GoogleMapsCompatible/{z}/{y}/{x}', {attribution: '&copy; <a href="https://www.tgos.tw/tgos/web/tgos_home.aspx">TGOS</a>'}),
         
         // 山脈_地形地勢Topography: L.tileLayer.wms('http://ows.mundialis.de/services/service?',   {layers: 'TOPO-WMS'}),
         // 省道_Places: L.tileLayer.wms('http://ows.mundialis.de/services/service?', {layers: 'OSM-Overlay-WMS'}),
@@ -863,7 +897,7 @@ const process = async () => {
         ]).setStyle({
             fillColor: '#FF0000',
             color: '#FF0000'
-        }).addTo(map).bindPopup('<h3>新北市淡水區沙崙沿岸海域</h3>' + '<p>禁止水域遊憩活動區域</p>' + '<br> <p> 自淨水廠前海堤A點起， 向南沿沙灘高潮線至淡水河出海口交界B點止之區域。 </p>');
+        }).addTo(map).bindPopup('<h3>新北市淡水區沙崙沿岸海域</h3>' + '<h6>禁止水域遊憩活動區域</h6>' + '<br> <p> 自淨水廠前海堤A點起， 向南沿沙灘高潮線至淡水河出海口交界B點止之區域。 </p>');
 
         var polygon2 = L.polygon([
             [22.934628, 120.175472],
@@ -873,7 +907,7 @@ const process = async () => {
         ]).setStyle({
             fillColor: '#FF0000',
             color: '#FF0000'
-        }).addTo(map).bindPopup('<h3>臺南市南區灣裡(含黃金海岸)近岸海域</h3>' + '<p>禁止從事所有水域遊憩活動</p>');
+        }).addTo(map).bindPopup('<h3>臺南市南區灣裡(含黃金海岸)近岸海域</h3>' + '<h6>禁止從事所有水域遊憩活動</h6>');
 
         var polygon3 = L.polygon([
             [26.2175, 119.979444],
@@ -884,7 +918,7 @@ const process = async () => {
         ]).setStyle({
             fillColor: '#FF0000',
             color: '#FF0000'
-        }).addTo(map).bindPopup('<h3>連江縣北竿鄉?里附近海域</h3>' + '<p>禁止從事各項水域遊憩活動</p>');
+        }).addTo(map).bindPopup('<h3>連江縣北竿鄉?里附近海域</h3>' + '<h6>禁止從事各項水域遊憩活動</h6>');
 
         var polygon4 = L.polygon([
             [24.480224, 121.849641],
@@ -894,7 +928,7 @@ const process = async () => {
         ]).setStyle({
             fillColor: '#FF0000',
             color: '#FF0000'
-        }).addTo(map).bindPopup('<h3>宜蘭縣南澳地區海域</h3>' + '<p>禁止水域遊憩活動</p>');
+        }).addTo(map).bindPopup('<h3>宜蘭縣南澳地區海域</h3>' + '<h6>禁止水域遊憩活動</h6>');
 
         var polygon5 = L.polygon([
             [22.452778, 120.458611],
@@ -904,7 +938,7 @@ const process = async () => {
         ]).setStyle({
             fillColor: '#FF0000',
             color: '#FF0000'
-        }).addTo(map).bindPopup('<h3>大鵬灣潟湖潮口水域</h3>' + '<p>禁止遊客於上述區域從事各項水域遊憩活動</p>');
+        }).addTo(map).bindPopup('<h3>大鵬灣潟湖潮口水域</h3>' + '<h6>禁止遊客於上述區域從事各項水域遊憩活動</h6>');
 
         var polygon6 = L.polygon([
             [23.7885, 119.598368],
@@ -914,7 +948,7 @@ const process = async () => {
         ]).setStyle({
             fillColor: '#FF0000',
             color: '#FF0000'
-        }).addTo(map).bindPopup('<h3>澎湖縣目斗嶼海域</h3>' + '<p>禁止從事所有水域遊憩活動</p>');
+        }).addTo(map).bindPopup('<h3>澎湖縣目斗嶼海域</h3>' + '<h6>禁止從事所有水域遊憩活動</h6>');
 
         var polygon7 = L.polygon([
             [25.285489, 121.50971],
@@ -922,7 +956,7 @@ const process = async () => {
         ]).setStyle({
             fillColor: '#FF0000',
             color: '#FF0000'
-        }).addTo(map).bindPopup('<h3>麟山鼻岬角兩側水域(至等深線20公尺水域)</h3>' + '<p>禁止遊客從事水域遊憩活動管理辦法所定義之各項水域遊憩活動</p>');
+        }).addTo(map).bindPopup('<h3>麟山鼻岬角兩側水域(至等深線20公尺水域)</h3>' + '<h6>禁止遊客從事水域遊憩活動管理辦法所定義之各項水域遊憩活動</h6>');
 
         var polygon8 = L.polygon([
             [25.294631, 121.533492],
@@ -930,7 +964,7 @@ const process = async () => {
         ]).setStyle({
             fillColor: '#FF0000',
             color: '#FF0000'
-        }).addTo(map).bindPopup('<h3>富貴角岬角兩側水域(至等深線20公尺水域)</h3>' + '<p>禁止遊客從事水域遊憩活動管理辦法所定義之各項水域遊憩活動</p>');
+        }).addTo(map).bindPopup('<h3>富貴角岬角兩側水域(至等深線20公尺水域)</h3>' + '<h6>禁止遊客從事水域遊憩活動管理辦法所定義之各項水域遊憩活動</h6>');
 
         var polygon9 = L.polygon([
             [25.231418, 121.648864],
@@ -938,7 +972,7 @@ const process = async () => {
         ]).setStyle({
             fillColor: '#FF0000',
             color: '#FF0000'
-        }).addTo(map).bindPopup('<h3>獅頭山岬角兩側水域(獅頭山公園附近海域至等深線20公尺水域)</h3>' + '<p>禁止遊客從事水域遊憩活動管理辦法所定義之各項水域遊憩活動</p>');
+        }).addTo(map).bindPopup('<h3>獅頭山岬角兩側水域(獅頭山公園附近海域至等深線20公尺水域)</h3>' + '<h6>禁止遊客從事水域遊憩活動管理辦法所定義之各項水域遊憩活動</h6>');
 
         var polygon10 = L.polygon([
             [25.207678, 121.690098],
@@ -946,7 +980,7 @@ const process = async () => {
         ]).setStyle({
             fillColor: '#FF0000',
             color: '#FF0000'
-        }).addTo(map).bindPopup('<h3>野柳岬角兩側水域(至等深線20公尺水域)</h3>' + '<p>禁止遊客從事水域遊憩活動管理辦法所定義之各項水域遊憩活動</p>');
+        }).addTo(map).bindPopup('<h3>野柳岬角兩側水域(至等深線20公尺水域)</h3>' + '<h6>禁止遊客從事水域遊憩活動管理辦法所定義之各項水域遊憩活動</h6>');
 
         var polygon11 = L.polygon([
             [25.125147, 121.915211],
@@ -956,7 +990,7 @@ const process = async () => {
         ]).setStyle({
             fillColor: '#FF0000',
             color: '#FF0000'
-        }).addTo(map).bindPopup('<h3>新北市瑞芳區鼻頭漁港外海域</h3>' + '<p>禁止潛水活動</p>');
+        }).addTo(map).bindPopup('<h3>新北市瑞芳區鼻頭漁港外海域</h3>' + '<h6>禁止潛水活動</h6>');
 
         var polygon12 = L.polygon([
             [25.135583, 121.8265],
@@ -964,7 +998,7 @@ const process = async () => {
         ]).setStyle({
             fillColor: '#FF0000',
             color: '#FF0000'
-        }).addTo(map).bindPopup('<h3>新北市瑞芳區深澳海域</h3>' + '<p>禁止橡皮艇活動</p>');
+        }).addTo(map).bindPopup('<h3>新北市瑞芳區深澳海域</h3>' + '<h6>禁止橡皮艇活動</h6>');
 
         var polygon15 = L.polygon([
             [25.172725, 121.38745],
@@ -973,7 +1007,7 @@ const process = async () => {
         ]).setStyle({
             fillColor: '#FF0000',
             color: '#FF0000'
-        }).addTo(map).bindPopup('<h3>新北市八里 紅海灘海域</h3>' + '<p>禁止從事風箏衝浪活動</p>');
+        }).addTo(map).bindPopup('<h3>新北市八里 紅海灘海域</h3>' + '<h6>禁止從事風箏衝浪活動</h6>');
 
         var polygon16 = L.polygon([
             [23.219191, 120.082761],
@@ -983,7 +1017,7 @@ const process = async () => {
         ]).setStyle({
             fillColor: '#FF0000',
             color: '#FF0000'
-        }).addTo(map).bindPopup('<h3>臺南市馬沙溝海域(游泳區)</h3>' + '<p>限制僅得從事游泳活動 ，並依公告限制時間及注意事項為之</p>');
+        }).addTo(map).bindPopup('<h3>臺南市馬沙溝海域(游泳區)</h3>' + '<h6>限制僅得從事游泳活動 ，並依公告限制時間及注意事項為之</h6>');
 
         var polygon17 = L.polygon([
             [23.21794, 120.082031],
@@ -995,7 +1029,7 @@ const process = async () => {
         ]).setStyle({
             fillColor: '#FF0000',
             color: '#FF0000'
-        }).addTo(map).bindPopup('<h3>臺南市馬沙溝海域(非動力區)</h3>' + '<p>限制僅得從事乘騎獨木舟、風浪板及立式划槳活動，並依公告活動時間及注意事項為之</p>');
+        }).addTo(map).bindPopup('<h3>臺南市馬沙溝海域(非動力區)</h3>' + '<h6>限制僅得從事乘騎獨木舟、風浪板及立式划槳活動，並依公告活動時間及注意事項為之</h6>');
 
         var polygon18 = L.polygon([
             [23.220191, 120.083211],
@@ -1007,7 +1041,7 @@ const process = async () => {
         ]).setStyle({
             fillColor: '#FF0000',
             color: '#FF0000'
-        }).addTo(map).bindPopup('<h3>臺南市馬沙溝海域(動力區)</h3>' + '<p>限制僅得從事乘騎水上 摩托車、香蕉船活動， 並依公告活動時間及注意事項為之</p>');
+        }).addTo(map).bindPopup('<h3>臺南市馬沙溝海域(動力區)</h3>' + '<h6>限制僅得從事乘騎水上 摩托車、香蕉船活動， 並依公告活動時間及注意事項為之</h6>');
 
         var polygon19 = L.polygon([
             [22.621667, 120.256667],
@@ -1017,7 +1051,7 @@ const process = async () => {
         ]).setStyle({
             fillColor: '#FF0000',
             color: '#FF0000'
-        }).addTo(map).bindPopup('<h3>高雄市西子灣海域</h3>' + '<p>以風浪板、香蕉船、拖 曳浮胎、獨木舟活動為限，並依公告活動時間及注意事項為之</p>');
+        }).addTo(map).bindPopup('<h3>高雄市西子灣海域</h3>' + '<h6>以風浪板、香蕉船、拖 曳浮胎、獨木舟活動為限，並依公告活動時間及注意事項為之</h6>');
 
         var polygon20 = L.polygon([
             [25.164747, 121.708008],
@@ -1025,7 +1059,7 @@ const process = async () => {
         ]).setStyle({
             fillColor: '#FF0000',
             color: '#FF0000'
-        }).addTo(map).bindPopup('<h3>基隆市大武崙澳底沙灘海域</h3>' + '<p>限制僅得從事非動力水域遊憩活動</p>');
+        }).addTo(map).bindPopup('<h3>基隆市大武崙澳底沙灘海域</h3>' + '<h6>限制僅得從事非動力水域遊憩活動</h6>');
     }
 
     // 『清除打點』

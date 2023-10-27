@@ -26,7 +26,7 @@
             詳細資訊
         </div>
         <div class="row-item" data-target="#chatgpt-suggest">
-            ChatGPT建議
+            潛水建議(ChatGPT)
         </div>
         <div class="row-item" data-target="#attractions-discussion">
             評論
@@ -60,7 +60,7 @@
                     <img class="img-fluid" src="{{ asset("img/store/hotel2.jpg") }}">
                 </div>
                 <div class="information">
-                    <a class="category d-block mb-4" href="#">Suggestion &mdash; ChatGPT建議</a>
+                    <a class="category d-block mb-4" href="#">Suggestion &mdash; 潛水建議(ChatGPT)</a>
                     {{-- <h2><a href="#" class="store-name">建議內容</a></h2> --}}
                     <div class="container hide-scroll" style="max-height: 400px;">
                         <div class="info"></div>
