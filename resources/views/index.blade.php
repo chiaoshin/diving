@@ -207,7 +207,7 @@ $fake_data2 = [
                         <div class="form-check form-switch">
                             <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
                             <label class="form-check-label" for="flexSwitchCheckDefault"><b>群聚圖</b></label>
-                          </div>                          
+                        </div>                  
                     </div>
                 </div>
             </div>
@@ -565,7 +565,7 @@ const format_data = () => {
     $("#location").html(options)
 }
 
-// 天氣對照圖
+// 天氣對照圖(已修)
 const generate_weather_html = (id) => {
     let image_mapper = {
         "短暫雨": "{{ asset('img/weather/CR1.svg') }}",
