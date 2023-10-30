@@ -7,7 +7,7 @@ html,body{
 }
 #map{ 
     width: 100%;
-    min-height: 500px;
+    min-height: 640px;
     height: auto;
 }
 .big_p{

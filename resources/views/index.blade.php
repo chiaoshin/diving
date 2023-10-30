@@ -209,6 +209,38 @@ $fake_data2 = [
                             <label class="form-check-label h5" for="flexSwitchCheckDefault"><b>群聚圖</b></label>
                         </div>                  
                     </div>
+                    <div class="div">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">圖片</th>
+                                    <th class="text-center" style="background-color:#bebebe;">文字敘述</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <img src="https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png" alt="潛水地點" style="max-width: 20px;">
+                                        <img src="https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-orange.png" alt="潛水地點" style="max-width: 20px;">
+                                        <img src="https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png" alt="潛水地點" style="max-width: 20px;">
+                                    </td>
+                                    <td><b>潛水地點</b></td>
+                                </tr>
+                                <tr>
+                                    <td><img src="{{ asset("img/map/dive.png") }}" alt="潛水店家" style="max-width: 50px;"></td>
+                                    <td><b>潛水店家</b></td>
+                                </tr>
+                                <tr>
+                                    <td><img src="{{ asset("img/map/hotel-hostel-svgrepo-com2.svg") }}" alt="背包客房" style="max-width: 50px;"></td>
+                                    <td><b>背包客房</b></td>
+                                </tr>
+                                <tr>
+                                    <td><img src="{{ asset("img/map/diving-mask-svgrepo-com.svg") }}" alt="潛水用品店" style="max-width: 50px;"></td>
+                                    <td><b>潛水用品店</b></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
             <div class="col col-10">
