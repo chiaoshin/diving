@@ -485,7 +485,7 @@ const load_weather_data = () => {
 const get_date = (date_str) => {
     let date_obj = new Date(date_str)
 
-    return `${date_obj.getFullYear()}-${date_obj.getMonth() + 1}-${date_obj.getDate()}`
+    return `${date_obj.getFullYear()}-${(date_obj.getMonth() + 1 + "").padStart(2, "0")}-${(date_obj.getDate() + "").padStart(2, "0")}`
 }
 
 const get_time = (date_str) => {
