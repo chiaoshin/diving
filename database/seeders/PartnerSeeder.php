@@ -39,7 +39,7 @@ class PartnerSeeder extends Seeder
 
         Partner::create([
             "name" => "昭小美",
-            "group_time" => "2023-09-10",
+            "group_time" => "2023-11-29",
             "location" => "綠島",
             "money" => 14000,
             "email" => "C1091931101@gmail.com",
@@ -51,7 +51,7 @@ class PartnerSeeder extends Seeder
 
         Partner::create([
             "name" => "王莉莉",
-            "group_time" => "2023-08-15",
+            "group_time" => "2023-11-30",
             "location" => "墾丁",
             "money" => 2500,
             "email" => "C1091931102@gmail.com",
@@ -63,7 +63,7 @@ class PartnerSeeder extends Seeder
 
         Partner::create([
             "name" => "陳明明",
-            "group_time" => "2023-08-20",
+            "group_time" => "2023-12-20",
             "location" => "小琉球",
             "money" => 400,
             "email" => "C1091931103@gmail.com",
@@ -75,7 +75,7 @@ class PartnerSeeder extends Seeder
 
         Partner::create([
             "name" => "林戚戚",
-            "group_time" => "2023-08-22",
+            "group_time" => "2023-12-22",
             "location" => "蘭嶼",
             "money" => 12000,
             "email" => "C109193104@gmail.com",
@@ -87,7 +87,7 @@ class PartnerSeeder extends Seeder
 
         Partner::create([
             "name" => "鄭美美",
-            "group_time" => "2023-08-24",
+            "group_time" => "2023-12-24",
             "location" => "綠島",
             "money" => 400,
             "email" => "C109193105@gmail.com",
@@ -99,7 +99,7 @@ class PartnerSeeder extends Seeder
 
         Partner::create([
             "name" => "何東東",
-            "group_time" => "2023-11-08",
+            "group_time" => "2023-12-08",
             "location" => "墾丁",
             "money" => 15000,
             "email" => "C109193106@gmail.com",
@@ -111,7 +111,7 @@ class PartnerSeeder extends Seeder
 
         Partner::create([
             "name" => "胡喃喃",
-            "group_time" => "2023-10-01",
+            "group_time" => "2023-12-01",
             "location" => "小琉球",
             "money" => 2500,
             "email" => "C109193107@gmail.com",
@@ -123,7 +123,7 @@ class PartnerSeeder extends Seeder
 
         Partner::create([
             "name" => "曾咚咚",
-            "group_time" => "2023-08-25",
+            "group_time" => "2023-12-25",
             "location" => "綠島",
             "money" => 13000,
             "email" => "C109193108@gmail.com",
